@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="song"
+            type="com.doanhung.musicproject.data.model.Song" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="@dimen/image_hot_recommended_dimens"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/below_medium_dimens"
+        android:paddingVertical="@dimen/below_medium_dimens">
+
+
+        <ImageView
+            android:id="@+id/imvSongImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_hot_recommended_img"
+            android:scaleType="fitXY"
+            android:src="@{song.image}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription"
+            tools:srcCompat="@drawable/image_sample_1" />
+
+        <TextView
+            android:id="@+id/tvSongName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/below_large_dimens"
+            android:text="@{song.name}"
+            android:textColor="@color/white2_text_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imvSongImage"
+            tools:text="Song name" />
+
+        <TextView
+            android:id="@+id/tvArtistName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_dimens"
+            android:text="@{song.artist}"
+            android:textColor="@color/white4_text_color"
+            android:textSize="@dimen/small_text_dimens"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSongName"
+            tools:text="Artist name" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

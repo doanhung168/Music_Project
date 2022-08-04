@@ -1,0 +1,75 @@
+<resources>
+    <string name="app_name">Music Project</string>
+
+    <!--    common and generic -->
+    <string name="home">Home</string>
+    <string name="settings">Settings</string>
+    <string name="songs">Songs</string>
+    <string name="albums">Albums</string>
+    <string name="artists">Artists</string>
+    <string name="playlist">Playlist</string>
+    <string name="view_all">View All</string>
+    <string name="share">Share</string>
+    <string name="now_playing">Now Playing</string>
+
+    <!--    Splash screen-->
+    <string name="muzic">Muzic</string>
+
+    <!--    Home screen-->
+    <string name="hot_recommended">Hot Recommended</string>
+    <string name="recently_played">Recently Played</string>
+    <string name="search_album_song">Search album song</string>
+
+    <!--    Navigation view-->
+    <string name="themes">Themes</string>
+    <string name="ringtone_cutter">Ringtone Cutter</string>
+    <string name="sleep_timer">Sleep timer</string>
+    <string name="equliser">Equliser</string>
+    <string name="drive_mode">Drive Mode</string>
+    <string name="hidden_folders">Hidden Folders</string>
+    <string name="scan_media">Scan Media</string>
+
+    <!--    Song screen-->
+    <string name="genres">Genres</string>
+    <string name="my_top_tracks">My Top Tracks</string>
+    <string name="latest_added">Latest Added</string>
+    <string name="history">History</string>
+    <string name="favourites">Favourites</string>
+
+    <!--    popup menu-->
+    <string name="play">Play</string>
+    <string name="play_next">Play next</string>
+    <string name="add_to_playing_queue">Add to playing queue</string>
+    <string name="add_to_playlist...">Add to playlist…</string>
+    <string name="rename">Rename</string>
+    <string name="tag_editor">Tag editor</string>
+    <string name="go_to_artist">Go to artist</string>
+    <string name="delete_from_device">Delete from device</string>
+
+
+    <!--    Album detail screen-->
+    <string name="album_detail">Album Details</string>
+    <string name="add_to_favorites">Add to Favorites</string>
+
+    <!--    Artist detail screen-->
+    <string name="artist_detail">Artist Detail</string>
+    <string name="follow">Follow</string>
+
+    <!--    Settings screen-->
+    <string name="display">Display</string>
+    <string name="audio">Audio</string>
+    <string name="headset">Headset</string>
+    <string name="lockscreen">Lockscreen</string>
+    <string name="advanced">Advanced</string>
+    <string name="other">Other</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search">search</string>
+    <string name="_87">87</string>
+    <string name="_52">52</string>
+    <string name="_238">238</string>
+
+
+</resources>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.doanhung.musicproject.view.fragment.HomeFragment"
+        android:label=""
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/songFragment"
+        android:name="com.doanhung.musicproject.view.fragment.SongFragment"
+        android:label="@string/songs"
+        tools:layout="@layout/fragment_song" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.doanhung.musicproject.view.fragment.SettingFragment"
+        android:label="@string/settings"
+        tools:layout="@layout/fragment_setting" />
+</navigation>

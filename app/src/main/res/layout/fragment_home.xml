@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/primary_color">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_bugre_menu">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/below_medium_dimens"
+                android:background="@drawable/bg_search_bar">
+
+                <ImageView
+                    android:id="@+id/imvSearchIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/medium_dimens"
+                    android:src="@drawable/ic_search"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ContentDescription" />
+
+                <EditText
+                    android:id="@+id/edtSearch"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/search_height_dimens"
+                    android:layout_marginStart="@dimen/medium_dimens"
+                    android:layout_marginEnd="@dimen/medium_dimens"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/search_album_song"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:singleLine="true"
+                    android:textColorHint="@color/search_text_color"
+                    android:textSize="@dimen/small_text_dimens"
+                    app:fontFamily="@font/circular_std_book"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imvSearchIcon"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="Autofill,TextFields" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/large_dimens"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvHotRecommendedTitle"
+                    style="@style/title_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hot_recommended"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="RtlSymmetry" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcvHotRecommended"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/below_medium_dimens"
+                    android:paddingStart="@dimen/below_medium_dimens"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvHotRecommendedTitle"
+                    tools:ignore="RtlSymmetry" />
+
+                <View
+                    android:id="@+id/divOne"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/line_dimens"
+                    android:layout_marginStart="@dimen/below_medium_dimens"
+                    android:layout_marginTop="@dimen/below_large_dimens"
+                    android:layout_marginEnd="@dimen/below_medium_dimens"
+                    android:background="@color/white3_text_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rcvHotRecommended" />
+
+                <TextView
+                    android:id="@+id/tvPlaylistTitle"
+                    style="@style/title_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/below_large_dimens"
+                    android:text="@string/playlist"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divOne" />
+
+                <TextView
+                    android:id="@+id/tvViewAllPlaylist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/below_medium_dimens"
+                    android:text="@string/view_all"
+                    android:textColor="@color/orange_text_color"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvPlaylistTitle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvPlaylistTitle" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcvPlaylist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/below_medium_dimens"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPlaylistTitle" />
+
+                <View
+                    android:id="@+id/divTwo"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/line_dimens"
+                    android:layout_marginStart="@dimen/below_medium_dimens"
+                    android:layout_marginTop="@dimen/below_large_dimens"
+                    android:layout_marginEnd="@dimen/below_medium_dimens"
+                    android:background="@color/white3_text_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rcvPlaylist" />
+
+                <TextView
+                    android:id="@+id/tvRecentlyPlayed"
+                    style="@style/title_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/below_large_dimens"
+                    android:text="@string/recently_played"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divTwo" />
+
+                <TextView
+                    android:id="@+id/tvViewAppRecentlyPlayed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/below_medium_dimens"
+                    android:text="@string/view_all"
+                    android:textColor="@color/orange_text_color"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvRecentlyPlayed"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvRecentlyPlayed" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/below_medium_dimens"
+                    android:layout_marginBottom="@dimen/medium_dimens"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvRecentlyPlayed" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--    for app background-->
+    <color name="primary_color">#181B2C</color>
+
+    <!--    for text-->
+    <color name="white1_text_color">#FFFFFF</color>
+    <color name="white2_text_color">#CDFFFFFF</color>
+    <color name="white3_text_color">#99FFFFFF</color>
+    <color name="white4_text_color">#47FFFFFF</color>
+    <color name="orange_text_color">#ED8770</color>
+    <color name="purple_text_color">#D9519D</color>
+    <color name="app_bar_content_color">#BABBC0</color>
+
+    <!--    for gradient color-->
+    <color name="gradient_end">#A44172</color>
+    <color name="gradient_start">#EB8373</color>
+
+    <!--    for bottom navigation-->
+    <color name="bottom_nav_bg_color">#151827</color>
+    <color name="base_bottom_nav_icon_color">#63666E</color>
+
+    <!--    for navigation view-->
+    <color name="above_nav_view_color">#181A24</color>
+    <color name="below_nav_view_color">#10121D</color>
+
+    <!--    for search button-->
+    <color name="search_button_color">#686A75</color>
+    <color name="search_bg_color">#292E4B</color>
+    <color name="search_text_color">#53576F</color>
+
+    <color name="thin_line_color">#707070</color>
+    <color name="transparent_color">#CEADAA</color>
+
+
+</resources>

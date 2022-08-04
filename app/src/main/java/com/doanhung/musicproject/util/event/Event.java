@@ -1,0 +1,7 @@
+package com.doanhung.musicproject.util.event;
+
+public enum Event {
+    LOADING_NAV_VIEW_DATA_FAILURE_EVENT,
+    LOADING_SETTING_FRAGMENT_DATA_FAILURE_EVENT,
+    LOADING_HOT_RECOMMENDED_PART_FAILURE_EVENT
+}
