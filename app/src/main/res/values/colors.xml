@@ -14,7 +14,8 @@
     <color name="app_bar_content_color">#BABBC0</color>
 
     <!--    for gradient color-->
-    <color name="gradient_end">#A44172</color>
+    <color name="gradient_end">#A23E70</color>
+    <color name="gradient_center">#A14874</color>
     <color name="gradient_start">#EB8373</color>
 
     <!--    for bottom navigation-->
@@ -31,7 +32,10 @@
     <color name="search_text_color">#53576F</color>
 
     <color name="thin_line_color">#707070</color>
-    <color name="transparent_color">#CEADAA</color>
+    <color name="transparent_color">#B7CEADAA</color>
+    <color name="song_avatar_stroke_color">#95FFEBEE</color>
+
+    <color name="popup_background_color">#585858</color>
 
 
 </resources>
