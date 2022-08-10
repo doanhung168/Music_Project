@@ -121,5 +121,19 @@
         <item name="android:textSize">@dimen/small_text_dimens</item>
     </style>
 
+    <style name="title_playlist_header_style">
+        <item name="android:textSize">@dimen/small_text_dimens</item>
+        <item name="android:textColor">@color/white1_text_color</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="sub_playlist_header_style">
+        <item name="android:textColor">@color/white2_text_color</item>
+        <item name="android:textSize">@dimen/below_small_text_dimens</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
 
 </resources>

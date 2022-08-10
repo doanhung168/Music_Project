@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingDefaultResource">
+
+    <data>
+
+        <variable
+            name="playlist"
+            type="com.doanhung.musicproject.data.model.data_model.PlayList" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="@dimen/header_playlist_width_dimens"
+        android:layout_height="@dimen/header_playlist_height_dimens">
+
+        <ImageView
+            android:id="@+id/imvPlaylist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            tools:src="@drawable/image_header_playlist_sample_1"
+            android:src="@{playlist.image}"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/imvPlayOrPause"
+            android:layout_width="@dimen/medium_dimens"
+            android:layout_height="@dimen/medium_dimens"
+            android:layout_marginEnd="@dimen/large_dimens"
+            android:src="@drawable/ic_play_song_for_now_playing"
+            app:layout_constraintBottom_toBottomOf="@+id/tvNumberSongOfPlaylist"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvPlaylistName"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tvPlaylistName"
+            style="@style/title_playlist_header_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_dimens"
+            android:layout_marginEnd="@dimen/medium_dimens"
+            android:layout_marginBottom="@dimen/below_small_dimens"
+            android:text="@{playlist.name}"
+            app:layout_constraintBottom_toTopOf="@+id/tvNumberSongOfPlaylist"
+            app:layout_constraintEnd_toStartOf="@+id/imvPlayOrPause"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="@string/history" />
+
+        <TextView
+            android:id="@+id/tvNumberSongOfPlaylist"
+            style="@style/sub_playlist_header_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_dimens"
+            android:layout_marginBottom="@dimen/below_small_dimens"
+            android:text="@{String.valueOf(playlist.numberSongOfPlaylist) + ` Songs`}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tvPlaylistName"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="450 Songs" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

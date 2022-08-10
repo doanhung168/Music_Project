@@ -129,7 +129,9 @@
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/menu/search_menu.xml" value="0.2625" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/menu/songs_menu.xml" value="0.15462962962962962" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/drawable/ic_checked_shuffle.xml" value="0.1715" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/layout/adapter_header_playlist_item.xml" value="0.536" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/layout/fragment_music_playing.xml" value="0.2625" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/layout/fragment_play_list.xml" value="0.2625" />
       </map>
     </option>
   </component>

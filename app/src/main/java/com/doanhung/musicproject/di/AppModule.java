@@ -13,6 +13,7 @@ import com.doanhung.musicproject.view.common_adapter.DeviceItemAdapter;
 import com.doanhung.musicproject.view.main_activity.home_fragment.adapter.HotRecommendedAdapter;
 import com.doanhung.musicproject.view.main_activity.home_fragment.adapter.PlayListAdapter;
 import com.doanhung.musicproject.view.main_activity.song_fragment.all_song_fragment.AllSongAdapter;
+import com.doanhung.musicproject.view.main_activity.song_fragment.playlist_fragment.HeaderPlayListAdapter;
 
 import org.jetbrains.annotations.Contract;
 
@@ -85,6 +86,11 @@ public class AppModule {
     @Provides
     public static AllSongAdapter provideSongAdapter() {
         return new AllSongAdapter(DeviceSong.DIFF_CALLBACK);
+    }
+
+    @Provides
+    public static HeaderPlayListAdapter provideHeaderPlayListAdapter() {
+        return new HeaderPlayListAdapter(PlayList.DIFF_CALLBACK);
     }
 
 

@@ -59,28 +59,75 @@ public class DummyData {
                 1,
                 "Classic Playlist",
                 ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.image_playlist_sample_1, null),
-                "Piano Guys"
+                "Piano Guys",
+                200
         );
 
         PlayList playList2 = new PlayList(
                 2,
                 "Summer Playlist",
                 ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.image_playlist_sample_2, null),
-                "Dilon Bruce"
+                "Dilon Bruce",
+                199
         );
 
         PlayList playList3 = new PlayList(
                 3,
                 "Pop Music",
                 ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.image_playlist_sample_1, null),
-                "Michael Jackson"
+                "Michael Jackson",
+                299
         );
 
         PlayList playList4 = new PlayList(
                 4,
                 "Classic Playlist",
                 ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.image_playlist_sample_2, null),
-                "Piano Guys"
+                "Piano Guys",
+                10
+        );
+
+        playLists.add(playList1);
+        playLists.add(playList2);
+        playLists.add(playList3);
+        playLists.add(playList4);
+
+        return playLists;
+    }
+
+    public List<PlayList> makeDataForHeaderPlayListPart() {
+        List<PlayList> playLists = new ArrayList<>();
+
+        PlayList playList1 = new PlayList(
+                1,
+                "Classic Playlist",
+                ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.image_header_playlist_sample_1, null),
+                "Piano Guys",
+                200
+        );
+
+        PlayList playList2 = new PlayList(
+                2,
+                "Summer Playlist",
+                ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.image_header_playlist_sample_2, null),
+                "Dilon Bruce",
+                199
+        );
+
+        PlayList playList3 = new PlayList(
+                3,
+                "Pop Music",
+                ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.image_header_playlist_sample_3, null),
+                "Michael Jackson",
+                299
+        );
+
+        PlayList playList4 = new PlayList(
+                4,
+                "Classic Playlist",
+                ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.image_header_playlist_sample_4, null),
+                "Piano Guys",
+                10
         );
 
         playLists.add(playList1);

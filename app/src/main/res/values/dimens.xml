@@ -40,4 +40,9 @@
     <dimen name="seek_bar_music_player_height_dimens">3dp</dimen>
     <dimen name="min_width">50dp</dimen>
 
+
+
+    <dimen name="header_playlist_width_dimens">200dp</dimen>
+    <dimen name="header_playlist_height_dimens">100dp</dimen>
+
 </resources>

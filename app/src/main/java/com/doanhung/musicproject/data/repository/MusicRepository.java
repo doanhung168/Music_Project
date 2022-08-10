@@ -56,7 +56,6 @@ public class MusicRepository {
         });
     }
 
-    private static final String TAG = "MusicRepository";
     public void loadAllSong(MusicRepositoryCallback<List<DeviceSong>> callback) {
         mExecutor.execute(() -> {
             try {
@@ -64,9 +63,22 @@ public class MusicRepository {
                 Result<List<DeviceSong>> result = new Result.Success<>(songs);
                 callback.onComplete(result);
             } catch (Exception e) {
-                Log.e(TAG, "loadAllSong: " + e.getMessage() );
                 Result<List<DeviceSong>> errorResult = new Result.Error<>(e);
                 callback.onComplete(errorResult);
+            }
+        });
+    }
+
+    public void loadDataForHeaderPlaylistPart(MusicRepositoryCallback<List<PlayList>> callback) {
+        mExecutor.execute(() -> {
+            try {
+                List<PlayList> playLists = mDummyData.makeDataForHeaderPlayListPart();
+                Result<List<PlayList>> result = new Result.Success<>(playLists);
+                callback.onComplete(result);
+            } catch (Exception e) {
+                Result<List<PlayList>> errorResult = new Result.Error<>(e);
+                callback.onComplete(errorResult);
+
             }
         });
     }

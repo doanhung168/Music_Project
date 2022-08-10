@@ -12,6 +12,8 @@ public class PlayList {
     private String mName;
     private Drawable mImage;
     private String mOwner;
+    private int mNumberSongOfPlaylist;
+
 
     public PlayList() {
     }
@@ -22,11 +24,12 @@ public class PlayList {
         this.mImage = image;
     }
 
-    public PlayList(long id, String name, Drawable image, String owner) {
+    public PlayList(long id, String name, Drawable image, String owner, int numberSongOfPlaylist) {
         this.mId = id;
         this.mName = name;
         this.mImage = image;
         this.mOwner = owner;
+        this.mNumberSongOfPlaylist = numberSongOfPlaylist;
     }
 
     public long getId() {
@@ -59,6 +62,14 @@ public class PlayList {
 
     public void setOwner(String owner) {
         this.mOwner = owner;
+    }
+
+    public int getNumberSongOfPlaylist() {
+        return mNumberSongOfPlaylist;
+    }
+
+    public void setNumberSongOfPlaylist(int numberSongOfPlaylist) {
+        this.mNumberSongOfPlaylist = numberSongOfPlaylist;
     }
 
     @Override
