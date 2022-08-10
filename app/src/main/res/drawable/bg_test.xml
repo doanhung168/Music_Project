@@ -3,30 +3,15 @@
 
     <item android:id="@android:id/background">
         <shape>
-            <size android:height="@dimen/small_dimens"/>
-            <gradient
-                android:angle="270"
-                android:endColor="#ff747674"
-                android:startColor="#ff9d9e9d" />
+            <size android:height="@dimen/default_dimens" />
+            <solid android:color="@android:color/transparent" />
         </shape>
-    </item>
-
-    <item android:id="@android:id/secondaryProgress">
-        <clip>
-            <shape>
-                <size android:height="@dimen/small_dimens"/>
-                <gradient
-                    android:angle="270"
-                    android:endColor="#a0ffcb00"
-                    android:startColor="#80ffd300" />
-            </shape>
-        </clip>
     </item>
 
     <item android:id="@android:id/progress">
         <clip>
             <shape>
-                <size android:height="@dimen/small_dimens"/>
+                <size android:height="@dimen/seek_bar_music_player_height_dimens" />
                 <gradient
                     android:angle="270"
                     android:endColor="@color/gradient_start"
