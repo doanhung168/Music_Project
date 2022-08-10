@@ -28,8 +28,12 @@
     <string name="drive_mode">Drive Mode</string>
     <string name="hidden_folders">Hidden Folders</string>
     <string name="scan_media">Scan Media</string>
+    <string name="_87">87</string>
+    <string name="_52">52</string>
+    <string name="_238">238</string>
 
     <!--    Song screen-->
+    <string name="all_song">All Songs</string>
     <string name="genres">Genres</string>
     <string name="my_top_tracks">My Top Tracks</string>
     <string name="latest_added">Latest Added</string>
@@ -63,13 +67,25 @@
     <string name="advanced">Advanced</string>
     <string name="other">Other</string>
 
+    <!--    for menu search  -->
+    <string name="search">search</string>
+
+    <!--  for menu music playing fragment   -->
+    <string name="social_share_fragment">Social Share Fragment</string>
+    <string name="playing_queue">Playing Queue</string>
+    <string name="lyrics">Lyric</string>
+    <string name="volume">Volume</string>
+    <string name="details">Details</string>
+    <string name="equaliser">Equliser</string>
+    <string name="player_theme">Player theme</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="search">search</string>
-    <string name="_87">87</string>
-    <string name="_52">52</string>
-    <string name="_238">238</string>
+    <string name="example">Example …</string>
+    <string name="eq">EQ</string>
+    <string name="repeat">Repeat</string>
+    <string name="shuffle">Shuffle</string>
+    <string name="h_example">3:15</string>
 
 
 </resources>
