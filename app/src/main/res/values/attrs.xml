@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MusicCircleView">
+        <attr name="progressWidth" format="dimension" />
+        <attr name="musicAvatar" format="reference"/>
+        <attr name="progressColor" format="reference"/>
+        <attr name="progressBackGround" format="reference"/>
+    </declare-styleable>
+</resources>
