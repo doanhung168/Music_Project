@@ -188,7 +188,7 @@
             android:id="@+id/imvPrevious"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="@{(view) -> viewModel.playPreviousSong()}"
+            android:onClick="@{() -> viewModel.playPreviousSong()}"
             app:layout_constraintBottom_toBottomOf="@+id/imvPlayOrPause"
             app:layout_constraintEnd_toStartOf="@+id/imvPlayOrPause"
             app:layout_constraintHorizontal_chainStyle="packed"
@@ -204,7 +204,7 @@
             android:layout_marginStart="@dimen/extreme_dimens"
             android:layout_marginEnd="@dimen/extreme_dimens"
             android:layout_marginBottom="@dimen/medium_dimens"
-            android:onClick="@{(view) -> viewModel.playOrPlayCurrentSong()}"
+            android:onClick="@{() -> viewModel.playOrPlayCurrentSong()}"
             android:src="@{viewModel.mCurrentSong.playing ? @drawable/ic_pause_for_notify : @drawable/ic_play_for_notify}"
             app:layout_constraintBottom_toTopOf="@+id/layout_repeat"
             app:layout_constraintEnd_toStartOf="@+id/imvNext"
@@ -216,7 +216,7 @@
             android:id="@+id/imvNext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="@{(view) -> viewModel.playNextSong()}"
+            android:onClick="@{() -> viewModel.playNextSong()}"
             app:layout_constraintBottom_toBottomOf="@+id/imvPlayOrPause"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -302,7 +302,7 @@
                 app:button="@{@drawable/ic_repeat}"
                 app:checkedButton="@{@drawable/ic_checked_repeat}"
                 app:isChecked="@{viewModel.mIsRepeat}"
-                android:onCheckedChanged="@{(view, isChecked) -> viewModel.repeat(isChecked)}"
+                android:onCheckedChanged="@{(_, isChecked) -> viewModel.repeat(isChecked)}"
                 app:useMaterialThemeColors="false" />
 
             <TextView
@@ -361,7 +361,7 @@
                 app:button="@{@drawable/ic_shuffle}"
                 app:checkedButton="@{@drawable/ic_checked_shuffle}"
                 app:isChecked="@{viewModel.mIsShuffle}"
-                android:onCheckedChanged="@{(view, isChecked) -> viewModel.shuffle(isChecked)}"
+                android:onCheckedChanged="@{(_,isChecked) -> viewModel.shuffle(isChecked)}"
                 app:useMaterialThemeColors="false" />
 
             <TextView
