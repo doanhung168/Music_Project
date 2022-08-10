@@ -6,6 +6,8 @@ plugins {
 
 def nav_version = "2.5.1"
 def hilt_version = "2.40"
+def media_version = "1.6.0"
+def swipe_layout_version = "1.1.0"
 
 android {
     compileSdk 32
@@ -53,5 +55,9 @@ dependencies {
 
     implementation "com.google.dagger:hilt-android:$hilt_version"
     annotationProcessor "com.google.dagger:hilt-compiler:$hilt_version"
+
+    implementation "androidx.media:media:$media_version"
+
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipe_layout_version"
 
 }

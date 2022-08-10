@@ -4,10 +4,20 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable-v24/bg_circle.xml" value="0.211" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable-v24/ic_checked_shuffle.xml" value="0.182" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable-v24/ic_heart.xml" value="0.182" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.211" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/bg_circle.xml" value="0.215" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/bg_circle_nut.xml" value="0.2675" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/bg_corner_img.xml" value="0.2195" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/bg_gradient.xml" value="0.2195" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/bg_hot_recommended_img.xml" value="0.294" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/bg_nav_view_item.xml" value="0.1" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/bg_search_bar.xml" value="0.2195" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/bg_song_avatar.xml" value="0.153" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/bg_splash_screen.xml" value="0.2195" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/bg_test.xml" value="0.2195" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/bg_thumb.xml" value="0.2195" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/bottom_nav_icon_color.xml" value="0.176" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/gradient_color.xml" value="0.176" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic__01_paint.xml" value="0.1" />
@@ -16,16 +26,21 @@
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_bt_nav_previous.xml" value="0.211" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_burger_menu.xml" value="0.1" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_car.xml" value="0.211" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_checked_heart.xml" value="0.182" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_checked_home.xml" value="0.211" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_checked_repeat.xml" value="0.182" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_checked_setting.xml" value="0.1845" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_checked_shuffle.xml" value="0.182" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_checked_song.xml" value="0.211" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_clear.xml" value="0.211" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_eq.xml" value="0.182" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_folder.xml" value="0.211" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_gear.xml" value="0.1" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_group_2050.xml" value="0.156" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_group_2059.xml" value="0.1" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_group_2060.xml" value="0.1" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_headphones.xml" value="0.211" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_heart.xml" value="0.182" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_home.xml" value="0.176" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_home_selector.xml" value="0.1" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_launcher_background.xml" value="0.211" />
@@ -33,17 +48,32 @@
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_menu.xml" value="0.1" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_menu_2.xml" value="0.211" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_next.xml" value="0.211" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_next_song.xml" value="0.2195" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_next_song__big_size.xml" value="0.2195" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_next_song_for_now_playing.xml" value="0.2195" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_padlock.xml" value="0.211" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_paint.xml" value="0.1035" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_pause.xml" value="0.1" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_pause_for_notify.xml" value="0.2195" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_pause_me.xml" value="0.2195" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_play.xml" value="0.211" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_play_2.xml" value="0.211" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_play_for_notify.xml" value="0.2195" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_play_me.xml" value="0.2195" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_play_song.xml" value="0.2195" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_play_song__big_size.xml" value="0.2195" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_play_song_for_music_bar.xml" value="0.2195" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_play_song_for_now_playing.xml" value="0.2195" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_playlist.xml" value="0.182" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_previous.xml" value="0.211" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_previous_song.xml" value="0.2195" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_repeat.xml" value="0.229" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_scanner.xml" value="0.211" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_scissors.xml" value="0.1185" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_search.xml" value="0.1" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_setting_selector.xml" value="0.1" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_settings.xml" value="0.211" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_shuffle.xml" value="0.182" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_song_selector.xml" value="0.1" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_sound_bars.xml" value="0.211" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_stopwatch.xml" value="0.1185" />
@@ -53,8 +83,13 @@
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_volume.xml" value="0.211" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ic_youtube.xml" value="0.211" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/img_sample_1.xml" value="0.1" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/loading_img.xml" value="0.2195" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/ring.xml" value="0.1675" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/search_bg.xml" value="0.176" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/selector_ic_heart.xml" value="0.182" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/selector_ic_playlist.xml" value="0.182" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/selector_ic_repeat.xml" value="0.182" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/selector_ic_shuffle.xml" value="0.182" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/splash_background.xml" value="0.1" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/splashbackground.xml" value="0.1555" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/drawable/test.xml" value="0.1835" />
@@ -63,22 +98,34 @@
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/font/circular_font.xml" value="0.2833333333333333" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/layout/activity_splash.xml" value="0.2625" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/layout/adapter_all_song_item.xml" value="0.31821862348178137" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/layout/adapter_device_item.xml" value="0.29010416666666666" />
-        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/layout/adapter_hot_recommended.xml" value="0.536" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/layout/adapter_hot_recommended.xml" value="0.5032258064516129" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/layout/adapter_layout_hot_recommended.xml" value="0.29010416666666666" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/layout/adapter_playlist_item.xml" value="0.72" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/layout/bottom_sheet.xml" value="0.23125" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/layout/bottom_sheet_music_player.xml" value="0.16447876447876447" />
-        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/layout/fragment_home.xml" value="0.6" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/layout/fragment_album.xml" value="0.2484375" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/layout/fragment_all_song.xml" value="0.264" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/layout/fragment_artist.xml" value="0.2484375" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/layout/fragment_genre.xml" value="0.2625" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/layout/fragment_home.xml" value="0.3611111111111111" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/layout/fragment_main.xml" value="0.176" />
-        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/layout/fragment_setting.xml" value="0.16842105263157894" />
-        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/layout/fragment_song.xml" value="0.264" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/layout/fragment_music_playing.xml" value="0.4" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/layout/fragment_play_list.xml" value="0.2625" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/layout/fragment_setting.xml" value="0.2" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/layout/fragment_song.xml" value="0.1" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/layout/header_layout.xml" value="0.264" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/layout/item.xml" value="0.264" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/layout/layout_bottom_sheet_music_player.xml" value="0.72" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/layout/layout_device_item.xml" value="0.29010416666666666" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/layout/layout_music_player_bar.xml" value="0.26145833333333335" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/layout/layout_nav_header.xml" value="0.4" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/layout/toolbar_home.xml" value="0.2" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/menu/drawer_nav_menu.xml" value="0.1" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/menu/menu_for_music_playing_fragment.xml" value="0.26145833333333335" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/menu/menu_search.xml" value="0.1" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/menu/search_menu.xml" value="0.2625" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/FA/AndroidProject/MusicProject/app/src/main/res/menu/songs_menu.xml" value="0.15462962962962962" />
       </map>
@@ -93,7 +140,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.264" />
+        <option name="scale" value="0.1" />
       </ProjectState>
     </option>
   </component>
