@@ -1,20 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="title_style">
+    <style name="part_title_style">
         <item name="android:paddingStart">@dimen/below_medium_dimens</item>
-        <item name="android:textColor">@color/white1_text_color</item>
+        <item name="android:textColor">@color/white2_text_color</item>
         <item name="android:textSize">@dimen/medium_text_dimens</item>
         <item name="fontFamily">@font/circular_std_medium</item>
     </style>
 
+    <style name="title_item_style">
+        <item name="fontFamily">@font/circular_std_bold</item>
+        <item name="android:textSize">@dimen/above_small_text_dimens</item>
+        <item name="android:textColor">@color/white3_text_color</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
+    </style>
 
-    <style name="body_1_style">
+    <style name="sub_title_item_style">
+        <item name="fontFamily">@font/circular_std_bold</item>
+        <item name="android:textSize">@dimen/small_text_dimens</item>
+        <item name="android:textColor">@color/white4_text_color</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="search_bar_style">
+        <item name="background">@drawable/bg_search_bar</item>
+    </style>
+
+    <style name="edt_search_bar_style">
+        <item name="android:textColor">@color/white4_text_color</item>
+        <item name="android:imeOptions">actionSearch</item>
+        <item name="android:inputType">text</item>
+        <item name="singleLine">true</item>
+        <item name="android:textSize">@dimen/below_medium_text_dimens</item>
+        <item name="fontFamily">@font/circular_std_book</item>
+    </style>
+
+    <style name="hint_edt_search_bar_style">
+        <item name="android:textColor">@color/white4_text_color</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">@dimen/below_medium_text_dimens</item>
+        <item name="fontFamily">@font/circular_std_book</item>
+    </style>
+
+    <style name="view_all_text_style">
+        <item name="fontFamily">@font/circular_std_book</item>
+        <item name="android:textColor">@color/orange_text_color</item>
+        <item name="android:textSize">@dimen/small_text_dimens</item>
+    </style>
+
+    <style name="bottom_bar_style">
+        <item name="android:fontFamily">@font/circular_std_book</item>
+        <item name="elevation">@dimen/small_dimens</item>
+        <item name="iconSize">@dimen/bt_nav_icon_dimens</item>
+        <item name="android:paddingTop">@dimen/below_small_dimens</item>
+        <item name="android:paddingBottom">@dimen/below_small_dimens</item>
+        <item name="itemTextColor">@color/color_bottom_nav_text</item>
+        <item name="itemTextAppearanceActive">@font/circular_std_book</item>
+        <item name="itemTextAppearanceInactive">@font/circular_std_book</item>
+    </style>
+
+    <style name="nav_view_header_title_style">
+        <item name="android:textSize">@dimen/small_text_dimens</item>
         <item name="android:textColor">@color/white2_text_color</item>
     </style>
 
-    <style name="BottomNavigationViewTextStyle">
-        <item name="android:fontFamily">@font/circular_std_book</item>
+    <style name="logo_text_style">
+        <item name="fontFamily">@font/circular_std_medium</item>
+        <item name="android:textSize">@dimen/medium_text_dimens</item>
+        <item name="android:textColor">@color/white2_text_color</item>
     </style>
+
+    <style name="device_item_title_style">
+        <item name="android:textColor">@color/white1_text_color</item>
+        <item name="android:textSize">@dimen/below_medium_text_dimens</item>
+        <item name="fontFamily">@font/circular_std_medium</item>
+    </style>
+
+    <style name="toolbar_title_style">
+        <item name="titleCentered">true</item>
+        <item name="titleTextColor">@color/white2_text_color</item>
+        <item name="android:textSize">@dimen/small_text_dimens</item>
+    </style>
+
+    <style name="song_tab_layout_style">
+        <item name="tabGravity">center</item>
+        <item name="tabMode">scrollable</item>
+        <item name="tabIndicatorFullWidth">false</item>
+        <item name="tabIndicatorColor">@color/gradient_start</item>
+        <item name="android:background">@color/primary_color</item>
+        <item name="tabTextColor">@color/white2_text_color</item>
+        <item name="tabSelectedTextColor">@color/gradient_end</item>
+        <item name="tabTextAppearance">@style/MyTabTextAppearance</item>
+    </style>
+
+    <style name="MyTabTextAppearance" parent="TextAppearance.AppCompat.Button">
+        <item name="android:textSize">@dimen/tab_layout_text</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="fontFamily">@font/circular_std_medium</item>
+    </style>
+
+    <style name="circle">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="MyDarkToolbarStyle" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:background">@color/popup_background_color</item>
+        <item name="android:textColor">@color/white1_text_color</item>
+    </style>
+
+    <style name="MyOverflowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:tint">@color/white1_text_color</item>
+    </style>
+
+    <style name="title_music_playing_func">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/white1_text_color</item>
+        <item name="android:textSize">@dimen/small_text_dimens</item>
+    </style>
+
 
 </resources>
