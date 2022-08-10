@@ -1,4 +1,4 @@
-package com.doanhung.musicproject.data.model;
+package com.doanhung.musicproject.data.model.data_model;
 
 import android.net.Uri;
 

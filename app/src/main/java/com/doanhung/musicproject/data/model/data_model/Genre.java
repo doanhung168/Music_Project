@@ -1,18 +1,20 @@
-package com.doanhung.musicproject.data.model;
+package com.doanhung.musicproject.data.model.data_model;
 
 import android.graphics.Bitmap;
 
-public class PlayList {
+public class Genre {
     private long mId;
     private String mName;
+    private int mNumberOfSongs;
     private Bitmap mImage;
 
-    public PlayList() {
+    public Genre() {
     }
 
-    public PlayList(long id, String name, Bitmap image) {
+    public Genre(long id, String name, int numberOfSongs, Bitmap image) {
         this.mId = id;
         this.mName = name;
+        this.mNumberOfSongs = numberOfSongs;
         this.mImage = image;
     }
 
@@ -30,6 +32,14 @@ public class PlayList {
 
     public void setName(String name) {
         this.mName = name;
+    }
+
+    public int getNumberOfSongs() {
+        return mNumberOfSongs;
+    }
+
+    public void setNumberOfSongs(int numberOfSongs) {
+        this.mNumberOfSongs = numberOfSongs;
     }
 
     public Bitmap getImage() {
