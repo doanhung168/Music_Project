@@ -3,15 +3,15 @@
     <font
         app:font="@font/circular_std_bold"
         app:fontStyle="normal"
-        app:fontWeight="400" />
+        app:fontWeight="200" />
     <font
         app:font="@font/circular_std_medium"
         app:fontStyle="normal"
-        app:fontWeight="400" />
+        app:fontWeight="200" />
 
     <font
         app:font="@font/circular_std_book"
         app:fontStyle="normal"
-        app:fontWeight="400" />
+        app:fontWeight="200" />
 
 </font-family>
