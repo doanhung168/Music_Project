@@ -1,12 +1,11 @@
-package com.doanhung.musicproject.data;
+package com.doanhung.musicproject.data.data_manager;
 
 import android.content.Context;
 
 import androidx.core.content.res.ResourcesCompat;
 
 import com.doanhung.musicproject.R;
-import com.doanhung.musicproject.data.model.DeviceItem;
-import com.doanhung.musicproject.data.model.Song;
+import com.doanhung.musicproject.data.model.app_system_model.DeviceItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +14,12 @@ import javax.inject.Inject;
 
 import dagger.hilt.android.qualifiers.ApplicationContext;
 
-public class DummyData {
+public class AppSystemData {
 
     private final Context mContext;
 
     @Inject
-    public DummyData(@ApplicationContext Context mContext) {
+    public AppSystemData(@ApplicationContext Context mContext) {
         this.mContext = mContext;
     }
 
@@ -114,32 +113,5 @@ public class DummyData {
         settingDeviceItems.add(otherDeviceItem);
 
         return settingDeviceItems;
-    }
-
-    public List<Song> makeDataForHotRecommended() {
-        List<Song> songList = new ArrayList<>();
-
-        Song song1 = new Song(1, "Sound of Sky",
-                ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.image_sample_1, null),
-                "Dilon Bruce", 0, 0);
-
-        Song song2 = new Song(2, "Girl on Fire",
-                ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.image_sample_1, null),
-                "Alecia Keys", 0, 0);
-
-        Song song3 = new Song(3, "Sound of Sky",
-                ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.image_sample_1, null),
-                "Dilon Bruce", 0, 0);
-
-        Song song4 = new Song(4, "Sound of Sky",
-                ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.image_sample_1, null),
-                "Dilon Bruce", 0, 0);
-
-        songList.add(song1);
-        songList.add(song2);
-        songList.add(song3);
-        songList.add(song4);
-
-        return songList;
     }
 }
