@@ -299,7 +299,9 @@
                 android:layout_width="@dimen/medium_dimens"
                 android:layout_height="@dimen/medium_dimens"
                 android:layout_gravity="center"
-                android:button="@drawable/selector_ic_repeat"
+                app:button="@{@drawable/ic_repeat}"
+                app:checkedButton="@{@drawable/ic_checked_repeat}"
+                app:isChecked="@{viewModel.mIsRepeat}"
                 android:onCheckedChanged="@{(view, isChecked) -> viewModel.repeat(isChecked)}"
                 app:useMaterialThemeColors="false" />
 
@@ -353,10 +355,12 @@
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/chkShuffle"
-                android:layout_width="@dimen/medium_dimens"
-                android:layout_height="@dimen/medium_dimens"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:layout_gravity="center"
-                android:button="@drawable/selector_ic_shuffle"
+                app:button="@{@drawable/ic_shuffle}"
+                app:checkedButton="@{@drawable/ic_checked_shuffle}"
+                app:isChecked="@{viewModel.mIsShuffle}"
                 android:onCheckedChanged="@{(view, isChecked) -> viewModel.shuffle(isChecked)}"
                 app:useMaterialThemeColors="false" />
 

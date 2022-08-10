@@ -47,11 +47,16 @@ public class MusicServiceController implements Subject {
 
     public void setShuffle(boolean shuffle) {
         mIsShuffle = shuffle;
-        Collections.shuffle(mShuffleSongs);
+        if(shuffle) {
+            Collections.shuffle(mShuffleSongs);
+            mCurrentShuffleSongIndex = CommonUtil.findItemIndex(getCurrentSong(), mShuffleSongs);
+        }
+        notifyFuncForMusicObserver();
     }
 
     public void setRepeat(boolean repeat) {
         mIsRepeat = repeat;
+        notifyFuncForMusicObserver();
     }
 
     public void playExternalSong() {
@@ -146,6 +151,7 @@ public class MusicServiceController implements Subject {
         mSongs = null;
         mCurrentSong = null;
         mCurrentSongIndex = INIT_VALUE_SONG_INDEX;
+        mCurrentShuffleSongIndex = INIT_VALUE_SONG_INDEX;
         notifyMusicObserver();
     }
 
@@ -191,7 +197,12 @@ public class MusicServiceController implements Subject {
 
 
     private int getLastIndexOfSongs() {
-        return mSongs.size() - 1;
+        if (mIsShuffle) {
+            return mShuffleSongs.size() - 1;
+        } else {
+            return mSongs.size() - 1;
+        }
+
     }
 
     public DeviceSong getCurrentSong() {
@@ -252,7 +263,13 @@ public class MusicServiceController implements Subject {
     @Override
     public void notifyMusicObserver() {
         for (MusicObserver observer : musicObservers) {
-            observer.updateData(mMusicSource, mCurrentSong, mIsShuffle, mIsRepeat);
+            observer.updateData(mMusicSource, mCurrentSong);
+        }
+    }
+
+    public void notifyFuncForMusicObserver() {
+        for (MusicObserver observer : musicObservers) {
+            observer.updateData(mIsShuffle, mIsRepeat);
         }
     }
 

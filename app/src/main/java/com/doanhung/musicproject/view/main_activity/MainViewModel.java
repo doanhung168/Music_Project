@@ -40,17 +40,20 @@ public class MainViewModel extends ViewModel implements MusicObserver {
 
     public MutableLiveData<Boolean> mShowMusicPlayerBar = new MutableLiveData<>(true);
 
-    private final MutableLiveData<Boolean> mIsShuffle = new MutableLiveData<>(false);
-    private final MutableLiveData<Boolean> mIsRepeat = new MutableLiveData<>(false);
+    private final MutableLiveData<Boolean> _mIsShuffle = new MutableLiveData<>(false);
+    public final LiveData<Boolean> mIsShuffle = _mIsShuffle;
+
+    private final MutableLiveData<Boolean> _mIsRepeat = new MutableLiveData<>(false);
+    public final LiveData<Boolean> mIsRepeat = _mIsRepeat;
 
     private MusicSource mMusicSource;
 
     public boolean getIsRepeat() {
-        return Boolean.TRUE.equals(mIsRepeat.getValue());
+        return Boolean.TRUE.equals(_mIsRepeat.getValue());
     }
 
     public boolean getIsShuffle() {
-        return Boolean.TRUE.equals(mIsShuffle.getValue());
+        return Boolean.TRUE.equals(_mIsShuffle.getValue());
     }
 
     public MainViewModel(Application application, MusicServiceController musicServiceController) {
@@ -128,11 +131,15 @@ public class MainViewModel extends ViewModel implements MusicObserver {
     }
 
     @Override
-    public void updateData(MusicSource musicSource, DeviceSong song, boolean shuffle, boolean repeat) {
+    public void updateData(MusicSource musicSource, DeviceSong song) {
         mMusicSource = musicSource;
         _mCurrentSong.setValue(song);
-        mIsShuffle.setValue(shuffle);
-        mIsRepeat.setValue(repeat);
+    }
+
+    @Override
+    public void updateData(boolean shuffle, boolean repeat) {
+        _mIsShuffle.setValue(shuffle);
+        _mIsRepeat.setValue(repeat);
     }
 
     public static class MainViewModelFactory implements ViewModelProvider.Factory {

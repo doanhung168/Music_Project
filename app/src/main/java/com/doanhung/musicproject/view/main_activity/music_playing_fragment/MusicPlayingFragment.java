@@ -5,6 +5,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
@@ -70,8 +71,6 @@ public class MusicPlayingFragment extends BaseFragment<FragmentMusicPlayingBindi
     private void observeCurrentSong() {
         mMainViewModel.mCurrentSong.observe(getViewLifecycleOwner(), song -> {
             if (song != null) {
-                mBinding.chkRepeat.setChecked(mMainViewModel.getIsRepeat());
-                mBinding.chkShuffle.setChecked(mMainViewModel.getIsShuffle());
                 handlerUIFollowCurrentSong(song);
                 updateProgressOfSong();
             } else {
