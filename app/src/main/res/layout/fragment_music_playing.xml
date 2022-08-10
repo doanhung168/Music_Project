@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.doanhung.musicproject.view.main_activity.MainViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/primary_color">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            style="@style/toolbar_title_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/menu_for_music_playing_fragment"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:popupTheme="@style/MyDarkToolbarStyle"
+            app:title="@string/now_playing" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_music_circle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/layout_music_identify"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+            <com.doanhung.musicproject.custom_view.MusicCircleView
+                android:id="@+id/musicCircleView"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/view2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                custom:musicAvatar="@{viewModel.mCurrentSong.image}"
+                custom:progressWidth="4dp" />
+
+            <TextView
+                android:id="@+id/tvDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/below_small_dimens"
+                android:textColor="@color/white1_text_color"
+                app:layout_constraintBottom_toBottomOf="@+id/view2"
+                app:layout_constraintStart_toEndOf="@+id/view2"
+                app:layout_constraintTop_toTopOf="@+id/view2"
+                app:layout_constraintVertical_bias="0.0"
+                app:songDuration="@{viewModel.mCurrentSong.duration}" />
+
+            <TextView
+                android:id="@+id/tvCurrentPosition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/below_small_dimens"
+                android:text="@string/h_example"
+                android:textColor="@color/white1_text_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/view2"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintTop_toBottomOf="@+id/musicCircleView" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="@dimen/line_dimens"
+                android:layout_height="0dp"
+                android:background="@color/white2_text_color"
+                app:layout_constraintBottom_toBottomOf="@+id/tvCurrentPosition"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvCurrentPosition"
+                app:layout_constraintVertical_bias="0.0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_music_identify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/below_medium_dimens"
+            app:layout_constraintBottom_toTopOf="@+id/imvEQ"
+            app:layout_constraintTop_toBottomOf="@+id/layout_music_circle"
+            custom:layout_editor_absoluteX="0dp">
+
+            <TextView
+                android:id="@+id/tvSongName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/small_dimens"
+                android:layout_marginBottom="@dimen/small_dimens"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@{viewModel.mCurrentSong.name}"
+                android:textAlignment="center"
+                android:textColor="@color/white1_text_color"
+                android:textSize="@dimen/above_medium_text_dimens"
+                app:layout_constraintBottom_toTopOf="@+id/view3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvArtistName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small_dimens"
+                android:layout_marginEnd="@dimen/above_small_dimens"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@{viewModel.mCurrentSong.artist}"
+                android:textAlignment="textEnd"
+                android:textColor="@color/white2_text_color"
+                app:layout_constraintBottom_toBottomOf="@+id/view3"
+                app:layout_constraintEnd_toStartOf="@+id/view3"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/view3" />
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:layout_marginTop="@dimen/below_small_dimens"
+                android:layout_marginBottom="@dimen/above_medium_dimens_2"
+                android:background="@drawable/bg_circle_nut"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvSongName" />
+
+            <TextView
+                android:id="@+id/tvAlbum"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/above_small_dimens"
+                android:layout_marginEnd="@dimen/small_dimens"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@{viewModel.mCurrentSong.album}"
+                android:textColor="@color/white2_text_color"
+                app:layout_constraintBottom_toBottomOf="@+id/view3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/view3"
+                app:layout_constraintTop_toTopOf="@+id/view3" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/imvEQ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/above_medium_dimens_2"
+            app:layout_constraintBottom_toTopOf="@+id/view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_music_identify"
+            app:srcCompat="@drawable/ic_eq_display"
+            custom:ignore="ContentDescription" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_dimens"
+            android:layout_marginStart="@dimen/below_medium_dimens"
+            android:layout_marginEnd="@dimen/below_medium_dimens"
+            android:layout_marginBottom="@dimen/above_medium_dimens_2"
+            android:background="@color/white4_text_color"
+            app:layout_constraintBottom_toTopOf="@+id/imvPlayOrPause"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/imvPrevious"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{(view) -> viewModel.playPreviousSong()}"
+            app:layout_constraintBottom_toBottomOf="@+id/imvPlayOrPause"
+            app:layout_constraintEnd_toStartOf="@+id/imvPlayOrPause"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imvPlayOrPause"
+            app:srcCompat="@drawable/ic_previous"
+            custom:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/imvPlayOrPause"
+            android:layout_width="@dimen/above_large_dimens"
+            android:layout_height="@dimen/above_large_dimens"
+            android:layout_marginStart="@dimen/extreme_dimens"
+            android:layout_marginEnd="@dimen/extreme_dimens"
+            android:layout_marginBottom="@dimen/medium_dimens"
+            android:onClick="@{(view) -> viewModel.playOrPlayCurrentSong()}"
+            android:src="@{viewModel.mCurrentSong.playing ? @drawable/ic_pause_for_notify : @drawable/ic_play_for_notify}"
+            app:layout_constraintBottom_toTopOf="@+id/layout_repeat"
+            app:layout_constraintEnd_toStartOf="@+id/imvNext"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imvPrevious"
+            custom:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/imvNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{(view) -> viewModel.playNextSong()}"
+            app:layout_constraintBottom_toBottomOf="@+id/imvPlayOrPause"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imvPlayOrPause"
+            app:layout_constraintTop_toTopOf="@+id/imvPlayOrPause"
+            app:srcCompat="@drawable/ic_next_song_for_now_playing"
+            custom:ignore="ContentDescription" />
+
+
+        <LinearLayout
+            android:id="@+id/layout_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/layout_eq"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/layout_eq"
+            app:layout_constraintTop_toTopOf="@+id/layout_eq">
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/chkFavorites"
+                android:layout_width="@dimen/medium_dimens"
+                android:layout_height="@dimen/medium_dimens"
+                android:layout_gravity="center"
+                android:button="@drawable/selector_ic_heart"
+                app:useMaterialThemeColors="false" />
+
+            <TextView
+                style="@style/title_music_playing_func"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/below_small_dimens"
+                android:text="@string/favourites" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_eq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/above_medium_dimens_2"
+            android:minWidth="@dimen/min_width"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/layout_repeat"
+            app:layout_constraintEnd_toStartOf="@+id/layout_favorite"
+            app:layout_constraintStart_toEndOf="@+id/layout_repeat"
+            app:layout_constraintTop_toTopOf="@+id/layout_repeat">
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/chkEQ"
+                android:layout_width="@dimen/medium_dimens"
+                android:layout_height="@dimen/medium_dimens"
+                android:layout_gravity="center"
+                android:button="@drawable/ic_eq"
+                app:useMaterialThemeColors="false" />
+
+            <TextView
+                style="@style/title_music_playing_func"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/below_small_dimens"
+                android:text="@string/eq" />
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:id="@+id/layout_repeat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/above_medium_dimens_2"
+            android:layout_marginEnd="@dimen/above_medium_dimens_2"
+            android:layout_marginBottom="@dimen/small_dimens"
+            android:minWidth="@dimen/min_width"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/layout_eq"
+            app:layout_constraintStart_toEndOf="@+id/layout_shuffle">
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/chkRepeat"
+                android:layout_width="@dimen/medium_dimens"
+                android:layout_height="@dimen/medium_dimens"
+                android:layout_gravity="center"
+                android:button="@drawable/selector_ic_repeat"
+                android:onCheckedChanged="@{(view, isChecked) -> viewModel.repeat(isChecked)}"
+                app:useMaterialThemeColors="false" />
+
+            <TextView
+                style="@style/title_music_playing_func"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/below_small_dimens"
+                android:text="@string/repeat" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_playlist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/min_width"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/layout_shuffle"
+            app:layout_constraintEnd_toStartOf="@+id/layout_shuffle"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/layout_shuffle">
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/chkPlaylist"
+                android:layout_width="@dimen/medium_dimens"
+                android:layout_height="@dimen/medium_dimens"
+                android:layout_gravity="center"
+                android:button="@drawable/ic_playlist"
+                app:useMaterialThemeColors="false" />
+
+            <TextView
+                style="@style/title_music_playing_func"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/below_small_dimens"
+                android:text="@string/playlist" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_shuffle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/above_medium_dimens_2"
+            android:minWidth="@dimen/min_width"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/layout_repeat"
+            app:layout_constraintEnd_toStartOf="@+id/layout_repeat"
+            app:layout_constraintStart_toEndOf="@+id/layout_playlist"
+            app:layout_constraintTop_toTopOf="@+id/layout_repeat">
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/chkShuffle"
+                android:layout_width="@dimen/medium_dimens"
+                android:layout_height="@dimen/medium_dimens"
+                android:layout_gravity="center"
+                android:button="@drawable/selector_ic_shuffle"
+                android:onCheckedChanged="@{(view, isChecked) -> viewModel.shuffle(isChecked)}"
+                app:useMaterialThemeColors="false" />
+
+            <TextView
+                style="@style/title_music_playing_func"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/below_small_dimens"
+                android:text="@string/shuffle" />
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

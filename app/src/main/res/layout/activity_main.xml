@@ -1,71 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/drawer_layout"
-    android:layout_width="match_parent"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    <data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.doanhung.musicproject.view.main_activity.MainViewModel" />
+    </data>
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/primary_color">
-
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/nav_host_fragment"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:defaultNavHost="true"
-            app:layout_constraintBottom_toTopOf="@+id/btNav"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navGraph="@navigation/nav_graph" />
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/btNav"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/bottom_nav_bg_color"
-            android:elevation="@dimen/small_dimens"
-            android:paddingVertical="@dimen/below_small_dimens"
-            app:itemIconSize="@dimen/bt_nav_icon_dimens"
-            app:itemTextAppearanceActive="@style/BottomNavigationViewTextStyle"
-            app:itemTextAppearanceInactive="@style/BottomNavigationViewTextStyle"
-            app:itemTextColor="@color/color_bottom_nav_text"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/menu_bottom_nav" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@color/below_nav_view_color"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         android:fitsSystemWindows="true">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:background="@color/primary_color"
+            android:clipChildren="false"
+            android:clipToPadding="false">
 
-            <include layout="@layout/layout_nav_header" />
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/nav_host_fragment"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:defaultNavHost="true"
+                app:layout_constraintBottom_toTopOf="@+id/music_player_bar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:navGraph="@navigation/nav_graph" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcvNavViewItem"
+
+            <include
+                android:id="@+id/music_player_bar"
+                layout="@layout/layout_music_player_bar"
+                app:viewModel="@{viewModel}" />
+
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/btNav"
+                style="@style/bottom_bar_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bottom_nav_bg_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:menu="@menu/menu_bottom_nav" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/below_nav_view_color" />
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <include layout="@layout/layout_nav_header" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcvNavViewItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/below_nav_view_color"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            </LinearLayout>
 
 
-    </com.google.android.material.navigation.NavigationView>
+        </com.google.android.material.navigation.NavigationView>
 
-</androidx.drawerlayout.widget.DrawerLayout>
+    </androidx.drawerlayout.widget.DrawerLayout>
+</layout>

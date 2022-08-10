@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="song"
+            type="com.doanhung.musicproject.data.model.app_system_model.DeviceSong" />
+
+        <variable
+            name="onClickItem"
+            type="com.doanhung.musicproject.view.main_activity.song_fragment.all_song_fragment.AllSongAdapter.OnClickSongItemListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:onClick="@{(view) -> onClickItem.onClickSongItem(song)}"
+        android:paddingVertical="@dimen/below_small_dimens"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@color/primary_color">
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imvSongAvatar"
+            android:layout_width="@dimen/song_avatar_dimens"
+            android:layout_height="@dimen/song_avatar_dimens"
+            android:layout_marginStart="@dimen/below_medium_dimens"
+            android:layout_marginTop="@dimen/small_dimens"
+            android:layout_marginBottom="@dimen/small_dimens"
+            android:padding="@dimen/padding_for_song_avatar_dimens"
+            android:scaleType="centerInside"
+            android:src="@{song.image}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/circle"
+            app:strokeColor="@color/song_avatar_stroke_color"
+            app:strokeWidth="@dimen/line_dimens" />
+
+        <TextView
+            android:id="@+id/tvSongName"
+            style="@style/title_item_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/below_medium_dimens"
+            android:layout_marginEnd="@dimen/below_medium_dimens"
+            android:text="@{song.name}"
+            app:layout_constraintBottom_toTopOf="@+id/tvArtistName"
+            app:layout_constraintEnd_toStartOf="@+id/imvPlayOrPause"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/imvSongAvatar"
+            app:layout_constraintTop_toTopOf="@+id/imvSongAvatar" />
+
+        <TextView
+            android:id="@+id/tvArtistName"
+            style="@style/sub_title_item_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/below_medium_dimens"
+            android:layout_marginEnd="@dimen/below_medium_dimens"
+            android:text="@{song.artist}"
+            app:layout_constraintBottom_toBottomOf="@+id/imvSongAvatar"
+            app:layout_constraintEnd_toStartOf="@+id/imvPlayOrPause"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/imvSongAvatar"
+            app:layout_constraintTop_toBottomOf="@+id/tvSongName" />
+
+        <ImageView
+            android:id="@+id/imvPlayOrPause"
+            android:layout_width="@dimen/below_large_dimens"
+            android:layout_height="@dimen/below_large_dimens"
+            android:layout_marginEnd="@dimen/below_medium_dimens"
+            android:src="@{song.playing ? @drawable/ic_pause : @drawable/ic_play}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/line_dimens"
+            android:background="@color/white4_text_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/imvPlayOrPause"
+            app:layout_constraintStart_toStartOf="@+id/tvArtistName" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

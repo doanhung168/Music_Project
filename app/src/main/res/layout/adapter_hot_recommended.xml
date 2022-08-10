@@ -7,13 +7,18 @@
 
         <variable
             name="song"
-            type="com.doanhung.musicproject.data.model.Song" />
+            type="com.doanhung.musicproject.data.model.data_model.Song" />
+
+        <variable
+            name="onClickItem"
+            type="com.doanhung.musicproject.view.main_activity.home_fragment.adapter.HotRecommendedAdapter.OnClickHotRecommendItemListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="@dimen/image_hot_recommended_dimens"
+        android:layout_width="@dimen/hot_recommended_item_width_dimens"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/below_medium_dimens"
+        android:onClick="@{(view) -> onClickItem.onClickHotRecommendItem(song)}"
         android:paddingVertical="@dimen/below_medium_dimens">
 
 
@@ -21,34 +26,33 @@
             android:id="@+id/imvSongImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_hot_recommended_img"
-            android:scaleType="fitXY"
+            android:background="@drawable/bg_corner_img"
+            android:scaleType="fitCenter"
             android:src="@{song.image}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription"
-            tools:srcCompat="@drawable/image_sample_1" />
+            tools:srcCompat="@drawable/image_hot_recommended_sample_1" />
 
         <TextView
             android:id="@+id/tvSongName"
+            style="@style/title_item_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/below_large_dimens"
             android:text="@{song.name}"
-            android:textColor="@color/white2_text_color"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imvSongImage"
             tools:text="Song name" />
 
         <TextView
             android:id="@+id/tvArtistName"
+            style="@style/sub_title_item_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small_dimens"
             android:text="@{song.artist}"
-            android:textColor="@color/white4_text_color"
-            android:textSize="@dimen/small_text_dimens"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvSongName"

@@ -7,11 +7,11 @@
 
         <variable
             name="deviceItem"
-            type="com.doanhung.musicproject.data.model.DeviceItem" />
+            type="com.doanhung.musicproject.data.model.app_system_model.DeviceItem" />
 
         <variable
             name="onClickDeviceItem"
-            type="com.doanhung.musicproject.view.adapter.DeviceItemAdapter.OnClickDeviceItemListener" />
+            type="com.doanhung.musicproject.view.common_adapter.DeviceItemAdapter.OnClickDeviceItemListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,13 +38,12 @@
 
         <TextView
             android:id="@+id/tvName"
+            style="@style/device_item_title_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/medium_dimens"
             android:layout_marginEnd="@dimen/medium_dimens"
             android:text="@{deviceItem.name}"
-            android:textColor="@color/white1_text_color"
-            android:textSize="@dimen/small_text_dimens"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -53,10 +52,11 @@
             tools:text="Themes" />
 
         <View
+            android:id="@+id/divider"
             android:layout_width="0dp"
+            android:background="@color/thin_line_color"
             android:layout_height="@dimen/line_dimens"
             android:layout_marginEnd="@dimen/small_dimens"
-            android:background="@color/thin_line_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tvName" />

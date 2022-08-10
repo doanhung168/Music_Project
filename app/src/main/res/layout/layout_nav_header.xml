@@ -20,7 +20,7 @@
 
     <TextView
         android:id="@+id/tv_logo"
-        style="@style/body_1_style"
+        style="@style/logo_text_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_dimens"
@@ -31,10 +31,10 @@
 
     <TextView
         android:id="@+id/textView3"
+        style="@style/nav_view_header_title_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/_238"
-        android:textColor="@color/white1_text_color"
         app:layout_constraintBottom_toBottomOf="@+id/textView"
         app:layout_constraintEnd_toStartOf="@+id/textView"
         app:layout_constraintHorizontal_bias="0.5"
@@ -43,11 +43,11 @@
 
     <TextView
         android:id="@+id/textView"
+        style="@style/nav_view_header_title_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/large_dimens"
         android:text="@string/_52"
-        android:textColor="@color/white2_text_color"
         app:layout_constraintEnd_toEndOf="@+id/tv_logo"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/tv_logo"
@@ -55,10 +55,10 @@
 
     <TextView
         android:id="@+id/textView2"
+        style="@style/nav_view_header_title_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/_87"
-        android:textColor="@color/white1_text_color"
         app:layout_constraintBottom_toBottomOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -67,7 +67,7 @@
 
     <TextView
         android:id="@+id/textView4"
-        style="@style/body_1_style"
+        style="@style/nav_view_header_title_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_dimens"
@@ -78,7 +78,7 @@
 
     <TextView
         android:id="@+id/textView5"
-        style="@style/body_1_style"
+        style="@style/nav_view_header_title_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_dimens"
@@ -92,7 +92,7 @@
 
     <TextView
         android:id="@+id/textView6"
-        style="@style/body_1_style"
+        style="@style/nav_view_header_title_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_dimens"

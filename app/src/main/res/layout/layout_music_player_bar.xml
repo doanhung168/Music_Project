@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.doanhung.musicproject.view.main_activity.MainViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0C0F20"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:visibility="@{viewModel.mCurrentSong != null &amp; viewModel.mShowMusicPlayerBar ? View.VISIBLE : View.GONE}"
+        app:layout_constraintBottom_toTopOf="@+id/btNav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:indeterminateDrawable="@drawable/bg_test"
+            android:maxHeight="@dimen/seek_bar_music_player_height_dimens"
+            android:minHeight="@dimen/default_dimens"
+            android:progressDrawable="@drawable/bg_test"
+            android:thumb="@drawable/bg_thumb"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imvSongAvatar"
+            android:layout_width="@dimen/song_avatar_dimens"
+            android:layout_height="@dimen/song_avatar_dimens"
+            android:layout_marginStart="@dimen/below_medium_dimens"
+            android:layout_marginTop="@dimen/below_small_dimens"
+            android:layout_marginBottom="@dimen/below_small_dimens"
+            android:padding="@dimen/padding_for_song_avatar_dimens"
+            android:scaleType="centerInside"
+            android:src="@{viewModel.mCurrentSong.image}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar"
+            app:shapeAppearanceOverlay="@style/circle"
+            app:strokeColor="@color/song_avatar_stroke_color"
+            app:strokeWidth="@dimen/line_dimens" />
+
+        <TextView
+            android:id="@+id/tvSongName"
+            style="@style/title_item_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.mCurrentSong.name}"
+            android:textColor="@color/white1_text_color"
+            app:layout_constraintBottom_toTopOf="@+id/tvArtistName"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toEndOf="@+id/imvSongAvatar"
+            app:layout_constraintStart_toStartOf="@+id/tvArtistName"
+            app:layout_constraintTop_toTopOf="@+id/imvSongAvatar" />
+
+        <TextView
+            android:id="@+id/tvArtistName"
+            style="@style/sub_title_item_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/medium_dimens"
+            android:text="@{viewModel.mCurrentSong.artist}"
+            android:textColor="@color/white1_text_color"
+            app:layout_constraintBottom_toBottomOf="@+id/imvSongAvatar"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/imvSongAvatar"
+            app:layout_constraintTop_toBottomOf="@+id/tvSongName" />
+
+        <ImageView
+            android:id="@+id/imvClear"
+            android:layout_width="@dimen/below_medium_dimens"
+            android:layout_height="@dimen/below_medium_dimens"
+            android:onClick="@{view -> viewModel.stopMusic()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar"
+            app:srcCompat="@drawable/ic_clear__big_size"
+            app:tint="@color/white1_text_color"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/imvNext"
+            android:layout_width="@dimen/medium_dimens"
+            android:layout_height="@dimen/medium_dimens"
+            android:layout_marginStart="@dimen/below_large_dimens"
+            android:onClick="@{view -> viewModel.playNextSong()}"
+            app:layout_constraintBottom_toBottomOf="@+id/imvPlayOrPause"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imvPlayOrPause"
+            app:layout_constraintTop_toTopOf="@+id/imvPlayOrPause"
+            app:srcCompat="@drawable/ic_next_song"
+            app:tint="@color/white1_text_color"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/imvPlayOrPause"
+            android:layout_width="@dimen/below_large_dimens"
+            android:layout_height="@dimen/below_large_dimens"
+            android:onClick="@{view -> viewModel.playOrPlayCurrentSong()}"
+            android:src="@{viewModel.mCurrentSong.playing ? @drawable/ic_pause_for_notify : @drawable/ic_play_for_notify}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imvNext"
+            app:layout_constraintStart_toEndOf="@+id/imvPrevious"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar"
+            app:tint="@color/white1_text_color"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/imvPrevious"
+            android:layout_width="@dimen/medium_dimens"
+            android:layout_height="@dimen/medium_dimens"
+            android:layout_marginEnd="@dimen/below_large_dimens"
+            android:onClick="@{view -> viewModel.playPreviousSong()}"
+            app:layout_constraintBottom_toBottomOf="@+id/imvPlayOrPause"
+            app:layout_constraintEnd_toStartOf="@+id/imvPlayOrPause"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/guideline2"
+            app:layout_constraintTop_toTopOf="@+id/imvPlayOrPause"
+            app:srcCompat="@drawable/ic_previous_song_for_now_playing"
+            app:tint="@color/white1_text_color"
+            tools:ignore="ContentDescription" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.6" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

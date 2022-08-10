@@ -12,16 +12,15 @@
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
+            style="@style/toolbar_title_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/primary_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/ic_bugre_menu"
-            app:title="@string/settings"
-            app:titleCentered="true"
-            app:titleTextColor="@color/white2_text_color" />
+            app:navigationIcon="@drawable/ic_burger_menu"
+            app:title="@string/settings" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcvSettings"
