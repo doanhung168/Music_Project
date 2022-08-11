@@ -23,6 +23,7 @@
             tools:context=".view.main_activity.song_fragment.all_song_fragment.AllSongFragment">
 
             <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="@dimen/above_medium_dimens"
                 android:id="@+id/rcvAllSongs"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
