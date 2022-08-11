@@ -1,6 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+
+        <variable
+            name="song"
+            type="com.doanhung.musicproject.data.model.app_system_model.CheckedSong" />
+
+        <variable
+            name="onClickSong"
+            type="com.doanhung.musicproject.view.main_activity.song_fragment.add_playlist_fragment.SelectedSongAdapter.OnClickSongListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/above_small_dimens"
+            android:checked="@{song.checked}"
+            android:onClick="@{_ -> onClickSong.onClickSong(song)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imvSongAvatar"
+            android:layout_width="@dimen/song_avatar_dimens"
+            android:layout_height="@dimen/song_avatar_dimens"
+            android:layout_marginStart="@dimen/above_small_dimens"
+            android:layout_marginTop="@dimen/small_dimens"
+            android:layout_marginBottom="@dimen/small_dimens"
+            android:padding="@dimen/padding_for_song_avatar_dimens"
+            android:scaleType="centerInside"
+            android:src="@{song.image}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/checkbox"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/circle"
+            app:strokeColor="@color/song_avatar_stroke_color"
+            app:strokeWidth="@dimen/line_dimens"
+            tools:src="@drawable/image_playlist_sample_1" />
+
+        <TextView
+            android:id="@+id/tvSongName"
+            style="@style/title_item_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/medium_dimens"
+            android:text="@{song.name}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imvSongAvatar"
+            app:layout_constraintTop_toTopOf="@+id/imvSongAvatar"
+            tools:text="song name" />
+
+        <TextView
+            android:id="@+id/tvArtistName"
+            style="@style/sub_title_item_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/medium_dimens"
+            android:text="@{song.artist}"
+            app:layout_constraintBottom_toBottomOf="@+id/imvSongAvatar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imvSongAvatar"
+            app:layout_constraintTop_toBottomOf="@+id/tvSongName" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

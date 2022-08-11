@@ -1,5 +1,6 @@
 package com.doanhung.musicproject.view.main_activity.song_fragment.add_playlist_fragment;
 
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -8,13 +9,20 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.doanhung.musicproject.data.model.app_system_model.DeviceSong;
+import com.doanhung.musicproject.data.model.app_system_model.CheckedSong;
 import com.doanhung.musicproject.databinding.AdapterSelectedSongItemBinding;
 
-public class AddingPlayListAdapter extends ListAdapter<DeviceSong, AddingPlayListAdapter.AddingViewHolder> {
+public class SelectedSongAdapter extends ListAdapter<CheckedSong, SelectedSongAdapter.AddingViewHolder> {
 
-    protected AddingPlayListAdapter(@NonNull DiffUtil.ItemCallback<DeviceSong> diffCallback) {
+    private OnClickSongListener mOnClickSongListener;
+    private SparseBooleanArray itemStateArray = new SparseBooleanArray();
+
+    public SelectedSongAdapter(@NonNull DiffUtil.ItemCallback<CheckedSong> diffCallback) {
         super(diffCallback);
+    }
+
+    public void setOnCheckedSongListener(OnClickSongListener onClickSongListener) {
+        this.mOnClickSongListener = onClickSongListener;
     }
 
     @NonNull
@@ -31,9 +39,11 @@ public class AddingPlayListAdapter extends ListAdapter<DeviceSong, AddingPlayLis
 
     @Override
     public void onBindViewHolder(@NonNull AddingViewHolder holder, int position) {
-        DeviceSong song = getItem(position);
+        CheckedSong song = getItem(position);
         if (song != null) {
+            holder.mBinding.checkbox.setChecked(song.isChecked());
             holder.mBinding.setSong(song);
+            holder.mBinding.setOnClickSong(mOnClickSongListener);
             holder.mBinding.executePendingBindings();
         }
     }
@@ -45,5 +55,9 @@ public class AddingPlayListAdapter extends ListAdapter<DeviceSong, AddingPlayLis
             super(binding.getRoot());
             mBinding = binding;
         }
+    }
+
+    public interface OnClickSongListener {
+        void onClickSong(CheckedSong song);
     }
 }
