@@ -5,19 +5,70 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.doanhung.musicproject.view.main_activity.song_fragment.playlist_fragment.PlayListViewModel" />
     </data>
 
-   <androidx.constraintlayout.widget.ConstraintLayout
-       android:layout_width="match_parent"
-       android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/primary_color">
 
-       <androidx.recyclerview.widget.RecyclerView
-           android:id="@+id/rcvHeaderPlaylist"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintTop_toTopOf="parent" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcvHeaderPlaylist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_dimens"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-   </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvMyPlaylistTitle"
+            style="@style/part_title_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/below_medium_dimens"
+            android:layout_marginTop="@dimen/below_large_dimens"
+            android:text="@string/my_playlist"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rcvHeaderPlaylist" />
+
+        <TextView
+            android:id="@+id/textView8"
+            style="@style/view_all_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/below_medium_dimens"
+            android:text="@string/view_all"
+            app:layout_constraintBottom_toBottomOf="@+id/tvMyPlaylistTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvMyPlaylistTitle" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcvPlaylist"
+            android:layout_width="match_parent"
+            android:paddingStart="@dimen/above_small_dimens"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_dimens"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvMyPlaylistTitle"
+            tools:ignore="RtlSymmetry" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnToAddingPlaylistFrag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/large_dimens"
+            android:layout_marginBottom="@dimen/below_medium_dimens_2"
+            android:onClick="@{() -> viewModel.showAddingPlayListDialog()}"
+            android:src="@drawable/ic_add"
+            app:borderWidth="@dimen/default_dimens"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="ContentDescription" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

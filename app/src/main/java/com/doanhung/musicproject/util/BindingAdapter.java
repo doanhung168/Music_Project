@@ -1,10 +1,8 @@
 package com.doanhung.musicproject.util;
 
 import android.graphics.drawable.Drawable;
-import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
-
-import androidx.lifecycle.LiveData;
 
 import com.google.android.material.checkbox.MaterialCheckBox;
 
@@ -24,5 +22,15 @@ public class BindingAdapter {
             checkBox.setButtonDrawable(button);
         }
     }
+
+    @androidx.databinding.BindingAdapter(value = {"placeHolderImage", "image", "isHasImage"})
+    public static void setImage(ImageView imageView, Drawable placeHolderImage, Drawable image, boolean isHasImage) {
+        if (image != null) {
+            imageView.setImageDrawable(image);
+        } else {
+            imageView.setImageDrawable(placeHolderImage);
+        }
+    }
+
 
 }

@@ -134,6 +134,33 @@
         <item name="android:singleLine">true</item>
         <item name="android:ellipsize">end</item>
     </style>
+    
+    <style name="my_playlist_title_style">
+        <item name="android:textSize">@dimen/above_small_text_dimens</item>
+        <item name="android:textColor">@color/white2_text_color</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="fontFamily">@font/circular_std_medium</item>
+    </style>
+
+    <style name="adding_my_playlist_style">
+        <item name="android:textColor">@color/white1_text_color</item>
+        <item name="android:textSize">@dimen/medium_dimens</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="edt_adding_playlist_style">
+        <item name="android:textColor">@color/white1_text_color</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="btn_cancel_adding_playlist_dialog_style">
+        <item name="android:backgroundTint">@color/red</item>
+    </style>
+
+    <style name="btn_add_adding_playlist_dialog_style">
+        <item name="android:backgroundTint">@color/green</item>
+    </style>
 
 
 </resources>

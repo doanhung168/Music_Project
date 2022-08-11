@@ -44,5 +44,6 @@
 
     <dimen name="header_playlist_width_dimens">200dp</dimen>
     <dimen name="header_playlist_height_dimens">100dp</dimen>
+    <dimen name="playlist_avatar_adding_playlist_dimens">100dp</dimen>
 
 </resources>

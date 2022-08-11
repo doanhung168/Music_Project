@@ -10,12 +10,12 @@ def media_version = "1.6.0"
 def swipe_layout_version = "1.1.0"
 
 android {
-    compileSdk 32
+    compileSdk 31
 
     defaultConfig {
         applicationId "com.doanhung.musicproject"
         minSdk 21
-        targetSdk 32
+        targetSdk 31
         versionCode 1
         versionName "1.0"
 

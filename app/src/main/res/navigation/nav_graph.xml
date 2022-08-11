@@ -26,4 +26,9 @@
         android:name="com.doanhung.musicproject.view.main_activity.music_playing_fragment.MusicPlayingFragment"
         android:label="MusicPlayingFragment"
         tools:layout="@layout/fragment_music_playing" />
+    <fragment
+        tools:layout="@layout/fragment_adding_my_playlist"
+        android:id="@+id/addingMyPlayListFragment"
+        android:name="com.doanhung.musicproject.view.main_activity.song_fragment.add_playlist_fragment.AddingMyPlayListFragment"
+        android:label="AddingMyPlayListFragment" />
 </navigation>

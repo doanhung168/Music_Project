@@ -18,10 +18,14 @@ import android.provider.MediaStore;
 import android.util.Size;
 
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 
+import com.doanhung.musicproject.R;
 import com.doanhung.musicproject.data.model.data_model.Song;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 public class CommonUtil {
@@ -91,8 +95,10 @@ public class CommonUtil {
     }
 
     public static Bitmap getCircularBitmap(Bitmap bitmap) {
+        if (bitmap == null) {
+            return null;
+        }
         Bitmap output;
-
         if (bitmap.getWidth() > bitmap.getHeight()) {
             output = Bitmap.createBitmap(bitmap.getHeight(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
         } else {

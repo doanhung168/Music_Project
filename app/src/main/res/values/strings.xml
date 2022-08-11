@@ -79,13 +79,27 @@
     <string name="equaliser">Equliser</string>
     <string name="player_theme">Player theme</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="example">Example …</string>
+    <!--    now playing fragment-->
     <string name="eq">EQ</string>
     <string name="repeat">Repeat</string>
     <string name="shuffle">Shuffle</string>
+
+    <!--    adding my playlist fragment-->
+    <string name="my_playlist">My Playlist</string>
+    <string name="enter_your_playlist_name">Enter your playlist name</string>
+    <string name="adding_my_playlist">Adding My Playlist</string>
+    <string name="cancel">Cancel</string>
+    <string name="add">Add</string>
+    <string name="add_my_playlist">Add My Playlist</string>
+    <string name="add_playlist_avatar">Add playlist avatar:</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="example">Example …</string>
     <string name="h_example">3:15</string>
+    <string name="enter_playlist_name">Enter playlist name:</string>
+    <string name="choose_songs_for_my_playlist">Choose songs for my playlist:</string>
 
 
 </resources>

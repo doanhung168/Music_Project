@@ -1,6 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+
+        <variable
+            name="playlist"
+            type="com.doanhung.musicproject.data.model.data_model.PlayList" />
+
+        <variable
+            name="onClickItem"
+            type="com.doanhung.musicproject.view.main_activity.song_fragment.playlist_fragment.MyPlaylistAdapter.OnClickPlaylist" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="@dimen/playlist_item_width_dimens"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/below_medium_dimens"
+        android:orientation="vertical"
+        android:onLongClick="@{_ -> onClickItem.onDeletePlaylist(playlist)}"
+        android:paddingVertical="@dimen/below_small_dimens"
+        tools:background="@color/primary_color">
+
+        <ImageView
+            android:id="@+id/imvPlaylistAvatar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_corner_img"
+            android:scaleType="fitXY"
+            android:src="@{playlist.image}"
+            tools:src="@drawable/image_header_playlist_sample_1"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            style="@style/title_item_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_dimens"
+            android:fontFamily="@font/circular_std_medium"
+            android:text="@{playlist.name}"
+            tools:text="@string/example" />
+
+    </LinearLayout>
+</layout>

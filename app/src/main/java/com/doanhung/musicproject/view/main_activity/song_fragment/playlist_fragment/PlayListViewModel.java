@@ -24,11 +24,14 @@ public class PlayListViewModel extends ViewModel {
     private final MutableLiveData<List<PlayList>> _mHeaderPlaylist = new MutableLiveData<>();
     public final LiveData<List<PlayList>> mHeaderPlaylist = _mHeaderPlaylist;
 
+    private final MutableLiveData<List<PlayList>> _mPlaylist = new MutableLiveData<>();
+    public final LiveData<List<PlayList>> mPlaylist = _mPlaylist;
+
     public PlayListViewModel(MusicRepository musicRepository) {
         this.mMusicRepository = musicRepository;
     }
 
-    public void loadDataForPlaylistPart() {
+    public void loadDataForHeaderPlaylistPart() {
         mMusicRepository.loadDataForHeaderPlaylistPart(result -> {
             if (result instanceof Result.Success) {
                 _mHeaderPlaylist.postValue(((Result.Success<List<PlayList>>) result).data);
@@ -40,8 +43,44 @@ public class PlayListViewModel extends ViewModel {
         });
     }
 
+    public void loadPlaylistFromDevice() {
+        mMusicRepository.loadPlaylistFromDevice(result -> {
+            if (result instanceof Result.Success) {
+                _mPlaylist.postValue(((Result.Success<List<PlayList>>) result).data);
+            } else {
+                Event.LOADING_MY_PLAYLIST_FAILURE_EVENT.setException(
+                        ((Result.Error<List<PlayList>>) result).exception);
+                _mEvent.setValue(Event.LOADING_MY_PLAYLIST_FAILURE_EVENT);
+            }
+        });
+    }
+
+    public void removePlaylistFromDevice(PlayList playList) {
+        mMusicRepository.removePlaylistFromDevice(playList, result -> {
+            if (result instanceof Result.Success) {
+                _mEvent.postValue(Event.REMOVE_PLAYLIST_SUCCESS);
+            } else {
+                Event.REMOVE_PLAYLIST_FAILURE.setException(
+                        ((Result.Error<Void>) result).exception);
+                _mEvent.postValue(Event.REMOVE_PLAYLIST_FAILURE);
+            }
+        });
+    }
+
+    public void reloadMyPlaylistData() {
+        loadPlaylistFromDevice();
+    }
+
+    public void showAddingPlayListDialog() {
+        _mEvent.setValue(Event.SHOW_PLAYLIST_DIALOG);
+    }
+
     public boolean checkHasNoHeaderPlaylists() {
-        return mHeaderPlaylist.getValue() == null;
+        return _mHeaderPlaylist.getValue() == null;
+    }
+
+    public boolean checkHasNoMyPlaylists() {
+        return _mPlaylist.getValue() == null;
     }
 
     public static class PlayListViewModelFactory implements ViewModelProvider.Factory {

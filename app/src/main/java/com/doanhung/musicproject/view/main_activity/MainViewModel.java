@@ -48,14 +48,6 @@ public class MainViewModel extends ViewModel implements MusicObserver {
 
     private MusicSource mMusicSource;
 
-    public boolean getIsRepeat() {
-        return Boolean.TRUE.equals(_mIsRepeat.getValue());
-    }
-
-    public boolean getIsShuffle() {
-        return Boolean.TRUE.equals(_mIsShuffle.getValue());
-    }
-
     public MainViewModel(Application application, MusicServiceController musicServiceController) {
         this.mApplication = application;
         this.mMusicServiceController = musicServiceController;

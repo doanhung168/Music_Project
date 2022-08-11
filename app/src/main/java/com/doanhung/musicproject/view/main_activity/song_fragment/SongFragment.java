@@ -56,6 +56,7 @@ public class SongFragment extends BaseFragment<FragmentSongBinding> {
 
     private void setupViewPagerAndTabLayout() {
         mBinding.viewPagerSongs.setAdapter(mSongFragmentPagerAdapter);
+        mBinding.viewPagerSongs.setUserInputEnabled(false);
         new TabLayoutMediator(mBinding.tabLayoutSongs, mBinding.viewPagerSongs, (tab, position) -> {
             switch (position) {
                 case ALL_SONG_FRAGMENT_INDEX:
