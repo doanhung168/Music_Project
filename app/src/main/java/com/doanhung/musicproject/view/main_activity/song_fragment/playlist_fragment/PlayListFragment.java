@@ -100,7 +100,6 @@ public class PlayListFragment extends BaseFragment<FragmentPlayListBinding> impl
         mPlayListViewModel.mPlaylist.observe(getViewLifecycleOwner(), playLists -> {
             if (playLists != null) {
                 mMyPlaylistAdapter.submitList(playLists);
-                mMyPlaylistAdapter.notifyDataSetChanged(); // temporary way for remove item
             }
         });
 
@@ -126,10 +125,14 @@ public class PlayListFragment extends BaseFragment<FragmentPlayListBinding> impl
         });
     }
 
+
+    // this function for develop environment and not work in public project
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public boolean onDeletePlaylist(PlayList playList) {
-        mPlayListViewModel.removePlaylistFromDevice(playList);
-        mPlayListViewModel.reloadMyPlaylistData();
+//        mPlayListViewModel.removePlaylistFromDevice(playList);
+//        mPlayListViewModel.reloadMyPlaylistData();
+//        mMyPlaylistAdapter.notifyDataSetChanged();
         return true;
     }
 }
