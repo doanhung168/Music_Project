@@ -19,7 +19,7 @@
             android:id="@+id/rcvHeaderPlaylist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/small_dimens"
+            android:layout_marginTop="@dimen/above_medium_dimens"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
