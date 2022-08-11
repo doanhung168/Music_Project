@@ -5,6 +5,7 @@ import android.content.Context;
 import com.doanhung.musicproject.data.model.app_system_model.CheckedSong;
 import com.doanhung.musicproject.data.model.app_system_model.DeviceItem;
 import com.doanhung.musicproject.data.model.app_system_model.DeviceSong;
+import com.doanhung.musicproject.data.model.data_model.Album;
 import com.doanhung.musicproject.data.model.data_model.PlayList;
 import com.doanhung.musicproject.data.model.data_model.Song;
 import com.doanhung.musicproject.service.MusicServiceController;
@@ -12,6 +13,7 @@ import com.doanhung.musicproject.view.common_adapter.DeviceItemAdapter;
 import com.doanhung.musicproject.view.main_activity.home_fragment.adapter.HotRecommendedAdapter;
 import com.doanhung.musicproject.view.main_activity.home_fragment.adapter.PlayListAdapter;
 import com.doanhung.musicproject.view.main_activity.song_fragment.add_playlist_fragment.SelectedSongAdapter;
+import com.doanhung.musicproject.view.main_activity.song_fragment.album_fragment.AlbumAdapter;
 import com.doanhung.musicproject.view.main_activity.song_fragment.all_song_fragment.AllSongAdapter;
 import com.doanhung.musicproject.view.main_activity.song_fragment.playlist_fragment.HeaderPlayListAdapter;
 import com.doanhung.musicproject.view.main_activity.song_fragment.playlist_fragment.MyPlaylistAdapter;
@@ -106,6 +108,11 @@ public class AppModule {
     @Provides
     public static MyPlaylistAdapter provideMyPlaylistAdapter() {
         return new MyPlaylistAdapter(PlayList.DIFF_CALLBACK);
+    }
+
+    @Provides
+    public static AlbumAdapter provideAlbumAdapter() {
+        return new AlbumAdapter(Album.DIFF_CALLBACK);
     }
 
 

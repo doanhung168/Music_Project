@@ -1,6 +1,7 @@
 package com.doanhung.musicproject.util;
 
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,11 +24,11 @@ public class BindingAdapter {
         }
     }
 
-    @androidx.databinding.BindingAdapter(value = {"placeHolderImage", "image", "isHasImage"})
-    public static void setImage(ImageView imageView, Drawable placeHolderImage, Drawable image, boolean isHasImage) {
-        if (image != null) {
-            imageView.setImageDrawable(image);
-        } else {
+    @androidx.databinding.BindingAdapter(value = {"placeHolderImage", "uri"})
+    public static void setImage(ImageView imageView, Drawable placeHolderImage, Uri uri) {
+        try {
+            imageView.setImageURI(uri);
+        } catch (Exception e) {
             imageView.setImageDrawable(placeHolderImage);
         }
     }

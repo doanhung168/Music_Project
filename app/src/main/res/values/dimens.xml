@@ -41,9 +41,12 @@
     <dimen name="min_width">50dp</dimen>
 
 
-
     <dimen name="header_playlist_width_dimens">200dp</dimen>
     <dimen name="header_playlist_height_dimens">100dp</dimen>
     <dimen name="playlist_avatar_adding_playlist_dimens">100dp</dimen>
+
+    <!--    Album fragment -->
+    <dimen name="album_avatar_height_dimens">230dp</dimen>
+    <dimen name="album_avatar_width_dimens">180dp</dimen>
 
 </resources>

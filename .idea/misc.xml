@@ -132,7 +132,9 @@
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/drawable/bg_gradient.xml" value="0.182" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/drawable/ic_add.xml" value="0.182" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/drawable/ic_checked_shuffle.xml" value="0.1715" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/drawable/ic_more.xml" value="0.182" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/layout/activity_main.xml" value="0.2625" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/layout/adapter_album_item.xml" value="0.6" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/layout/adapter_all_song_item.xml" value="0.2625" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/layout/adapter_header_playlist_item.xml" value="0.536" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/layout/adapter_my_playlist_item.xml" value="0.6" />
@@ -147,6 +149,8 @@
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/layout/fragment_play_list.xml" value="0.176" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/layout/fragment_song.xml" value="0.10208333333333333" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/layout/layout_music_player_bar.xml" value="0.2625" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/menu/menu_album.xml" value="0.2625" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/menu/menu_album_fragment.xml" value="0.2625" />
       </map>
     </option>
   </component>

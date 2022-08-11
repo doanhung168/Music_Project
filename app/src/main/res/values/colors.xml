@@ -38,7 +38,7 @@
     <color name="song_avatar_stroke_color">#95FFEBEE</color>
 
     <!--    for popup menu-->
-    <color name="popup_background_color">#585858</color>
+    <color name="popup_background_color">#383B49</color>
 
     <!--    for adding playlist -->
     <color name="adding_playlist_dialog_background_color">#141620</color>

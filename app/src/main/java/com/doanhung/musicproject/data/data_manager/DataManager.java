@@ -15,6 +15,7 @@ import com.doanhung.musicproject.R;
 import com.doanhung.musicproject.data.model.app_system_model.CheckedSong;
 import com.doanhung.musicproject.data.model.app_system_model.DeviceSong;
 import com.doanhung.musicproject.data.model.app_system_model.SongType;
+import com.doanhung.musicproject.data.model.data_model.Album;
 import com.doanhung.musicproject.data.model.data_model.PlayList;
 import com.doanhung.musicproject.data.model.data_model.Song;
 import com.doanhung.musicproject.util.CommonUtil;
@@ -38,6 +39,7 @@ public class DataManager {
     public DataManager(@ApplicationContext Context context) {
         this.mContext = context;
     }
+
     // SONGS
     public List<? extends Song> loadAllSongFromDevice(final SongType songType) {
         List<Song> songs = new ArrayList<>();
@@ -240,7 +242,51 @@ public class DataManager {
     }
 
     // ALBUMS
+    public List<Album> loadAlbumFromDevice() {
+        List<Album> albumList = new ArrayList<>();
 
+        String[] albumProjection = new String[]{
+                MediaStore.Audio.Albums._ID,
+                MediaStore.Audio.Albums.ALBUM,
+                MediaStore.Audio.Albums.ALBUM_ART,
+                MediaStore.Audio.Albums.ARTIST,
+                MediaStore.Audio.Media.ARTIST_ID,
+                MediaStore.Audio.Albums.NUMBER_OF_SONGS
+        };
+
+        Cursor loadAlbumCursor = mContext.getContentResolver().query(
+                MediaStore.Audio.Albums.EXTERNAL_CONTENT_URI,
+                albumProjection,
+                null,
+                null,
+                null
+        );
+
+        if (loadAlbumCursor.getCount() > 0) {
+            int idIndex = loadAlbumCursor.getColumnIndex(MediaStore.Audio.Albums._ID);
+            int nameIndex = loadAlbumCursor.getColumnIndex(MediaStore.Audio.Albums.ALBUM);
+            int imageIndex = loadAlbumCursor.getColumnIndex(MediaStore.Audio.Albums.ALBUM_ART);
+            int artistIndex = loadAlbumCursor.getColumnIndex(MediaStore.Audio.Albums.ARTIST);
+            int artistIdIndex = loadAlbumCursor.getColumnIndex(MediaStore.Audio.Media.ARTIST_ID);
+            int numberOfSongIndex = loadAlbumCursor.getColumnIndex(MediaStore.Audio.Albums.NUMBER_OF_SONGS);
+
+            while (loadAlbumCursor.moveToNext()) {
+                long id = loadAlbumCursor.getLong(idIndex);
+                String albumName = loadAlbumCursor.getString(nameIndex);
+                Uri albumImage = Uri.parse(loadAlbumCursor.getString(imageIndex));
+                String artist = loadAlbumCursor.getString(artistIndex);
+                String artistId = loadAlbumCursor.getString(artistIdIndex);
+                int numberOfSongs = loadAlbumCursor.getInt(numberOfSongIndex);
+
+                Album album = new Album(id, albumName, albumImage, artist, artistId, numberOfSongs);
+                albumList.add(album);
+            }
+        }
+
+        loadAlbumCursor.close();
+
+        return albumList;
+    }
 
 
 }

@@ -134,7 +134,7 @@
         <item name="android:singleLine">true</item>
         <item name="android:ellipsize">end</item>
     </style>
-    
+
     <style name="my_playlist_title_style">
         <item name="android:textSize">@dimen/above_small_text_dimens</item>
         <item name="android:textColor">@color/white2_text_color</item>
@@ -160,6 +160,40 @@
 
     <style name="btn_add_adding_playlist_dialog_style">
         <item name="android:backgroundTint">@color/green</item>
+    </style>
+
+
+    <!--    Album fragment style -->
+    <style name="adapter_album_title_style">
+        <item name="android:textColor">@color/white1_text_color</item>
+        <item name="android:textSize">@dimen/below_medium_text_dimens</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="adapter_album_avatar_style">
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="adapter_album_artist_style">
+        <item name="android:textSize">@dimen/small_text_dimens</item>
+        <item name="android:textColor">@color/white2_text_color</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="adapter_number_of_song_of_album_style">
+        <item name="android:textColor">@color/white2_text_color</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:paddingEnd">@dimen/small_dimens</item>
+        <item name="android:textAlignment">textEnd</item>
+        <item name="android:textSize">@dimen/small_text_dimens</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="PopupMenu" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:background">@color/popup_background_color</item>
+        <item name="android:textColor">@color/white1_text_color</item>
     </style>
 
 

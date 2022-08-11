@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="album"
+            type="com.doanhung.musicproject.data.model.data_model.Album" />
+
+        <variable
+            name="onClickAlbumItem"
+            type="com.doanhung.musicproject.view.main_activity.song_fragment.album_fragment.AlbumAdapter.OnClickAlbumItemListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/below_medium_dimens"
+        android:layout_marginBottom="@dimen/below_large_dimens"
+        android:background="@color/primary_color">
+
+        <ImageView
+            android:id="@+id/imvAlbumAvatar"
+            style="@style/adapter_album_avatar_style"
+            android:layout_width="@dimen/album_avatar_width_dimens"
+            android:layout_height="@dimen/album_avatar_height_dimens"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:placeHolderImage="@{@drawable/image_header_playlist_sample_1}"
+            app:uri="@{album.image}"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/image_header_playlist_sample_1" />
+
+        <TextView
+            android:id="@+id/tvAlbumName"
+            style="@style/adapter_album_title_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/below_medium_dimens"
+            android:layout_marginEnd="@dimen/small_dimens"
+            android:text="@{album.name}"
+            app:layout_constraintEnd_toStartOf="@+id/imvMore"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imvAlbumAvatar"
+            tools:text="@string/history" />
+
+        <ImageView
+            android:id="@+id/imvMore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{(view) -> onClickAlbumItem.onClickAlbumMenu(view, album)}"
+            android:src="@drawable/ic_more"
+            app:layout_constraintBottom_toBottomOf="@+id/tvAlbumName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvAlbumName"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tvAlbumArtist"
+            style="@style/adapter_album_artist_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/below_medium_dimens"
+            android:layout_marginBottom="@dimen/medium_dimens"
+            android:text="@{album.artist}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/circle_nut"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvAlbumName"
+            tools:text="Michael Jackson" />
+
+        <View
+            android:id="@+id/circle_nut"
+            android:layout_width="@dimen/below_small_dimens"
+            android:layout_height="@dimen/below_small_dimens"
+            android:layout_marginStart="@dimen/below_small_dimens"
+            android:layout_marginEnd="@dimen/below_small_dimens"
+            android:background="@drawable/bg_circle_nut"
+            app:layout_constraintBottom_toBottomOf="@+id/tvAlbumArtist"
+            app:layout_constraintEnd_toStartOf="@+id/tvNumberOfSong"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tvAlbumArtist"
+            app:layout_constraintTop_toTopOf="@+id/tvAlbumArtist" />
+
+        <TextView
+            android:id="@+id/tvNumberOfSong"
+            style="@style/adapter_number_of_song_of_album_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{album.numberOfSongs + ` Songs`}"
+            app:layout_constraintBottom_toBottomOf="@+id/tvAlbumArtist"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/circle_nut"
+            app:layout_constraintTop_toTopOf="@+id/tvAlbumArtist"
+            tools:text="10 Songs" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

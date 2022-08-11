@@ -14,6 +14,9 @@
         <!-- Customize your theme here. -->
         <item name="colorAccent">@color/gradient_start</item>
         <item name="actionOverflowButtonStyle">@style/MyOverflowButtonStyle</item>
+
+        <item name="popupMenuBackground">@color/popup_background_color</item>
+        <item name="popupMenuStyle">@style/PopupMenu</item>
     </style>
 
     <!-- Splash Screen theme. -->
