@@ -13,6 +13,7 @@ import android.graphics.Shader;
 import android.graphics.SweepGradient;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
@@ -122,9 +123,22 @@ public class MusicCircleView extends View {
     }
 
     @Override
+    public void draw(Canvas canvas) {
+        super.draw(canvas);
+
+        Log.i(TAG, "draw: ");
+    }
+
+    private static final String TAG = "MusicCircleView";
+
+    @Override
     protected void onDraw(Canvas canvas) {
 
+        Log.i(TAG, "onDraw: ");
 
+        if (mSongImageBackground == null) {
+            mSongImageBackground = ContextCompat.getDrawable(getContext(), R.drawable.image_playlist_sample_1);
+        }
         canvas.drawBitmap(
                 CommonUtil.getCircularBitmap(CommonUtil.drawableToBitmap(mSongImageBackground))
                 , null,
