@@ -36,4 +36,9 @@
         android:id="@+id/artistDetailFragment"
         android:name="com.doanhung.musicproject.view.main_activity.song_fragment.artist_detail_fragment.ArtistDetailFragment"
         android:label="ArtistDetailFragment" />
+    <fragment
+        android:id="@+id/albumDetailFragment"
+        tools:layout="@layout/fragment_album_detail"
+        android:name="com.doanhung.musicproject.view.main_activity.song_fragment.album_detail_fragment.AlbumDetailFragment"
+        android:label="AlbumDetailFragment" />
 </navigation>

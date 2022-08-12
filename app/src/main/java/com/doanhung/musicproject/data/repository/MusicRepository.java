@@ -207,6 +207,19 @@ public class MusicRepository {
         });
     }
 
+    public void loadSongSOfAlbum(String albumId, MusicRepositoryCallback<List<DeviceSong>> musicRepositoryCallback) {
+        mExecutor.execute(() -> {
+            try {
+                List<DeviceSong> songs = mDataManager.loadSongsOfAlbum(albumId);
+                Result<List<DeviceSong>> result = new Result.Success<>(songs);
+                musicRepositoryCallback.onComplete(result);
+            } catch (Exception e) {
+                Result<List<DeviceSong>> errorResult = new Result.Error<>(e);
+                musicRepositoryCallback.onComplete(errorResult);
+            }
+        });
+    }
+
 
     public interface MusicRepositoryCallback<T> {
         void onComplete(Result<T> result);

@@ -1,66 +1,132 @@
 package com.doanhung.musicproject.view.main_activity.song_fragment.album_detail_fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.doanhung.musicproject.R;
+import com.doanhung.musicproject.data.model.app_system_model.DeviceSong;
+import com.doanhung.musicproject.data.model.app_system_model.MusicSource;
+import com.doanhung.musicproject.data.model.app_system_model.ServiceMusicData;
+import com.doanhung.musicproject.data.repository.MusicRepository;
+import com.doanhung.musicproject.databinding.FragmentAlbumDetailBinding;
+import com.doanhung.musicproject.service.MusicServiceController;
+import com.doanhung.musicproject.util.event.Event;
+import com.doanhung.musicproject.view.BaseFragment;
+import com.doanhung.musicproject.view.common_adapter.SongAdapter;
+import com.doanhung.musicproject.view.main_activity.MainViewModel;
+import com.doanhung.musicproject.view.main_activity.song_fragment.album_fragment.AlbumViewModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AlbumDetailFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class AlbumDetailFragment extends Fragment {
+import javax.inject.Inject;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import dagger.hilt.android.AndroidEntryPoint;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+@AndroidEntryPoint
+public class AlbumDetailFragment extends BaseFragment<FragmentAlbumDetailBinding> implements
+        SongAdapter.OnClickSongItemListener {
 
-    public AlbumDetailFragment() {
-        // Required empty public constructor
-    }
+    @Inject
+    SongAdapter mSongAdapter;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AlbumDetailFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static AlbumDetailFragment newInstance(String param1, String param2) {
-        AlbumDetailFragment fragment = new AlbumDetailFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    @Inject
+    MusicRepository mMusicRepository;
+    private AlbumViewModel mAlbumViewModel;
+
+    @Inject
+    MusicServiceController mMusicServiceController;
+    private MainViewModel mMainViewModel;
+    private boolean needValidateRcvAfterComebackWithService;
+
+    @Override
+    public int getFragmentView() {
+        return R.layout.fragment_album_detail;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initAndAttackViewModels();
+        setupToolbar();
+        setupRcvSongs();
+        listenEvents();
+
+        validateRcvFollowTrack();
+    }
+
+    private void initAndAttackViewModels() {
+        mAlbumViewModel = new ViewModelProvider(requireActivity(),
+                new AlbumViewModel.AlbumViewModelFactory(mMusicRepository))
+                .get(AlbumViewModel.class);
+        mBinding.setViewModel(mAlbumViewModel);
+
+        mMainViewModel = new ViewModelProvider(requireActivity(),
+                new MainViewModel.MainViewModelFactory
+                        (requireActivity().getApplication(), mMusicServiceController))
+                .get(MainViewModel.class);
+    }
+
+    private void setupToolbar() {
+        mBinding.toolbar.setNavigationOnClickListener(v -> {
+            Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
+                    .popBackStack();
+        });
+    }
+
+    private void setupRcvSongs() {
+        mSongAdapter.setOnClickSongItemListener(this);
+        mBinding.rcvSongs.setAdapter(mSongAdapter);
+
+        mAlbumViewModel.loadSongsOfAlbum();
+        mAlbumViewModel.mSongsOfAlbum.observe(getViewLifecycleOwner(), deviceSongs -> {
+            if (deviceSongs != null) {
+                mSongAdapter.submitList(deviceSongs);
+            }
+
+            if (needValidateRcvAfterComebackWithService) {
+                validateRcvFollowTrackManual();
+                needValidateRcvAfterComebackWithService = false;
+            }
+        });
+
+    }
+
+    private void listenEvents() {
+        mAlbumViewModel.mEvent.observe(getViewLifecycleOwner(), event -> {
+            if (event == Event.LOADING_SONGS_OF_ALBUM_FAILURE) {
+                Toast.makeText(requireContext(), event.getException().getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void validateRcvFollowTrack() {
+        mMainViewModel.mCurrentSong.observe(getViewLifecycleOwner(), newSong -> {
+            needValidateRcvAfterComebackWithService = true;
+        });
+    }
+
+
+    @SuppressLint("NotifyDataSetChanged")
+    private void validateRcvFollowTrackManual() {
+        mAlbumViewModel.validateSongsFollowTrack(
+                mMainViewModel.getMusicSource(),
+                mMainViewModel.getCurrentSong()
+        );
+        mSongAdapter.notifyDataSetChanged();
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_album_detail, container, false);
+    public void onClickSongItem(DeviceSong song) {
+        song.setPlaying(true);
+        mMainViewModel.playExternalSong(
+                new ServiceMusicData(MusicSource.SONGS_OF_ALBUM_SOURCE, mAlbumViewModel.getSongs(), song));
+
+        Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
+                .navigate(R.id.musicPlayingFragment);
     }
 }

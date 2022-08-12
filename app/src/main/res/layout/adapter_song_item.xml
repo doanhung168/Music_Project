@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="song"
             type="com.doanhung.musicproject.data.model.app_system_model.DeviceSong" />
@@ -67,12 +69,30 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small_dimens"
             android:layout_marginEnd="@dimen/below_medium_dimens"
+            android:src="@drawable/ic_more_horizontal"
+            android:visibility="@{song.playing ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="@+id/tvSongDuration"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/tvSongDuration"
             app:layout_constraintTop_toTopOf="@+id/tvSongDuration"
-            app:srcCompat="@drawable/ic_more_horizontal" />
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/ic_more_horizontal" />
+
+        <ImageView
+            android:id="@+id/imvEQ"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/below_medium_dimens"
+            android:layout_marginEnd="@dimen/below_medium_dimens"
+            android:src="@drawable/ic_eq_display"
+            android:visibility="@{song.playing ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/tvSongDuration"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/tvSongDuration"
+            app:layout_constraintTop_toTopOf="@+id/tvSongDuration"
+            tools:ignore="ContentDescription" />
 
         <View
             android:id="@+id/divider"

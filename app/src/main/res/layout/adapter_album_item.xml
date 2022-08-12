@@ -20,7 +20,8 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/below_medium_dimens"
         android:layout_marginBottom="@dimen/below_large_dimens"
-        android:background="@color/primary_color">
+        android:background="@color/primary_color"
+        android:onClick="@{() -> onClickAlbumItem.onClickAlbumItem(album)}">
 
         <ImageView
             android:id="@+id/imvAlbumAvatar"
