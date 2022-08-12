@@ -30,7 +30,7 @@
             android:background="@drawable/bg_gray_border"
             android:cropToPadding="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/image_header_playlist_sample_1"
+            app:dummyImage="@{true}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

@@ -16,6 +16,7 @@ public class Song {
     private String mArtist;
     private String mAlbum;
     private long mDuration;
+    private long mGenreId;
 
     public Song() {
     }
@@ -86,6 +87,13 @@ public class Song {
         this.mDuration = duration;
     }
 
+    public long getGenreId() {
+        return mGenreId;
+    }
+
+    public void setGenreId(long genreId) {
+        this.mGenreId = genreId;
+    }
 
     @Override
     public boolean equals(Object o) {

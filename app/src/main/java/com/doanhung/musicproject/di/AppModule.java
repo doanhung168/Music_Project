@@ -7,6 +7,7 @@ import com.doanhung.musicproject.data.model.app_system_model.DeviceItem;
 import com.doanhung.musicproject.data.model.app_system_model.DeviceSong;
 import com.doanhung.musicproject.data.model.data_model.Album;
 import com.doanhung.musicproject.data.model.data_model.Artist;
+import com.doanhung.musicproject.data.model.data_model.Genre;
 import com.doanhung.musicproject.data.model.data_model.PlayList;
 import com.doanhung.musicproject.data.model.data_model.Song;
 import com.doanhung.musicproject.service.MusicServiceController;
@@ -18,7 +19,8 @@ import com.doanhung.musicproject.view.main_activity.song_fragment.add_playlist_f
 import com.doanhung.musicproject.view.main_activity.song_fragment.album_fragment.AlbumAdapter;
 import com.doanhung.musicproject.view.main_activity.song_fragment.all_song_fragment.AllSongAdapter;
 import com.doanhung.musicproject.view.main_activity.song_fragment.artist_fragment.ArtistAdapter;
-import com.doanhung.musicproject.view.main_activity.song_fragment.artist_fragment.TopAlbumAdapter;
+import com.doanhung.musicproject.view.main_activity.song_fragment.artist_detail_fragment.TopAlbumAdapter;
+import com.doanhung.musicproject.view.main_activity.song_fragment.genre_fragment.GenreAdapter;
 import com.doanhung.musicproject.view.main_activity.song_fragment.playlist_fragment.HeaderPlayListAdapter;
 import com.doanhung.musicproject.view.main_activity.song_fragment.playlist_fragment.MyPlaylistAdapter;
 
@@ -132,6 +134,11 @@ public class AppModule {
     @Provides
     public static SongAdapter providerSongAdapter() {
         return new SongAdapter(DeviceSong.DIFF_CALLBACK);
+    }
+
+    @Provides
+    public static GenreAdapter providerGenreAdapter() {
+        return new GenreAdapter(Genre.DIFF_CALLBACK);
     }
 
 

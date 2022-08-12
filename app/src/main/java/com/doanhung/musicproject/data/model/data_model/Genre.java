@@ -1,21 +1,24 @@
 package com.doanhung.musicproject.data.model.data_model;
 
-import android.graphics.Bitmap;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+
+import java.util.Objects;
 
 public class Genre {
     private long mId;
     private String mName;
     private int mNumberOfSongs;
-    private Bitmap mImage;
 
-    public Genre() {
+    public Genre(long mId, String mName) {
+        this.mId = mId;
+        this.mName = mName;
     }
 
-    public Genre(long id, String name, int numberOfSongs, Bitmap image) {
+    public Genre(long id, String name, int numberOfSongs) {
         this.mId = id;
         this.mName = name;
         this.mNumberOfSongs = numberOfSongs;
-        this.mImage = image;
     }
 
     public long getId() {
@@ -42,11 +45,24 @@ public class Genre {
         this.mNumberOfSongs = numberOfSongs;
     }
 
-    public Bitmap getImage() {
-        return mImage;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Genre genre = (Genre) o;
+        return mNumberOfSongs == genre.mNumberOfSongs && Objects.equals(mName, genre.mName);
     }
 
-    public void setImage(Bitmap image) {
-        this.mImage = image;
-    }
+    public static final DiffUtil.ItemCallback<Genre> DIFF_CALLBACK = new DiffUtil.ItemCallback<Genre>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull Genre oldItem, @NonNull Genre newItem) {
+            return oldItem.mId == newItem.mId;
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull Genre oldItem, @NonNull Genre newItem) {
+            return oldItem.equals(newItem);
+        }
+    };
 }

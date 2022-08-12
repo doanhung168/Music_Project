@@ -4,9 +4,11 @@
         android:width="@dimen/line_dimens"
         android:color="@color/gray" />
 
-    <size
-        android:width="@dimen/adapter_artist_avatar_dimens"
-        android:height="@dimen/adapter_artist_avatar_dimens" />
+    <padding
+        android:bottom="1dp"
+        android:left="1dp"
+        android:right="1dp"
+        android:top="1dp" />
 
 
 </shape>

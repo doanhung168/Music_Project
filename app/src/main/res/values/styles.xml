@@ -267,6 +267,32 @@
         <item name="android:textColor">@color/white3_text_color</item>
     </style>
 
+    <!--    GenreAdapter-->
+    <style name="genre_adapter_tv_genre_name">
+        <item name="fontFamily">@font/circular_std_bold</item>
+        <item name="android:textColor">@color/white1_text_color</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">@dimen/below_medium_text_dimens</item>
+    </style>
+
+    <style name="genre_adapter_tv_number_of_song_of_genre">
+        <item name="fontFamily">@font/circular_std_book</item>
+        <item name="android:textColor">@color/white1_text_color</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">@dimen/small_text_dimens</item>
+    </style>
+
+    <!--    Corner ImageView Style-->
+    <style name="roundedCornersImageView">
+        <item name="cornerSize">@dimen/below_medium_dimens</item>
+    </style>
+
+    <style name="borderImageView">
+        <item name="strokeWidth">@dimen/line_dimens</item>
+        <item name="strokeColor">@color/transparent_color</item>
+    </style>
 
 
 </resources>

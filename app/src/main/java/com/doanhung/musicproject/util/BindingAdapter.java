@@ -5,7 +5,14 @@ import android.net.Uri;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
+
+import com.doanhung.musicproject.R;
 import com.google.android.material.checkbox.MaterialCheckBox;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class BindingAdapter {
 
@@ -30,6 +37,24 @@ public class BindingAdapter {
             imageView.setImageURI(uri);
         } catch (Exception e) {
             imageView.setImageDrawable(placeHolderImage);
+        }
+    }
+
+    @androidx.databinding.BindingAdapter(value = {"dummyImage"})
+    public static void setDummyImage(ImageView imageView, boolean isDummy) {
+        List<Drawable> drawables = new ArrayList<>();
+        drawables.add(ContextCompat.getDrawable(imageView.getContext(), R.drawable.image_header_playlist_sample_1));
+        drawables.add(ContextCompat.getDrawable(imageView.getContext(), R.drawable.image_header_playlist_sample_2));
+        drawables.add(ContextCompat.getDrawable(imageView.getContext(), R.drawable.image_header_playlist_sample_3));
+        drawables.add(ContextCompat.getDrawable(imageView.getContext(), R.drawable.image_header_playlist_sample_4));
+        drawables.add(ContextCompat.getDrawable(imageView.getContext(), R.drawable.image_hot_recommended_sample_1));
+        drawables.add(ContextCompat.getDrawable(imageView.getContext(), R.drawable.image_hot_recommended_sample_2));
+        drawables.add(ContextCompat.getDrawable(imageView.getContext(), R.drawable.image_playlist_sample_1));
+        drawables.add(ContextCompat.getDrawable(imageView.getContext(), R.drawable.image_playlist_sample_2));
+
+        Random random = new Random();
+        if (isDummy) {
+            imageView.setImageDrawable(drawables.get(random.nextInt(7)));
         }
     }
 

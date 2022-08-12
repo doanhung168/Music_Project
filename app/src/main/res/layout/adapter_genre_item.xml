@@ -1,6 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+
+        <variable
+            name="genre"
+            type="com.doanhung.musicproject.data.model.data_model.Genre" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/below_medium_dimens"
+        android:layout_marginBottom="@dimen/below_medium_dimens">
+
+        <ImageView
+            android:id="@+id/imvGenreAvatar"
+            android:layout_width="180dp"
+            android:layout_height="120dp"
+            android:scaleType="centerCrop"
+            app:dummyImage="@{true}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/image_header_playlist_sample_1" />
+
+        <TextView
+            android:id="@+id/tvGenreName"
+            style="@style/genre_adapter_tv_genre_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{genre.name}"
+            app:layout_constraintBottom_toTopOf="@id/tvNumberOfSongs"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imvGenreAvatar"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Song genre" />
+
+        <TextView
+            android:id="@+id/tvNumberOfSongs"
+            style="@style/genre_adapter_tv_number_of_song_of_genre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_dimens"
+            android:text="@{genre.numberOfSongs + ` Songs`}"
+            app:layout_constraintBottom_toBottomOf="@+id/imvGenreAvatar"
+            app:layout_constraintEnd_toEndOf="@+id/tvGenreName"
+            app:layout_constraintStart_toStartOf="@+id/tvGenreName"
+            app:layout_constraintTop_toBottomOf="@+id/tvGenreName"
+            tools:text="56 Songs" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

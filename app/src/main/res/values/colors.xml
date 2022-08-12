@@ -34,7 +34,7 @@
     <color name="thin_line_color">#707070</color>
 
     <!--    for custom view-->
-    <color name="transparent_color">#B7CEADAA</color>
+    <color name="transparent_color">#7CE4E4E4</color>
     <color name="song_avatar_stroke_color">#95FFEBEE</color>
 
     <!--    for popup menu-->

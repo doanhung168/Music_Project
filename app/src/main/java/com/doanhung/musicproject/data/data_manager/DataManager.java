@@ -17,6 +17,7 @@ import com.doanhung.musicproject.data.model.app_system_model.DeviceSong;
 import com.doanhung.musicproject.data.model.app_system_model.SongType;
 import com.doanhung.musicproject.data.model.data_model.Album;
 import com.doanhung.musicproject.data.model.data_model.Artist;
+import com.doanhung.musicproject.data.model.data_model.Genre;
 import com.doanhung.musicproject.data.model.data_model.PlayList;
 import com.doanhung.musicproject.data.model.data_model.Song;
 import com.doanhung.musicproject.util.CommonUtil;
@@ -326,6 +327,75 @@ public class DataManager {
 
         artistCursor.close();
         return artists;
+    }
+
+    // GENRE
+
+    @SuppressWarnings("unchecked")
+    public List<Genre> loadGenres() {
+        List<Genre> genres = new ArrayList<>();
+
+        String[] genreProjection = new String[]{
+                MediaStore.Audio.Genres._ID,
+                MediaStore.Audio.Genres.NAME,
+        };
+
+        List<DeviceSong> songs = (List<DeviceSong>) loadAllSongFromDevice(SongType.DEVICE_SONG);
+
+        Cursor genreCursor = mContext.getContentResolver().query(
+                MediaStore.Audio.Genres.EXTERNAL_CONTENT_URI,
+                genreProjection,
+                null,
+                null,
+                null);
+
+
+        if (genreCursor.getCount() > 0) {
+            int idIndex = genreCursor.getColumnIndex(MediaStore.Audio.Genres._ID);
+            int nameIndex = genreCursor.getColumnIndex(MediaStore.Audio.Genres.NAME);
+
+            while (genreCursor.moveToNext()) {
+                long genreId = genreCursor.getLong(idIndex);
+                String genreName = genreCursor.getString(nameIndex);
+                Genre genre = new Genre(genreId, genreName);
+
+                int songOfGenre = 0;
+
+                Cursor genreMemberCursor = mContext.getContentResolver().query(
+                        MediaStore.Audio.Genres.Members.getContentUri("external", genreId),
+                        new String[]{MediaStore.Audio.Media._ID},
+                        MediaStore.Audio.Media.IS_MUSIC + " != 0 ",
+                        null,
+                        null
+                );
+
+                if (genreMemberCursor.getCount() > 0) {
+                    int songIdIndex = genreMemberCursor.getColumnIndex(MediaStore.Audio.Media._ID);
+
+                    while (genreMemberCursor.moveToNext()) {
+                        long songId = genreMemberCursor.getLong(songIdIndex);
+
+                        for (Song s : songs) {
+                            if (s.getId() == songId) {
+                                ++songOfGenre;
+                            }
+                        }
+                    }
+
+                    genreMemberCursor.close();
+                }
+
+                genre.setNumberOfSongs(songOfGenre);
+
+                genres.add(genre);
+            }
+            genreCursor.close();
+        }
+
+        genreCursor.close();
+
+
+        return genres;
     }
 
 
