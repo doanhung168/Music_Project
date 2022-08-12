@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.doanhung.musicproject.view.main_activity.song_fragment.add_playlist_fragment.AddingMyPlaylistViewModel" />
+            type="com.doanhung.musicproject.view.main_activity.song_fragment.playlist_adding_fragment.AddingMyPlaylistViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

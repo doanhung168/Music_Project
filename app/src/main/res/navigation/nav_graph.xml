@@ -29,7 +29,7 @@
     <fragment
         tools:layout="@layout/fragment_adding_my_playlist"
         android:id="@+id/addingMyPlayListFragment"
-        android:name="com.doanhung.musicproject.view.main_activity.song_fragment.add_playlist_fragment.AddingMyPlayListFragment"
+        android:name="com.doanhung.musicproject.view.main_activity.song_fragment.playlist_adding_fragment.AddingMyPlayListFragment"
         android:label="AddingMyPlayListFragment" />
     <fragment
         tools:layout="@layout/fragment_artist_detail"

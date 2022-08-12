@@ -11,7 +11,7 @@
 
         <variable
             name="onClickSong"
-            type="com.doanhung.musicproject.view.main_activity.song_fragment.add_playlist_fragment.SelectedSongAdapter.OnClickSongListener" />
+            type="com.doanhung.musicproject.view.main_activity.song_fragment.playlist_adding_fragment.SelectedSongAdapter.OnClickSongListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

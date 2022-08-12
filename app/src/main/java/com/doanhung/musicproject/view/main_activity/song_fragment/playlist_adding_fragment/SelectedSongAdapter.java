@@ -1,4 +1,4 @@
-package com.doanhung.musicproject.view.main_activity.song_fragment.add_playlist_fragment;
+package com.doanhung.musicproject.view.main_activity.song_fragment.playlist_adding_fragment;
 
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;

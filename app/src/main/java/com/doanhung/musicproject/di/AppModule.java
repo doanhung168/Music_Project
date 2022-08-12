@@ -15,7 +15,7 @@ import com.doanhung.musicproject.view.common_adapter.DeviceItemAdapter;
 import com.doanhung.musicproject.view.common_adapter.SongAdapter;
 import com.doanhung.musicproject.view.main_activity.home_fragment.adapter.HotRecommendedAdapter;
 import com.doanhung.musicproject.view.main_activity.home_fragment.adapter.PlayListAdapter;
-import com.doanhung.musicproject.view.main_activity.song_fragment.add_playlist_fragment.SelectedSongAdapter;
+import com.doanhung.musicproject.view.main_activity.song_fragment.playlist_adding_fragment.SelectedSongAdapter;
 import com.doanhung.musicproject.view.main_activity.song_fragment.album_fragment.AlbumAdapter;
 import com.doanhung.musicproject.view.main_activity.song_fragment.all_song_fragment.AllSongAdapter;
 import com.doanhung.musicproject.view.main_activity.song_fragment.artist_fragment.ArtistAdapter;
