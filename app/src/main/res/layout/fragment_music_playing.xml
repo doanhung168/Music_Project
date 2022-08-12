@@ -15,6 +15,7 @@
         android:layout_height="match_parent"
         android:background="@color/primary_color">
 
+
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             style="@style/toolbar_title_style"
@@ -22,13 +23,13 @@
             android:layout_height="wrap_content"
             android:background="@color/primary_color"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:menu="@menu/menu_for_music_playing_fragment"
             app:navigationIcon="@drawable/ic_arrow_back"
             app:popupTheme="@style/MyDarkToolbarStyle"
             app:title="@string/now_playing" />
-
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_music_circle"

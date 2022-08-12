@@ -10,6 +10,7 @@ import android.widget.PopupMenu;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.doanhung.musicproject.R;
 import com.doanhung.musicproject.data.model.data_model.Artist;
@@ -45,7 +46,7 @@ public class ArtistFragment extends BaseFragment<FragmentArtistBinding> implemen
     }
 
     private void initAndAttackViewModel() {
-        mArtistViewModel = new ViewModelProvider(this,
+        mArtistViewModel = new ViewModelProvider(requireActivity(),
                 new ArtistViewModel.ArtistViewModelFactory(mMusicRepository))
                 .get(ArtistViewModel.class);
 
@@ -75,7 +76,9 @@ public class ArtistFragment extends BaseFragment<FragmentArtistBinding> implemen
 
     @Override
     public void onClickArtistItem(Artist artist) {
-
+        mArtistViewModel.setCurrentArtist(artist);
+        Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
+                .navigate(R.id.artistDetailFragment);
     }
 
     private void showPopupMenu(View view) {

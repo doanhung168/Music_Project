@@ -22,7 +22,9 @@ import android.renderscript.ScriptIntrinsicBlur;
 import android.util.Size;
 
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 
+import com.doanhung.musicproject.R;
 import com.doanhung.musicproject.data.model.data_model.Song;
 
 import java.io.IOException;
@@ -135,25 +137,31 @@ public class CommonUtil {
         return String.format("%d:%02d", mm, ss);
     }
 
-    public static Drawable blurDrawable(Context context, Bitmap image) {
-        float BITMAP_SCALE = 0.4f;
-        float BLUR_RADIUS = 7.5f;
+    public static Drawable blurDrawable(Context context, Drawable drawable) {
+        try {
+            Bitmap image = CommonUtil.drawableToBitmap(drawable);
 
-        int width = Math.round(image.getWidth() * BITMAP_SCALE);
-        int height = Math.round(image.getHeight() * BITMAP_SCALE);
+            float BITMAP_SCALE = 0.2f;
+            float BLUR_RADIUS = 0.5f;
 
-        Bitmap inputBitmap = Bitmap.createScaledBitmap(image, width, height, false);
-        Bitmap outputBitmap = Bitmap.createBitmap(inputBitmap);
+            int width = Math.round(image.getWidth() * BITMAP_SCALE);
+            int height = Math.round(image.getHeight() * BITMAP_SCALE);
 
-        RenderScript rs = RenderScript.create(context);
-        ScriptIntrinsicBlur theIntrinsic = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
-        Allocation tmpIn = Allocation.createFromBitmap(rs, inputBitmap);
-        Allocation tmpOut = Allocation.createFromBitmap(rs, outputBitmap);
-        theIntrinsic.setRadius(BLUR_RADIUS);
-        theIntrinsic.setInput(tmpIn);
-        theIntrinsic.forEach(tmpOut);
-        tmpOut.copyTo(outputBitmap);
+            Bitmap inputBitmap = Bitmap.createScaledBitmap(image, width, height, false);
+            Bitmap outputBitmap = Bitmap.createBitmap(inputBitmap);
 
-        return new BitmapDrawable(context.getResources(), outputBitmap);
+            RenderScript rs = RenderScript.create(context);
+            ScriptIntrinsicBlur theIntrinsic = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
+            Allocation tmpIn = Allocation.createFromBitmap(rs, inputBitmap);
+            Allocation tmpOut = Allocation.createFromBitmap(rs, outputBitmap);
+            theIntrinsic.setRadius(BLUR_RADIUS);
+            theIntrinsic.setInput(tmpIn);
+            theIntrinsic.forEach(tmpOut);
+            tmpOut.copyTo(outputBitmap);
+
+            return new BitmapDrawable(context.getResources(), outputBitmap);
+        } catch (Exception e) {
+            return ContextCompat.getDrawable(context, R.drawable.image_header_playlist_sample_1);
+        }
     }
 }

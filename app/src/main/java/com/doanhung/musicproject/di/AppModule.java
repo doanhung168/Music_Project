@@ -11,12 +11,14 @@ import com.doanhung.musicproject.data.model.data_model.PlayList;
 import com.doanhung.musicproject.data.model.data_model.Song;
 import com.doanhung.musicproject.service.MusicServiceController;
 import com.doanhung.musicproject.view.common_adapter.DeviceItemAdapter;
+import com.doanhung.musicproject.view.common_adapter.SongAdapter;
 import com.doanhung.musicproject.view.main_activity.home_fragment.adapter.HotRecommendedAdapter;
 import com.doanhung.musicproject.view.main_activity.home_fragment.adapter.PlayListAdapter;
 import com.doanhung.musicproject.view.main_activity.song_fragment.add_playlist_fragment.SelectedSongAdapter;
 import com.doanhung.musicproject.view.main_activity.song_fragment.album_fragment.AlbumAdapter;
 import com.doanhung.musicproject.view.main_activity.song_fragment.all_song_fragment.AllSongAdapter;
 import com.doanhung.musicproject.view.main_activity.song_fragment.artist_fragment.ArtistAdapter;
+import com.doanhung.musicproject.view.main_activity.song_fragment.artist_fragment.TopAlbumAdapter;
 import com.doanhung.musicproject.view.main_activity.song_fragment.playlist_fragment.HeaderPlayListAdapter;
 import com.doanhung.musicproject.view.main_activity.song_fragment.playlist_fragment.MyPlaylistAdapter;
 
@@ -120,6 +122,16 @@ public class AppModule {
     @Provides
     public static ArtistAdapter provideArtistAdapter() {
         return new ArtistAdapter(Artist.DIFF_CALLBACK);
+    }
+
+    @Provides
+    public static TopAlbumAdapter provideTopAdapter() {
+        return new TopAlbumAdapter(Album.DIFF_CALLBACK);
+    }
+
+    @Provides
+    public static SongAdapter providerSongAdapter() {
+        return new SongAdapter(DeviceSong.DIFF_CALLBACK);
     }
 
 

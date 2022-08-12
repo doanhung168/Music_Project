@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <stroke
+        android:width="@dimen/line_dimens"
+        android:color="@color/gray" />
+
+    <size
+        android:width="@dimen/adapter_artist_avatar_dimens"
+        android:height="@dimen/adapter_artist_avatar_dimens" />
+
+
+</shape>

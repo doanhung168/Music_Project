@@ -167,6 +167,32 @@ public class MusicRepository {
         });
     }
 
+    public void loadTopAlbums(String artist, MusicRepositoryCallback<List<Album>> musicRepositoryCallback) {
+        mExecutor.execute(() -> {
+            try {
+                List<Album> albums = mDummyData.makeDataForTopAlbums(artist);
+                Result<List<Album>> result = new Result.Success<>(albums);
+                musicRepositoryCallback.onComplete(result);
+            } catch (Exception e) {
+                Result<List<Album>> errorResult = new Result.Error<>(e);
+                musicRepositoryCallback.onComplete(errorResult);
+            }
+        });
+    }
+
+    public void loadTopSongs(String artist, MusicRepositoryCallback<List<DeviceSong>> musicRepositoryCallback) {
+        mExecutor.execute(() -> {
+            try {
+                List<DeviceSong> songs = mDummyData.makeDataForTopSongs(artist);
+                Result<List<DeviceSong>> result = new Result.Success<>(songs);
+                musicRepositoryCallback.onComplete(result);
+            } catch (Exception e) {
+                Result<List<DeviceSong>> errorResult = new Result.Error<>(e);
+                musicRepositoryCallback.onComplete(errorResult);
+            }
+        });
+    }
+
 
     public interface MusicRepositoryCallback<T> {
         void onComplete(Result<T> result);

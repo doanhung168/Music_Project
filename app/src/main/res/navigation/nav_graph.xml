@@ -31,4 +31,9 @@
         android:id="@+id/addingMyPlayListFragment"
         android:name="com.doanhung.musicproject.view.main_activity.song_fragment.add_playlist_fragment.AddingMyPlayListFragment"
         android:label="AddingMyPlayListFragment" />
+    <fragment
+        tools:layout="@layout/fragment_artist_detail"
+        android:id="@+id/artistDetailFragment"
+        android:name="com.doanhung.musicproject.view.main_activity.song_fragment.artist_fragment.ArtistDetailFragment"
+        android:label="ArtistDetailFragment" />
 </navigation>

@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="@{(view) -> onClickAlbumItem.onClickAlbumMenu(view, album)}"
-            android:src="@drawable/ic_more"
+            android:src="@drawable/ic_more_horizontal"
             app:layout_constraintBottom_toBottomOf="@+id/tvAlbumName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tvAlbumName"

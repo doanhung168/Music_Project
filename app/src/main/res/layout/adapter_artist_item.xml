@@ -27,20 +27,23 @@
             android:layout_width="@dimen/adapter_artist_avatar_dimens"
             android:layout_height="@dimen/adapter_artist_avatar_dimens"
             android:layout_marginStart="@dimen/below_medium_dimens"
+            android:background="@drawable/bg_gray_border"
             android:scaleType="centerCrop"
-            android:src="@drawable/image_header_playlist_sample_1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/image_header_playlist_sample_1"
             tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/tvArtistName"
             style="@style/artist_adapter_tv_artist_name_style"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/below_large_dimens"
+            android:layout_marginEnd="@dimen/small_dimens"
             android:text="@{artist.name}"
+            app:layout_constraintEnd_toStartOf="@+id/imvMore"
             app:layout_constraintStart_toEndOf="@+id/imvArtistAvatar"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Beyonce" />
@@ -51,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/below_medium_dimens"
             android:onClick="@{(view) -> onClickItem.onClickArtistMenu(view, artist)}"
-            android:src="@drawable/ic_more"
+            android:src="@drawable/ic_more_horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription" />

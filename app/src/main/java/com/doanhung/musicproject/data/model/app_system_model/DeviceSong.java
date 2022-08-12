@@ -16,6 +16,15 @@ public class DeviceSong extends Song {
         mIsPlaying = isPlaying;
     }
 
+    public DeviceSong(long id, String name, long duration, String artist) {
+        super();
+        this.setId(id);
+        this.setName(name);
+        this.setDuration(duration);
+        this.setArtist(artist);
+    }
+
+
     public boolean isPlaying() {
         return mIsPlaying;
     }

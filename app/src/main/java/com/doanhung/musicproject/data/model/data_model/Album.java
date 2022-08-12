@@ -1,6 +1,5 @@
 package com.doanhung.musicproject.data.model.data_model;
 
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 
 import androidx.annotation.NonNull;
@@ -15,6 +14,7 @@ public class Album {
     private String mArtist;
     private String mArtistId;
     private int mNumberOfSongs;
+    private int mYear;
 
     public Album(long id, String name, Uri image, String artist, String artistId, int numberOfSongs) {
         this.mId = id;
@@ -25,7 +25,14 @@ public class Album {
         this.mArtistId = artistId;
     }
 
-    public Album() {
+    public Album(long mId, String mName, Uri mImage, String mArtist, String mArtistId, int mNumberOfSongs, int mYear) {
+        this.mId = mId;
+        this.mName = mName;
+        this.mImage = mImage;
+        this.mArtist = mArtist;
+        this.mArtistId = mArtistId;
+        this.mNumberOfSongs = mNumberOfSongs;
+        this.mYear = mYear;
     }
 
     public long getId() {
@@ -68,14 +75,21 @@ public class Album {
         this.mNumberOfSongs = numberOfSongs;
     }
 
+    public int getYear() {
+        return mYear;
+    }
+
+    public void setYear(int year) {
+        this.mYear = year;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Album album = (Album) o;
-        return mId == album.mId && mNumberOfSongs == album.mNumberOfSongs && Objects.equals(mName, album.mName) && Objects.equals(mImage, album.mImage) && Objects.equals(mArtistId, album.mArtistId);
+        return mNumberOfSongs == album.mNumberOfSongs && mYear == album.mYear && Objects.equals(mName, album.mName) && Objects.equals(mImage, album.mImage) && Objects.equals(mArtist, album.mArtist) && Objects.equals(mArtistId, album.mArtistId);
     }
-
 
     public static DiffUtil.ItemCallback<Album> DIFF_CALLBACK = new DiffUtil.ItemCallback<Album>() {
         @Override

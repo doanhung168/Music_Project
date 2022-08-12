@@ -5,6 +5,8 @@ import android.content.Context;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.doanhung.musicproject.R;
+import com.doanhung.musicproject.data.model.app_system_model.DeviceSong;
+import com.doanhung.musicproject.data.model.data_model.Album;
 import com.doanhung.musicproject.data.model.data_model.PlayList;
 import com.doanhung.musicproject.data.model.data_model.Song;
 
@@ -12,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
 import dagger.hilt.android.qualifiers.ApplicationContext;
 
@@ -136,6 +137,47 @@ public class DummyData {
         playLists.add(playList4);
 
         return playLists;
+    }
+
+    public List<Album> makeDataForTopAlbums(String artist) {
+        List<Album> albums = new ArrayList<>();
+
+        Album album1 = new Album(1, "Fire Dragon", null, artist, "1", 3, 2019);
+        Album album2 = new Album(2, "Fire Dragon", null, artist, "1", 3, 2022);
+        Album album3 = new Album(3, "Fire Dragon", null, artist, "1", 3, 2021);
+        Album album4 = new Album(4, "Fire Dragon", null, artist, "1", 3, 2020);
+        Album album5 = new Album(5, "Fire Dragon", null, artist, "1", 3, 1998);
+
+        albums.add(album1);
+        albums.add(album2);
+        albums.add(album3);
+        albums.add(album4);
+        albums.add(album5);
+        return albums;
+    }
+
+    public List<DeviceSong> makeDataForTopSongs(String artist) {
+        List<DeviceSong> songs = new ArrayList<>();
+
+        DeviceSong deviceSong1 = new DeviceSong(1, "Song name", 1000 * 60 * 3, artist);
+        DeviceSong deviceSong2 = new DeviceSong(2, "Song name", 1000 * 60 * 3, artist);
+        DeviceSong deviceSong3 = new DeviceSong(3, "Song name", 1000 * 60 * 3, artist);
+        DeviceSong deviceSong4 = new DeviceSong(4, "Song name", 1000 * 60 * 3, artist);
+        DeviceSong deviceSong5 = new DeviceSong(5, "Song name", 1000 * 60 * 3, artist);
+        DeviceSong deviceSong6 = new DeviceSong(6, "Song name", 1000 * 60 * 3, artist);
+        DeviceSong deviceSong7 = new DeviceSong(7, "Song name", 1000 * 60 * 3, artist);
+        DeviceSong deviceSong8 = new DeviceSong(8, "Song name", 1000 * 60 * 3, artist);
+
+        songs.add(deviceSong1);
+        songs.add(deviceSong2);
+        songs.add(deviceSong3);
+        songs.add(deviceSong4);
+        songs.add(deviceSong5);
+        songs.add(deviceSong6);
+        songs.add(deviceSong7);
+        songs.add(deviceSong8);
+
+        return songs;
     }
 
 
