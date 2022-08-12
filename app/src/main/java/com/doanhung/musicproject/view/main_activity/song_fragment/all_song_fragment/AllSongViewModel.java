@@ -54,14 +54,6 @@ public class AllSongViewModel extends ViewModel {
     }
 
     public void validateSongsFollowTrack(MusicSource musicSource, DeviceSong neededValidateSong) {
-        if (musicSource == null && neededValidateSong == null) {
-            for (DeviceSong song : getSongs()) {
-                song.setPlaying(false);
-            }
-            _mSongs.setValue(getSongs());
-            return;
-        }
-
         if (musicSource == MusicSource.ALL_SONG_SOURCE) {
             for (DeviceSong song : getSongs()) {
                 if (song.getId() == neededValidateSong.getId()) {
@@ -70,8 +62,12 @@ public class AllSongViewModel extends ViewModel {
                     song.setPlaying(false);
                 }
             }
-            _mSongs.setValue(getSongs());
+        } else {
+            for (DeviceSong song : getSongs()) {
+                song.setPlaying(false);
+            }
         }
+        _mSongs.setValue(getSongs());
     }
 
     public static class AllSongViewModelFactory implements ViewModelProvider.Factory {
