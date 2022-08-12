@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.doanhung.musicproject.R;
@@ -25,7 +26,8 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class AlbumFragment extends BaseFragment<FragmentAlbumBinding> implements
-        AlbumAdapter.OnClickAlbumItemListener, PopupMenu.OnMenuItemClickListener {
+        AlbumAdapter.OnClickAlbumItemListener,
+        PopupMenu.OnMenuItemClickListener {
 
     @Inject
     MusicRepository mMusicRepository;
@@ -48,20 +50,18 @@ public class AlbumFragment extends BaseFragment<FragmentAlbumBinding> implements
     }
 
     private void initViewModels() {
-        mAlbumViewModel = new ViewModelProvider(this,
+        mAlbumViewModel = new ViewModelProvider(requireActivity(),
                 new AlbumViewModel.AlbumViewModelFactory(mMusicRepository))
                 .get(AlbumViewModel.class);
     }
 
     private void setupRcvAlbums() {
-        mBinding.rcvAlbums.setLayoutManager(
-                new GridLayoutManager(requireContext(), 2)
-        );
-
         mAlbumAdapter.setOnClickAlbumItemListener(this);
         mBinding.rcvAlbums.setAdapter(mAlbumAdapter);
 
-        mAlbumViewModel.loadAlbumFromDevice();
+        if (mAlbumViewModel.checkHasNoAlbumData()) {
+            mAlbumViewModel.loadAlbumFromDevice();
+        }
         mAlbumViewModel.mAlbums.observe(getViewLifecycleOwner(), albums -> {
             if (albums != null) mAlbumAdapter.submitList(albums);
         });
@@ -70,6 +70,13 @@ public class AlbumFragment extends BaseFragment<FragmentAlbumBinding> implements
     @Override
     public void onClickAlbumMenu(View view, Album album) {
         showPopupMenu(view);
+    }
+
+    @Override
+    public void onClickAlbumItem(Album album) {
+        mAlbumViewModel.setCurrentAlbum(album);
+        Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
+                .navigate(R.id.albumDetailFragment);
     }
 
     private void showPopupMenu(View view) {

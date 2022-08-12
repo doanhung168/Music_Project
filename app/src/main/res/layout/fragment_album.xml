@@ -14,7 +14,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/primary_color">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcvAlbums"
@@ -23,7 +24,10 @@
             android:layout_marginHorizontal="@dimen/below_small_dimens"
             android:layout_marginTop="@dimen/above_medium_dimens"
             android:paddingStart="@dimen/below_medium_dimens"
-            tools:ignore="RtlSymmetry" />
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"
+            tools:ignore="RtlSymmetry"
+            tools:listitem="@layout/adapter_album_item" />
 
         <ProgressBar
             android:id="@+id/progressBar"
