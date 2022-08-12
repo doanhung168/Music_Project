@@ -28,11 +28,12 @@
             android:layout_height="@dimen/adapter_artist_avatar_dimens"
             android:layout_marginStart="@dimen/below_medium_dimens"
             android:background="@drawable/bg_gray_border"
+            android:cropToPadding="true"
             android:scaleType="centerCrop"
+            android:src="@drawable/image_header_playlist_sample_1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/image_header_playlist_sample_1"
             tools:ignore="ContentDescription" />
 
         <TextView

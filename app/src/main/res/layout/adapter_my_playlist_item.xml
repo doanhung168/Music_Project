@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -15,23 +16,22 @@
     </data>
 
     <LinearLayout
-        android:layout_width="@dimen/playlist_item_width_dimens"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/below_medium_dimens"
-        android:orientation="vertical"
         android:onLongClick="@{_ -> onClickItem.onDeletePlaylist(playlist)}"
-        android:paddingVertical="@dimen/below_small_dimens"
-        tools:background="@color/primary_color">
+        android:orientation="vertical"
+        android:paddingVertical="@dimen/below_small_dimens">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imvPlaylistAvatar"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/playlist_item_width_dimens"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_corner_img"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             android:src="@{playlist.image}"
-            tools:src="@drawable/image_header_playlist_sample_1"
-            tools:ignore="ContentDescription" />
+            app:shapeAppearanceOverlay="@style/roundedCornersImageView"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/image_header_playlist_sample_1" />
 
         <TextView
             style="@style/title_item_style"
