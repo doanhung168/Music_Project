@@ -138,6 +138,12 @@ public class AddingMyPlayListFragment extends BaseFragment<FragmentAddingMyPlayl
         );
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mMainViewModel.setShowMusicPlayerBar(true);
+    }
+
     public List<Long> getSongIdList(List<CheckedSong> songList) {
         List<Long> songIdList = new ArrayList<>();
         for (CheckedSong checkedSong : songList) {
