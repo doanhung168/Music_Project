@@ -1,4 +1,4 @@
-package com.doanhung.musicproject.view.main_activity.song_fragment.artist_fragment;
+package com.doanhung.musicproject.view.main_activity.song_fragment.artist_detail_fragment;
 
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +15,7 @@ import com.doanhung.musicproject.databinding.FragmentArtistDetailBinding;
 import com.doanhung.musicproject.util.CommonUtil;
 import com.doanhung.musicproject.view.BaseFragment;
 import com.doanhung.musicproject.view.common_adapter.SongAdapter;
+import com.doanhung.musicproject.view.main_activity.song_fragment.artist_fragment.ArtistViewModel;
 
 import javax.inject.Inject;
 

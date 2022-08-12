@@ -1,4 +1,4 @@
-package com.doanhung.musicproject.view.main_activity.song_fragment.artist_fragment;
+package com.doanhung.musicproject.view.main_activity.song_fragment.artist_detail_fragment;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
