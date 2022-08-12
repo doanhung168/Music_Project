@@ -6,6 +6,7 @@ import com.doanhung.musicproject.data.model.app_system_model.CheckedSong;
 import com.doanhung.musicproject.data.model.app_system_model.DeviceItem;
 import com.doanhung.musicproject.data.model.app_system_model.DeviceSong;
 import com.doanhung.musicproject.data.model.data_model.Album;
+import com.doanhung.musicproject.data.model.data_model.Artist;
 import com.doanhung.musicproject.data.model.data_model.PlayList;
 import com.doanhung.musicproject.data.model.data_model.Song;
 import com.doanhung.musicproject.service.MusicServiceController;
@@ -15,6 +16,7 @@ import com.doanhung.musicproject.view.main_activity.home_fragment.adapter.PlayLi
 import com.doanhung.musicproject.view.main_activity.song_fragment.add_playlist_fragment.SelectedSongAdapter;
 import com.doanhung.musicproject.view.main_activity.song_fragment.album_fragment.AlbumAdapter;
 import com.doanhung.musicproject.view.main_activity.song_fragment.all_song_fragment.AllSongAdapter;
+import com.doanhung.musicproject.view.main_activity.song_fragment.artist_fragment.ArtistAdapter;
 import com.doanhung.musicproject.view.main_activity.song_fragment.playlist_fragment.HeaderPlayListAdapter;
 import com.doanhung.musicproject.view.main_activity.song_fragment.playlist_fragment.MyPlaylistAdapter;
 
@@ -113,6 +115,11 @@ public class AppModule {
     @Provides
     public static AlbumAdapter provideAlbumAdapter() {
         return new AlbumAdapter(Album.DIFF_CALLBACK);
+    }
+
+    @Provides
+    public static ArtistAdapter provideArtistAdapter() {
+        return new ArtistAdapter(Artist.DIFF_CALLBACK);
     }
 
 

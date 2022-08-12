@@ -6,6 +6,7 @@ import com.doanhung.musicproject.data.model.app_system_model.CheckedSong;
 import com.doanhung.musicproject.data.model.app_system_model.DeviceSong;
 import com.doanhung.musicproject.data.model.app_system_model.SongType;
 import com.doanhung.musicproject.data.model.data_model.Album;
+import com.doanhung.musicproject.data.model.data_model.Artist;
 import com.doanhung.musicproject.data.model.data_model.PlayList;
 import com.doanhung.musicproject.data.model.data_model.Song;
 import com.doanhung.musicproject.util.Result;
@@ -148,6 +149,19 @@ public class MusicRepository {
                 musicRepositoryCallback.onComplete(result);
             } catch (Exception e) {
                 Result<List<Album>> errorResult = new Result.Error<>(e);
+                musicRepositoryCallback.onComplete(errorResult);
+            }
+        });
+    }
+
+    public void loadArtists(MusicRepositoryCallback<List<Artist>> musicRepositoryCallback) {
+        mExecutor.execute(() -> {
+            try {
+                List<Artist> artists = mDataManager.loadArtists();
+                Result<List<Artist>> result = new Result.Success<>(artists);
+                musicRepositoryCallback.onComplete(result);
+            } catch (Exception e) {
+                Result<List<Artist>> errorResult = new Result.Error<>(e);
                 musicRepositoryCallback.onComplete(errorResult);
             }
         });

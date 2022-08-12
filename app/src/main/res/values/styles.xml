@@ -196,5 +196,65 @@
         <item name="android:textColor">@color/white1_text_color</item>
     </style>
 
+    <!--    Artist fragment style-->
+    <style name="artist_adapter_tv_artist_name_style">
+        <item name="android:textColor">@color/white1_text_color</item>
+        <item name="fontFamily">@font/circular_std_medium</item>
+        <item name="android:textSize">@dimen/above_small_text_dimens</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="artist_adapter_tv_number_of_album">
+        <item name="android:textColor">@color/white2_text_color</item>
+        <item name="android:textSize">@dimen/small_text_dimens</item>
+        <item name="fontFamily">@font/circular_std_book</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="artist_adapter_tv_number_of_song_style">
+        <item name="android:textColor">@color/white2_text_color</item>
+        <item name="android:textSize">@dimen/small_text_dimens</item>
+        <item name="fontFamily">@font/circular_std_book</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <!--    ArtistDetailFragment -->
+    <style name="detail_artist_tv_title">
+        <item name="android:textColor">@color/white1_text_color</item>
+        <item name="android:textSize">@dimen/medium_text_dimens</item>
+        <item name="textAllCaps">false</item>
+        <item name="fontFamily">@font/circular_std_medium</item>
+    </style>
+
+    <style name="detail_artist_tv_sub_title">
+        <item name="android:textSize">@dimen/above_small_text_dimens</item>
+        <item name="android:textColor">@color/white2_text_color</item>
+        <item name="fontFamily">@font/circular_std_medium</item>
+    </style>
+
+
+    <style name="artist_detail_tv_...">
+        <item name="fontFamily">@font/circular_std_medium</item>
+        <item name="android:textColor">@color/white2_text_color</item>
+        <item name="android:textSize">@dimen/below_small_text_dimens</item>
+    </style>
+
+    <style name="artist_detail_tv_number_of_...">
+        <item name="android:textColor">@color/white1_text_color</item>
+        <item name="fontFamily">@font/circular_std_medium</item>
+        <item name="android:textSize">@dimen/above_small_text_dimens</item>
+    </style>
+
+    <style name="artist_detail_btn_follow">
+        <item name="fontFamily">@font/circular_std_medium</item>
+        <item name="android:textSize">@dimen/below_small_text_dimens</item>
+        <item name="android:textColor">@color/white1_text_color</item>
+        <item name="android:background">@drawable/bg_gradient</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
 
 </resources>

@@ -16,6 +16,7 @@ import com.doanhung.musicproject.data.model.app_system_model.CheckedSong;
 import com.doanhung.musicproject.data.model.app_system_model.DeviceSong;
 import com.doanhung.musicproject.data.model.app_system_model.SongType;
 import com.doanhung.musicproject.data.model.data_model.Album;
+import com.doanhung.musicproject.data.model.data_model.Artist;
 import com.doanhung.musicproject.data.model.data_model.PlayList;
 import com.doanhung.musicproject.data.model.data_model.Song;
 import com.doanhung.musicproject.util.CommonUtil;
@@ -286,6 +287,45 @@ public class DataManager {
         loadAlbumCursor.close();
 
         return albumList;
+    }
+
+    // ARTIST
+
+    public List<Artist> loadArtists() {
+        List<Artist> artists = new ArrayList<>();
+
+        String[] artistProjection = new String[]{
+                MediaStore.Audio.Artists._ID,
+                MediaStore.Audio.Artists.ARTIST,
+                MediaStore.Audio.Artists.NUMBER_OF_TRACKS,
+                MediaStore.Audio.Artists.NUMBER_OF_ALBUMS
+        };
+        Cursor artistCursor = mContext.getContentResolver().query(
+                MediaStore.Audio.Artists.EXTERNAL_CONTENT_URI,
+                artistProjection,
+                null,
+                null,
+                null);
+
+        if (artistCursor.getCount() > 0) {
+            int idIndex = artistCursor.getColumnIndex(MediaStore.Audio.Artists._ID);
+            int nameIndex = artistCursor.getColumnIndex(MediaStore.Audio.Artists.ARTIST);
+            int numberOfSongIndex = artistCursor.getColumnIndex(MediaStore.Audio.Artists.NUMBER_OF_TRACKS);
+            int numberOfAlbumIndex = artistCursor.getColumnIndex(MediaStore.Audio.Artists.NUMBER_OF_ALBUMS);
+
+            while (artistCursor.moveToNext()) {
+                long id = artistCursor.getLong(idIndex);
+                String name = artistCursor.getString(nameIndex);
+                int numberOfSong = artistCursor.getInt(numberOfSongIndex);
+                int numberOfAlbum = artistCursor.getInt(numberOfAlbumIndex);
+
+                Artist artist = new Artist(id, name, null, numberOfAlbum, numberOfSong);
+                artists.add(artist);
+            }
+        }
+
+        artistCursor.close();
+        return artists;
     }
 
 

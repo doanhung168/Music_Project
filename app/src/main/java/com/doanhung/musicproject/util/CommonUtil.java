@@ -15,17 +15,17 @@ import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
+import android.renderscript.Allocation;
+import android.renderscript.Element;
+import android.renderscript.RenderScript;
+import android.renderscript.ScriptIntrinsicBlur;
 import android.util.Size;
 
 import androidx.annotation.RequiresApi;
-import androidx.core.content.ContextCompat;
 
-import com.doanhung.musicproject.R;
 import com.doanhung.musicproject.data.model.data_model.Song;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 public class CommonUtil {
@@ -133,5 +133,27 @@ public class CommonUtil {
         int mm = (int) (duration / (1000 * 60));
         int ss = (int) ((duration % (1000 * 60)) / 1000);
         return String.format("%d:%02d", mm, ss);
+    }
+
+    public static Drawable blurDrawable(Context context, Bitmap image) {
+        float BITMAP_SCALE = 0.4f;
+        float BLUR_RADIUS = 7.5f;
+
+        int width = Math.round(image.getWidth() * BITMAP_SCALE);
+        int height = Math.round(image.getHeight() * BITMAP_SCALE);
+
+        Bitmap inputBitmap = Bitmap.createScaledBitmap(image, width, height, false);
+        Bitmap outputBitmap = Bitmap.createBitmap(inputBitmap);
+
+        RenderScript rs = RenderScript.create(context);
+        ScriptIntrinsicBlur theIntrinsic = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
+        Allocation tmpIn = Allocation.createFromBitmap(rs, inputBitmap);
+        Allocation tmpOut = Allocation.createFromBitmap(rs, outputBitmap);
+        theIntrinsic.setRadius(BLUR_RADIUS);
+        theIntrinsic.setInput(tmpIn);
+        theIntrinsic.forEach(tmpOut);
+        tmpOut.copyTo(outputBitmap);
+
+        return new BitmapDrawable(context.getResources(), outputBitmap);
     }
 }

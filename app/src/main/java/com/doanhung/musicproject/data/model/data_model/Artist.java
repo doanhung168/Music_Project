@@ -1,21 +1,25 @@
 package com.doanhung.musicproject.data.model.data_model;
 
-import android.graphics.drawable.Drawable;
+import android.net.Uri;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+
+import java.util.Objects;
 
 public class Artist {
     private long mId;
     private String mName;
+    private Uri mImage;
     private int mNumberOfAlbums;
-    private Drawable mImage;
+    private int mNumberOnSongs;
 
-    public Artist() {
-    }
-
-    public Artist(long id, String name, int numberOfAlbums, Drawable image) {
+    public Artist(long id, String name, Uri image, int numberOfAlbums, int numberOfSongs) {
         this.mId = id;
         this.mName = name;
-        this.mNumberOfAlbums = numberOfAlbums;
         this.mImage = image;
+        this.mNumberOfAlbums = numberOfAlbums;
+        this.mNumberOnSongs = numberOfSongs;
     }
 
     public long getId() {
@@ -42,11 +46,40 @@ public class Artist {
         this.mNumberOfAlbums = numberOfAlbums;
     }
 
-    public Drawable getImage() {
+    public Uri getImage() {
         return mImage;
     }
 
-    public void setImage(Drawable image) {
+    public void setImage(Uri image) {
         this.mImage = image;
     }
+
+    public int getNumberOnSongs() {
+        return mNumberOnSongs;
+    }
+
+    public void setNumberOnSongs(int numberOnSongs) {
+        this.mNumberOnSongs = numberOnSongs;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Artist artist = (Artist) o;
+        return mNumberOfAlbums == artist.mNumberOfAlbums && mNumberOnSongs == artist.mNumberOnSongs && Objects.equals(mName, artist.mName);
+    }
+
+
+    public static final DiffUtil.ItemCallback<Artist> DIFF_CALLBACK = new DiffUtil.ItemCallback<Artist>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull Artist oldItem, @NonNull Artist newItem) {
+            return oldItem.getId() == newItem.getId();
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull Artist oldItem, @NonNull Artist newItem) {
+            return oldItem.equals(newItem);
+        }
+    };
 }

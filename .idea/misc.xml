@@ -136,6 +136,7 @@
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/layout/activity_main.xml" value="0.2625" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/layout/adapter_album_item.xml" value="0.6" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/layout/adapter_all_song_item.xml" value="0.2625" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/layout/adapter_artist_item.xml" value="0.264" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/layout/adapter_header_playlist_item.xml" value="0.536" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/layout/adapter_my_playlist_item.xml" value="0.6" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/layout/adapter_playlist_item.xml" value="0.2625" />
@@ -144,6 +145,8 @@
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/layout/fragment_adding_my_playlist.xml" value="0.2625" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/layout/fragment_album.xml" value="0.2625" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/layout/fragment_all_song.xml" value="0.2625" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/layout/fragment_artist.xml" value="0.264" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/layout/fragment_artist_detail.xml" value="0.264" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/layout/fragment_home.xml" value="0.6147540983606558" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/layout/fragment_music_playing.xml" value="0.2625" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/layout/fragment_play_list.xml" value="0.176" />
@@ -151,6 +154,7 @@
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/layout/layout_music_player_bar.xml" value="0.2625" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/menu/menu_album.xml" value="0.2625" />
         <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/menu/menu_album_fragment.xml" value="0.2625" />
+        <entry key="..\:/Users/Nguyen Doan Hung/Desktop/MusicProject/app/src/main/res/menu/menu_artist_fragment.xml" value="0.26145833333333335" />
       </map>
     </option>
   </component>

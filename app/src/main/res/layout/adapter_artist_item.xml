@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="artist"
+            type="com.doanhung.musicproject.data.model.data_model.Artist" />
+
+        <variable
+            name="onClickItem"
+            type="com.doanhung.musicproject.view.main_activity.song_fragment.artist_fragment.ArtistAdapter.OnClickArtistItemListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/below_medium_dimens"
+        android:onClick="@{() -> onClickItem.onClickArtistItem(artist)}"
+        tools:background="@color/primary_color">
+
+        <ImageView
+            android:id="@+id/imvArtistAvatar"
+            android:layout_width="@dimen/adapter_artist_avatar_dimens"
+            android:layout_height="@dimen/adapter_artist_avatar_dimens"
+            android:layout_marginStart="@dimen/below_medium_dimens"
+            android:scaleType="centerCrop"
+            android:src="@drawable/image_header_playlist_sample_1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tvArtistName"
+            style="@style/artist_adapter_tv_artist_name_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/below_large_dimens"
+            android:text="@{artist.name}"
+            app:layout_constraintStart_toEndOf="@+id/imvArtistAvatar"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Beyonce" />
+
+        <ImageView
+            android:id="@+id/imvMore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/below_medium_dimens"
+            android:onClick="@{(view) -> onClickItem.onClickArtistMenu(view, artist)}"
+            android:src="@drawable/ic_more"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tvNumberOfAlbum"
+            style="@style/artist_adapter_tv_number_of_album"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/below_large_dimens"
+            android:layout_marginTop="@dimen/below_medium_dimens"
+            android:text="@{artist.numberOfAlbums + ` Albums`}"
+            app:layout_constraintStart_toEndOf="@+id/imvArtistAvatar"
+            app:layout_constraintTop_toBottomOf="@+id/tvArtistName"
+            tools:text="4 Albums" />
+
+        <View
+            android:id="@+id/circle_nut"
+            android:layout_width="@dimen/below_small_dimens"
+            android:layout_height="@dimen/below_small_dimens"
+            android:layout_marginStart="@dimen/medium_dimens"
+            android:layout_marginEnd="@dimen/medium_dimens"
+            android:background="@drawable/bg_circle_nut"
+            app:layout_constraintBottom_toBottomOf="@id/tvNumberOfAlbum"
+            app:layout_constraintEnd_toStartOf="@+id/tvNumberOfSong"
+            app:layout_constraintStart_toEndOf="@+id/tvNumberOfAlbum"
+            app:layout_constraintTop_toTopOf="@id/tvNumberOfAlbum" />
+
+        <TextView
+            android:id="@+id/tvNumberOfSong"
+            style="@style/artist_adapter_tv_number_of_song_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/medium_dimens"
+            android:text="@{artist.numberOnSongs + ` Songs`}"
+            app:layout_constraintBottom_toBottomOf="@id/tvNumberOfAlbum"
+            app:layout_constraintStart_toEndOf="@+id/circle_nut"
+            app:layout_constraintTop_toTopOf="@id/tvNumberOfAlbum"
+            tools:text="38 Songs" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
