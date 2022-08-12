@@ -54,6 +54,7 @@ public class AlbumAdapter extends ListAdapter<Album, AlbumAdapter.AlbumViewHolde
 
     public interface OnClickAlbumItemListener {
         void onClickAlbumMenu(View view, Album album);
+        void onClickAlbumItem(Album album);
     }
 
 }
