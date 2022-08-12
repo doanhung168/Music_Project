@@ -75,6 +75,8 @@ public class AddingMyPlayListFragment extends BaseFragment<FragmentAddingMyPlayl
         mPlaylistViewModel = new ViewModelProvider(requireActivity(),
                 new PlayListViewModel.PlayListViewModelFactory(mMusicRepository))
                 .get(PlayListViewModel.class);
+
+        mBinding.setViewModel(mAddingMyPlaylistViewModel);
     }
 
     private void setupToolbar() {
