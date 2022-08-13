@@ -5,24 +5,50 @@ import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 import java.util.Objects;
 
+@Entity(tableName = "song")
 public class Song {
+    @PrimaryKey
     private long mId;
+
+    @ColumnInfo(name = "time")
+    private long mPlayingTime;
+
+    @Ignore
     private String mName;
+    @Ignore
     private Uri mData;
+    @Ignore
     private Drawable mImage;
+    @Ignore
     private String mArtist;
+    @Ignore
     private String mAlbum;
+    @Ignore
     private long mDuration;
+    @Ignore
     private long mGenreId;
+    @Ignore
     private long mArtistId;
+    @Ignore
     private long mAlbumId;
 
     public Song() {
     }
 
+    @Ignore
+    public Song(long mId, long mPlayingTime) {
+        this.mId = mId;
+        this.mPlayingTime = mPlayingTime;
+    }
+
+    @Ignore
     public Song(long id, String name, Uri data, Drawable image, String artist, String album, long duration) {
         this.mId = id;
         this.mName = name;
@@ -111,6 +137,14 @@ public class Song {
 
     public void setAlbumId(long albumId) {
         this.mAlbumId = albumId;
+    }
+
+    public long getPlayingTime() {
+        return mPlayingTime;
+    }
+
+    public void setPlayingTime(long playingTime) {
+        this.mPlayingTime = playingTime;
     }
 
     @Override

@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.doanhung.musicproject.data.model.app_system_model.DeviceSong;
 import com.doanhung.musicproject.data.model.data_model.PlayList;
 import com.doanhung.musicproject.data.model.data_model.Song;
 import com.doanhung.musicproject.data.repository.MusicRepository;
@@ -22,11 +23,16 @@ public class HomeViewModel extends ViewModel {
     private final SingleLiveEvent<Event> _mEvent = new SingleLiveEvent<>();
     public final SingleLiveEvent<Event> mEvent = _mEvent;
 
+    public final MutableLiveData<Boolean> mIsLoading = new MutableLiveData<>();
+
     private final MutableLiveData<List<Song>> _mHotRecommendedItems = new MutableLiveData<>();
     public final LiveData<List<Song>> mHotRecommendedItems = _mHotRecommendedItems;
 
     private final MutableLiveData<List<PlayList>> _mPlayListItems = new MutableLiveData<>();
     public final LiveData<List<PlayList>> mPlayListItems = _mPlayListItems;
+
+    private final MutableLiveData<List<DeviceSong>> _mRecentlySongs = new MutableLiveData<>();
+    public final LiveData<List<DeviceSong>> mRecentlySong = _mRecentlySongs;
 
 
     public HomeViewModel(MusicRepository musicRepository) {
@@ -59,12 +65,31 @@ public class HomeViewModel extends ViewModel {
         });
     }
 
+    public void loadSongOfRecentSongs(List<Song> songs) {
+        mIsLoading.setValue(true);
+        mMusicRepository.loadSongsOfRecentSongs(songs, result -> {
+            if (result instanceof Result.Success) {
+                _mRecentlySongs.postValue(((Result.Success<List<DeviceSong>>) result).data);
+            } else {
+                Event.LOADING_RECENTLY_SONGS_FAILURE.setException(
+                        ((Result.Error<List<DeviceSong>>) result).exception
+                );
+                _mEvent.postValue(Event.LOADING_RECENTLY_SONGS_FAILURE);
+            }
+            mIsLoading.postValue(false);
+        });
+    }
+
     public boolean checkHasNoRecommendedData() {
         return _mHotRecommendedItems.getValue() == null;
     }
 
     public boolean checkHasNoPlayListData() {
         return _mPlayListItems.getValue() == null;
+    }
+
+    public List<DeviceSong> getRecentlySong() {
+        return _mRecentlySongs.getValue();
     }
 
     public static class HomeViewModelFactory implements ViewModelProvider.Factory {

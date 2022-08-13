@@ -2,17 +2,24 @@ package com.doanhung.musicproject.service;
 
 import android.content.Context;
 import android.media.MediaPlayer;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import com.doanhung.musicproject.data.model.app_system_model.DeviceSong;
 import com.doanhung.musicproject.data.model.app_system_model.MusicSource;
 import com.doanhung.musicproject.data.model.app_system_model.ServiceMusicData;
+import com.doanhung.musicproject.data.model.data_model.Song;
+import com.doanhung.musicproject.data.room.MusicDatabase;
 import com.doanhung.musicproject.util.CommonUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
 
 public class MusicServiceController implements Subject {
 
@@ -187,6 +194,9 @@ public class MusicServiceController implements Subject {
                 playNextSong();
             }
         });
+
+        Song currentSong = new Song(song.getId(), System.currentTimeMillis());
+        MusicDatabase.getInstance(mContext).musicDao().insertSong(currentSong);
         mMediaPlayer.start();
     }
 

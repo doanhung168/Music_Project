@@ -8,6 +8,9 @@ def nav_version = "2.5.1"
 def hilt_version = "2.40"
 def media_version = "1.6.0"
 def swipe_layout_version = "1.1.0"
+def room_version = "2.4.3"
+def work_version = "2.7.1"
+def hilt_for_work_version = "1.0.0"
 
 android {
     compileSdk 31
@@ -59,5 +62,15 @@ dependencies {
     implementation "androidx.media:media:$media_version"
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipe_layout_version"
+
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    implementation "androidx.work:work-runtime:$work_version"
+
+    implementation "androidx.hilt:hilt-work:$hilt_for_work_version"
+    annotationProcessor "androidx.hilt:hilt-compiler:$hilt_for_work_version"
+
+    implementation("androidx.collection:collection-ktx:1.2.0")
 
 }

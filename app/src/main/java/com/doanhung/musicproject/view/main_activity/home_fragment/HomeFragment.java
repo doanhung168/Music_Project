@@ -7,12 +7,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.doanhung.musicproject.R;
+import com.doanhung.musicproject.data.model.app_system_model.DeviceSong;
+import com.doanhung.musicproject.data.model.app_system_model.MusicSource;
+import com.doanhung.musicproject.data.model.app_system_model.ServiceMusicData;
 import com.doanhung.musicproject.data.model.data_model.PlayList;
 import com.doanhung.musicproject.data.model.data_model.Song;
 import com.doanhung.musicproject.data.repository.MusicRepository;
+import com.doanhung.musicproject.data.room.MusicDatabase;
 import com.doanhung.musicproject.databinding.FragmentHomeBinding;
 import com.doanhung.musicproject.service.MusicServiceController;
 import com.doanhung.musicproject.view.BaseFragment;
@@ -20,6 +25,14 @@ import com.doanhung.musicproject.view.main_activity.MainViewModel;
 import com.doanhung.musicproject.view.main_activity.OnOpenNavigationViewListener;
 import com.doanhung.musicproject.view.main_activity.home_fragment.adapter.HotRecommendedAdapter;
 import com.doanhung.musicproject.view.main_activity.home_fragment.adapter.PlayListAdapter;
+import com.doanhung.musicproject.view.main_activity.home_fragment.adapter.RecentlySongAdapter;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -28,7 +41,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements
         PlayListAdapter.OnClickPlaylistItemListener,
-        HotRecommendedAdapter.OnClickHotRecommendItemListener {
+        HotRecommendedAdapter.OnClickHotRecommendItemListener, RecentlySongAdapter.OnClickRecentlySongListener {
 
     private OnOpenNavigationViewListener mOnOpenNavViewListener;
 
@@ -37,6 +50,9 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements
 
     @Inject
     PlayListAdapter mPlayListAdapter;
+
+    @Inject
+    RecentlySongAdapter mRecentlySongAdapter;
 
     @Inject
     MusicRepository mMusicRepository;
@@ -59,10 +75,12 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements
         setupSwipeFreshLayout();
         setupRcvHotRecommendedPart();
         setupRcvPlayListPart();
+        setupRcvRecentlySongs();
 
         setupListeningEvents();
         mMainViewModel.setShowMusicPlayerBar(true);
     }
+
 
     private void initViewModels() {
         mHomeViewModel = new ViewModelProvider(this,
@@ -73,6 +91,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements
                 new ViewModelProvider(requireActivity(),
                         new MainViewModel.MainViewModelFactory(requireActivity().getApplication(), mMusicServiceController))
                         .get(MainViewModel.class);
+
     }
 
     private void setupToolbar() {
@@ -133,6 +152,21 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements
         });
     }
 
+    private void setupRcvRecentlySongs() {
+        mRecentlySongAdapter.setOnClickRecentlySongListener(this);
+        mBinding.rcvRecentlySongs.setAdapter(mRecentlySongAdapter);
+
+        MusicDatabase.getInstance(getContext()).musicDao().getCurrentSongs().observe(getViewLifecycleOwner(), songs -> {
+            mHomeViewModel.loadSongOfRecentSongs(songs);
+        });
+        mHomeViewModel.mRecentlySong.observe(getViewLifecycleOwner(), deviceSongs -> {
+            if (deviceSongs != null) {
+                Collections.reverse(deviceSongs);
+                mRecentlySongAdapter.submitList(deviceSongs);
+            }
+        });
+    }
+
     private void setupListeningEvents() {
         mHomeViewModel.mEvent.observe(getViewLifecycleOwner(), event -> {
             switch (event) {
@@ -146,7 +180,6 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements
         });
     }
 
-
     @Override
     public void onClickPlaylistItem(PlayList playList) {
         Toast.makeText(requireContext(), playList.getName(), Toast.LENGTH_SHORT).show();
@@ -155,5 +188,15 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements
     @Override
     public void onClickHotRecommendItem(Song song) {
         Toast.makeText(requireContext(), song.getName(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onClickRecentlySong(DeviceSong song) {
+        song.setPlaying(true);
+        mMainViewModel.playExternalSong(
+                new ServiceMusicData(MusicSource.RECENT_SONG, mHomeViewModel.getRecentlySong(), song));
+
+        Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
+                .navigate(R.id.musicPlayingFragment);
     }
 }

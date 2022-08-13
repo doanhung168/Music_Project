@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="song"
+            type="com.doanhung.musicproject.data.model.app_system_model.DeviceSong" />
+
+        <variable
+            name="onClickRecentlySong"
+            type="com.doanhung.musicproject.view.main_activity.home_fragment.adapter.RecentlySongAdapter.OnClickRecentlySongListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> onClickRecentlySong.onClickRecentlySong(song)}">
+
+
+        <ImageView
+            android:id="@+id/imvPlayOrPause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/below_medium_dimens"
+            android:src="@{song.playing ? @drawable/ic_pause : @drawable/ic_play}"
+            app:layout_constraintBottom_toBottomOf="@+id/tvSongArtist"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvSongName"
+            tools:srcCompat="@drawable/ic_play" />
+
+        <TextView
+            android:id="@+id/tvSongName"
+            style="@style/title_item_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/medium_dimens"
+            android:layout_marginTop="@dimen/small_dimens"
+            android:text="@{song.name}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imvPlayOrPause"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvSongArtist"
+            style="@style/sub_title_item_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/medium_dimens"
+            android:layout_marginTop="@dimen/below_small_dimens"
+            android:layout_marginBottom="@dimen/small_dimens"
+            android:text="@{song.artist}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imvPlayOrPause"
+            app:layout_constraintTop_toBottomOf="@+id/tvSongName" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/line_dimens"
+            android:background="@color/thin_line_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tvSongArtist"
+            app:layout_constraintStart_toStartOf="@+id/tvSongArtist" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

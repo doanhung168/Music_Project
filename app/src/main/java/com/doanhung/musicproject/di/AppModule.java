@@ -1,6 +1,10 @@
 package com.doanhung.musicproject.di;
 
+import static com.doanhung.musicproject.util.Constraint.DATABASE_NAME;
+
 import android.content.Context;
+
+import androidx.room.Room;
 
 import com.doanhung.musicproject.data.model.app_system_model.CheckedSong;
 import com.doanhung.musicproject.data.model.app_system_model.DeviceItem;
@@ -10,17 +14,20 @@ import com.doanhung.musicproject.data.model.data_model.Artist;
 import com.doanhung.musicproject.data.model.data_model.Genre;
 import com.doanhung.musicproject.data.model.data_model.PlayList;
 import com.doanhung.musicproject.data.model.data_model.Song;
+import com.doanhung.musicproject.data.room.MusicDao;
+import com.doanhung.musicproject.data.room.MusicDatabase;
 import com.doanhung.musicproject.service.MusicServiceController;
 import com.doanhung.musicproject.view.common_adapter.DeviceItemAdapter;
 import com.doanhung.musicproject.view.common_adapter.SongAdapter;
 import com.doanhung.musicproject.view.main_activity.home_fragment.adapter.HotRecommendedAdapter;
 import com.doanhung.musicproject.view.main_activity.home_fragment.adapter.PlayListAdapter;
-import com.doanhung.musicproject.view.main_activity.song_fragment.playlist_adding_fragment.SelectedSongAdapter;
+import com.doanhung.musicproject.view.main_activity.home_fragment.adapter.RecentlySongAdapter;
 import com.doanhung.musicproject.view.main_activity.song_fragment.album_fragment.AlbumAdapter;
 import com.doanhung.musicproject.view.main_activity.song_fragment.all_song_fragment.AllSongAdapter;
-import com.doanhung.musicproject.view.main_activity.song_fragment.artist_fragment.ArtistAdapter;
 import com.doanhung.musicproject.view.main_activity.song_fragment.artist_detail_fragment.TopAlbumAdapter;
+import com.doanhung.musicproject.view.main_activity.song_fragment.artist_fragment.ArtistAdapter;
 import com.doanhung.musicproject.view.main_activity.song_fragment.genre_fragment.GenreAdapter;
+import com.doanhung.musicproject.view.main_activity.song_fragment.playlist_adding_fragment.SelectedSongAdapter;
 import com.doanhung.musicproject.view.main_activity.song_fragment.playlist_fragment.HeaderPlayListAdapter;
 import com.doanhung.musicproject.view.main_activity.song_fragment.playlist_fragment.MyPlaylistAdapter;
 
@@ -139,6 +146,11 @@ public class AppModule {
     @Provides
     public static GenreAdapter providerGenreAdapter() {
         return new GenreAdapter(Genre.DIFF_CALLBACK);
+    }
+
+    @Provides
+    public static RecentlySongAdapter provideRecentlySongAdapter() {
+        return new RecentlySongAdapter(DeviceSong.DIFF_CALLBACK);
     }
 
 

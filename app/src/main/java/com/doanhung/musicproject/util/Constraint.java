@@ -21,5 +21,7 @@ public class Constraint {
     public static final String MUSIC_NOTIFICATION_CHANNEL_ID = "Music Channel";
     public static final int MUSIC_SERVICE_NOTIFY_ID = 99;
 
+    public static final String DATABASE_NAME = "Music.db";
+
 
 }

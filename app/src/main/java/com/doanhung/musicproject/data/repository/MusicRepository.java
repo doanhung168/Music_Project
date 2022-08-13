@@ -10,6 +10,7 @@ import com.doanhung.musicproject.data.model.data_model.Artist;
 import com.doanhung.musicproject.data.model.data_model.Genre;
 import com.doanhung.musicproject.data.model.data_model.PlayList;
 import com.doanhung.musicproject.data.model.data_model.Song;
+import com.doanhung.musicproject.data.room.MusicDatabase;
 import com.doanhung.musicproject.util.Result;
 
 import java.util.List;
@@ -255,6 +256,19 @@ public class MusicRepository {
             } catch (Exception e) {
                 Result<List<Long>> errorResult = new Result.Error<>(e);
                 musicRepositoryCallback.onComplete(errorResult);
+            }
+        });
+    }
+
+    public void loadSongsOfRecentSongs(List<Song> songs, MusicRepositoryCallback<List<DeviceSong>> callback) {
+        mExecutor.execute(() -> {
+            try {
+                List<DeviceSong> songList = mDataManager.loadSongsOfRecentSongs(songs);
+                Result<List<DeviceSong>> result = new Result.Success<>(songList);
+                callback.onComplete(result);
+            } catch (Exception e) {
+                Result<List<DeviceSong>> errorResult = new Result.Error<>(e);
+                callback.onComplete(errorResult);
             }
         });
     }

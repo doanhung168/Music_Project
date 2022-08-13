@@ -3,6 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="homeViewModel"
+            type="com.doanhung.musicproject.view.main_activity.home_fragment.HomeViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -188,14 +197,33 @@
                         app:layout_constraintTop_toTopOf="@+id/tvRecentlyPlayed" />
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rcvRecentlySongs"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/below_medium_dimens"
                         android:layout_marginBottom="@dimen/medium_dimens"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tvRecentlyPlayed" />
+                        app:layout_constraintTop_toBottomOf="@+id/tvRecentlyPlayed"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <ProgressBar
+                        android:id="@+id/progressBar"
+                        style="?android:attr/progressBarStyle"
+                        android:layout_width="@dimen/progress_bar_dimens"
+                        android:layout_height="@dimen/progress_bar_dimens"
+                        android:indeterminateDrawable="@drawable/loading_animation"
+                        android:indeterminateDuration="@android:integer/config_longAnimTime"
+                        android:visibility="@{homeViewModel.mIsLoading ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintBottom_toBottomOf="@id/rcvRecentlySongs"
+                        app:layout_constraintEnd_toEndOf="@id/rcvRecentlySongs"
+                        app:layout_constraintStart_toStartOf="@id/rcvRecentlySongs"
+                        app:layout_constraintTop_toTopOf="@id/rcvRecentlySongs"
+                        tools:visibility="invisible" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.core.widget.NestedScrollView>
 

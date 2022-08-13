@@ -7,10 +7,20 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.os.Build;
 
+import androidx.annotation.NonNull;
+import androidx.hilt.work.HiltWorkerFactory;
+import androidx.work.Configuration;
+
+import javax.inject.Inject;
+
 import dagger.hilt.android.HiltAndroidApp;
 
 @HiltAndroidApp
-public class MusicApplication extends Application {
+public class MusicApplication extends Application implements Configuration.Provider {
+
+    @Inject
+    HiltWorkerFactory mWorkerFactory;
+
 
     @Override
     public void onCreate() {
@@ -30,4 +40,11 @@ public class MusicApplication extends Application {
         }
     }
 
+    @NonNull
+    @Override
+    public Configuration getWorkManagerConfiguration() {
+        return new Configuration.Builder()
+                .setWorkerFactory(mWorkerFactory)
+                .build();
+    }
 }
