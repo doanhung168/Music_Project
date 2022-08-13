@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.doanhung.musicproject.data.model.app_system_model.DeviceSong;
 import com.doanhung.musicproject.data.model.data_model.PlayList;
 import com.doanhung.musicproject.data.repository.MusicRepository;
 import com.doanhung.musicproject.util.Result;
@@ -22,6 +23,8 @@ public class MusicPlayingViewModel extends ViewModel {
 
     private final MutableLiveData<List<PlayList>> _mPlaylists = new MutableLiveData<>();
     public final LiveData<List<PlayList>> mPlaylists = _mPlaylists;
+
+    private List<Long> mPlaylistIdsOfSong;
 
     public final MutableLiveData<Boolean> mIsLoading = new MutableLiveData<>(false);
 
@@ -58,6 +61,30 @@ public class MusicPlayingViewModel extends ViewModel {
             }
             mIsLoading.postValue(false);
         });
+    }
+
+    public void getPlayListIdsOfCurrentSong(DeviceSong song) {
+        mIsLoading.setValue(true);
+        mMusicRepository.getPlaylistIdsOfSong(song.getId(), result -> {
+            if (result instanceof Result.Success) {
+                mPlaylistIdsOfSong = ((Result.Success<List<Long>>) result).data;
+                _mEvent.postValue(Event.NAVIGATE_MUSIC_PLAYING_PLAYLIST_FRAGMENT_2);
+            } else {
+                Event.GET_PLAYLIST_IDS_OF_A_SONG_FAILURE.setException(
+                        ((Result.Error<List<Long>>) result).exception
+                );
+                _mEvent.postValue(Event.GET_PLAYLIST_IDS_OF_A_SONG_FAILURE);
+            }
+            mIsLoading.postValue(false);
+        });
+    }
+
+    public void navigationMusicPlayingPlaylistFragment() {
+        _mEvent.setValue(Event.NAVIGATE_MUSIC_PLAYING_PLAYLIST_FRAGMENT);
+    }
+
+    public List<Long> getPlaylistIdsOfSong() {
+        return mPlaylistIdsOfSong;
     }
 
     public boolean checkHasNoPlaylistData() {

@@ -13,6 +13,8 @@ import androidx.navigation.Navigation;
 
 import com.doanhung.musicproject.R;
 import com.doanhung.musicproject.data.model.app_system_model.DeviceSong;
+import com.doanhung.musicproject.data.model.app_system_model.MusicSource;
+import com.doanhung.musicproject.data.model.app_system_model.ServiceMusicData;
 import com.doanhung.musicproject.data.model.data_model.PlayList;
 import com.doanhung.musicproject.data.repository.MusicRepository;
 import com.doanhung.musicproject.databinding.FragmentMusicPlayingBinding;
@@ -57,9 +59,7 @@ public class MusicPlayingFragment extends BaseFragment<FragmentMusicPlayingBindi
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initAndAttackViewModel();
-
-        //hide music player bar
-        mMainViewModel.setShowMusicPlayerBar(false);
+        hideMusicPlayerBar();
 
         setupToolbar();
         observeCurrentSong();
@@ -72,11 +72,17 @@ public class MusicPlayingFragment extends BaseFragment<FragmentMusicPlayingBindi
                 new MainViewModel.MainViewModelFactory(requireActivity().getApplication(), mMusicServiceController))
                 .get(MainViewModel.class);
 
-        mBinding.setViewModel(mMainViewModel);
+        mBinding.setMainViewModel(mMainViewModel);
 
         mMusicPlayingViewModel = new ViewModelProvider(this,
                 new MusicPlayingViewModel.MusicPlayingViewModelFactory(mMusicRepository))
                 .get(MusicPlayingViewModel.class);
+
+        mBinding.setMusicPlayingViewModel(mMusicPlayingViewModel);
+    }
+
+    private void hideMusicPlayerBar() {
+        mMainViewModel.setShowMusicPlayerBar(false);
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -125,8 +131,40 @@ public class MusicPlayingFragment extends BaseFragment<FragmentMusicPlayingBindi
                 case ADD_A_SONG_TO_PLAYLIST_SUCCESS:
                     Toast.makeText(requireContext(), "Add song to playlist successful", Toast.LENGTH_SHORT).show();
                     break;
+                case NAVIGATE_MUSIC_PLAYING_PLAYLIST_FRAGMENT:
+                    handleNavigateMusicPlayingPlaylistFragment();
+                    break;
+                case NAVIGATE_MUSIC_PLAYING_PLAYLIST_FRAGMENT_2: // when load playlistId comeback with data and then navigate
+                    navigateMusicPlayingPlaylistFragment();
+                    break;
+
             }
         });
+    }
+
+    private void handleNavigateMusicPlayingPlaylistFragment() {
+        mMusicPlayingViewModel.getPlayListIdsOfCurrentSong(
+                mMainViewModel.getCurrentSong()
+        );
+    }
+
+    private void navigateMusicPlayingPlaylistFragment() {
+        List<Long> playlistIdsOfSong = mMusicPlayingViewModel.getPlaylistIdsOfSong();
+        if (playlistIdsOfSong.size() == 0) {
+            Toast.makeText(requireContext(), "The song is currently not in any playlist", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        long randomPlaylistId =
+                CommonUtil.getRandomItemFromList(playlistIdsOfSong);
+
+        MusicPlayingFragmentDirections.ActionToMusicPlayingPlaylistFragment action =
+                MusicPlayingFragmentDirections.actionToMusicPlayingPlaylistFragment();
+
+        action.setPlaylistId(randomPlaylistId);
+        Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
+                .navigate(action);
+
     }
 
     private void handlerUIFollowCurrentSong(DeviceSong song) {
@@ -175,13 +213,13 @@ public class MusicPlayingFragment extends BaseFragment<FragmentMusicPlayingBindi
     @Override
     public void onDestroyView() {
         mBinding.musicCircleView.removeOnMusicBarChangeListener();
-        mMainViewModel.setShowMusicPlayerBar(true);
         super.onDestroyView();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        mMainViewModel.setShowMusicPlayerBar(true);
         if (mScheduledExecutorService != null) {
             mScheduledExecutorService.shutdown();
         }

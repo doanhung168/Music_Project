@@ -6,8 +6,12 @@
     <data>
 
         <variable
-            name="viewModel"
+            name="mainViewModel"
             type="com.doanhung.musicproject.view.main_activity.MainViewModel" />
+
+        <variable
+            name="musicPlayingViewModel"
+            type="com.doanhung.musicproject.view.main_activity.song_fragment.music_playing_fragment.MusicPlayingViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,11 +46,11 @@
                 android:id="@+id/musicCircleView"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@+id/view2"
+                app:layout_constraintBottom_toTopOf="@+id/divider"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                custom:musicAvatar="@{viewModel.mCurrentSong.image}"
+                custom:musicAvatar="@{mainViewModel.mCurrentSong.image}"
                 custom:progressWidth="4dp" />
 
             <TextView
@@ -55,11 +59,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/below_small_dimens"
                 android:textColor="@color/white1_text_color"
-                app:layout_constraintBottom_toBottomOf="@+id/view2"
-                app:layout_constraintStart_toEndOf="@+id/view2"
-                app:layout_constraintTop_toTopOf="@+id/view2"
+                app:layout_constraintBottom_toBottomOf="@+id/divider"
+                app:layout_constraintStart_toEndOf="@+id/divider"
+                app:layout_constraintTop_toTopOf="@+id/divider"
                 app:layout_constraintVertical_bias="0.0"
-                app:songDuration="@{viewModel.mCurrentSong.duration}" />
+                app:songDuration="@{mainViewModel.mCurrentSong.duration}" />
 
             <TextView
                 android:id="@+id/tvCurrentPosition"
@@ -69,12 +73,12 @@
                 android:text="@string/h_example"
                 android:textColor="@color/white1_text_color"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/view2"
+                app:layout_constraintEnd_toStartOf="@+id/divider"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintTop_toBottomOf="@+id/musicCircleView" />
 
             <View
-                android:id="@+id/view2"
+                android:id="@+id/divider"
                 android:layout_width="@dimen/line_dimens"
                 android:layout_height="0dp"
                 android:background="@color/white2_text_color"
@@ -103,7 +107,7 @@
                 android:layout_marginBottom="@dimen/small_dimens"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="@{viewModel.mCurrentSong.name}"
+                android:text="@{mainViewModel.mCurrentSong.name}"
                 android:textAlignment="center"
                 android:textColor="@color/white1_text_color"
                 android:textSize="@dimen/above_medium_text_dimens"
@@ -120,7 +124,7 @@
                 android:layout_marginEnd="@dimen/above_small_dimens"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="@{viewModel.mCurrentSong.artist}"
+                android:text="@{mainViewModel.mCurrentSong.artist}"
                 android:textAlignment="textEnd"
                 android:textColor="@color/white2_text_color"
                 app:layout_constraintBottom_toBottomOf="@+id/view3"
@@ -150,7 +154,7 @@
                 android:layout_marginEnd="@dimen/small_dimens"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="@{viewModel.mCurrentSong.album}"
+                android:text="@{mainViewModel.mCurrentSong.album}"
                 android:textColor="@color/white2_text_color"
                 app:layout_constraintBottom_toBottomOf="@+id/view3"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -189,7 +193,7 @@
             android:id="@+id/imvPrevious"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> viewModel.playPreviousSong()}"
+            android:onClick="@{() -> mainViewModel.playPreviousSong()}"
             app:layout_constraintBottom_toBottomOf="@+id/imvPlayOrPause"
             app:layout_constraintEnd_toStartOf="@+id/imvPlayOrPause"
             app:layout_constraintHorizontal_chainStyle="packed"
@@ -205,8 +209,8 @@
             android:layout_marginStart="@dimen/extreme_dimens"
             android:layout_marginEnd="@dimen/extreme_dimens"
             android:layout_marginBottom="@dimen/medium_dimens"
-            android:onClick="@{() -> viewModel.playOrPlayCurrentSong()}"
-            android:src="@{viewModel.mCurrentSong.playing ? @drawable/ic_pause_for_notify : @drawable/ic_play_for_notify}"
+            android:onClick="@{() -> mainViewModel.playOrPlayCurrentSong()}"
+            android:src="@{mainViewModel.mCurrentSong.playing ? @drawable/ic_pause_for_notify : @drawable/ic_play_for_notify}"
             app:layout_constraintBottom_toTopOf="@+id/layout_repeat"
             app:layout_constraintEnd_toStartOf="@+id/imvNext"
             app:layout_constraintHorizontal_bias="0.5"
@@ -217,7 +221,7 @@
             android:id="@+id/imvNext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> viewModel.playNextSong()}"
+            android:onClick="@{() -> mainViewModel.playNextSong()}"
             app:layout_constraintBottom_toBottomOf="@+id/imvPlayOrPause"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -302,8 +306,8 @@
                 android:layout_gravity="center"
                 app:button="@{@drawable/ic_repeat}"
                 app:checkedButton="@{@drawable/ic_checked_repeat}"
-                app:isChecked="@{viewModel.mIsRepeat}"
-                android:onCheckedChanged="@{(_, isChecked) -> viewModel.repeat(isChecked)}"
+                app:isChecked="@{mainViewModel.mIsRepeat}"
+                android:onCheckedChanged="@{(_, isChecked) -> mainViewModel.repeat(isChecked)}"
                 app:useMaterialThemeColors="false" />
 
             <TextView
@@ -331,6 +335,7 @@
                 android:layout_width="@dimen/medium_dimens"
                 android:layout_height="@dimen/medium_dimens"
                 android:layout_gravity="center"
+                android:onClick="@{() -> musicPlayingViewModel.navigationMusicPlayingPlaylistFragment()}"
                 android:button="@drawable/ic_playlist"
                 app:useMaterialThemeColors="false" />
 
@@ -361,8 +366,8 @@
                 android:layout_gravity="center"
                 app:button="@{@drawable/ic_shuffle}"
                 app:checkedButton="@{@drawable/ic_checked_shuffle}"
-                app:isChecked="@{viewModel.mIsShuffle}"
-                android:onCheckedChanged="@{(_,isChecked) -> viewModel.shuffle(isChecked)}"
+                app:isChecked="@{mainViewModel.mIsShuffle}"
+                android:onCheckedChanged="@{(_,isChecked) -> mainViewModel.shuffle(isChecked)}"
                 app:useMaterialThemeColors="false" />
 
             <TextView

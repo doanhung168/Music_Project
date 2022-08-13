@@ -1,0 +1,2 @@
+package com.doanhung.musicproject.view.main_activity.song_fragment.music_playing_in_playlist_fragment;public class MusicPlayingPlaylistViewModel {
+}
