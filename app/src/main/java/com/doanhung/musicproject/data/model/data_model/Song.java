@@ -17,6 +17,8 @@ public class Song {
     private String mAlbum;
     private long mDuration;
     private long mGenreId;
+    private long mArtistId;
+    private long mAlbumId;
 
     public Song() {
     }
@@ -93,6 +95,22 @@ public class Song {
 
     public void setGenreId(long genreId) {
         this.mGenreId = genreId;
+    }
+
+    public long getArtistId() {
+        return mArtistId;
+    }
+
+    public void setArtistId(long artistId) {
+        this.mArtistId = artistId;
+    }
+
+    public long getAlbumId() {
+        return mAlbumId;
+    }
+
+    public void setAlbumId(long albumId) {
+        this.mAlbumId = albumId;
     }
 
     @Override

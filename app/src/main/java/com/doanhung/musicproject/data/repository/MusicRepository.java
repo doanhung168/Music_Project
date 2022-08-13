@@ -220,6 +220,19 @@ public class MusicRepository {
         });
     }
 
+    public void addSongToPlaylist(long playlistId, long songId, MusicRepositoryCallback<Void> musicRepositoryCallback) {
+        mExecutor.execute(() -> {
+            try {
+                mDataManager.addSongToPlaylist(playlistId, songId);
+                Result<Void> result = new Result.Success<>(null);
+                musicRepositoryCallback.onComplete(result);
+            } catch (Exception e) {
+                Result<Void> errorResult = new Result.Error<>(e);
+                musicRepositoryCallback.onComplete(errorResult);
+            }
+        });
+    }
+
 
     public interface MusicRepositoryCallback<T> {
         void onComplete(Result<T> result);

@@ -32,6 +32,8 @@ import java.util.List;
 
 public class CommonUtil {
 
+
+
     @RequiresApi(api = Build.VERSION_CODES.R)
     public static Drawable loadThumbnailForAboveVersionQ(Context context, String volumeName, long idItem) throws IOException {
         Bitmap bitmap = context.getContentResolver().loadThumbnail(
@@ -41,6 +43,18 @@ public class CommonUtil {
         );
         return new BitmapDrawable(context.getResources(), bitmap);
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.R)
+    public static Drawable loadThumbnailForAboveVersionQ_v2(Context context, long idItem) throws IOException {
+        Bitmap bitmap = context.getContentResolver().loadThumbnail(
+                MediaStore.Audio.Media.getContentUri("external", idItem),
+                new Size(640, 480),
+                null
+        );
+        return new BitmapDrawable(context.getResources(), bitmap);
+    }
+
+
 
     public static Drawable loadThumbnail(Context context, Uri fileUri) {
         MediaMetadataRetriever retriever = new MediaMetadataRetriever();

@@ -23,7 +23,7 @@
         tools:layout="@layout/fragment_setting" />
     <fragment
         android:id="@+id/musicPlayingFragment"
-        android:name="com.doanhung.musicproject.view.main_activity.music_playing_fragment.MusicPlayingFragment"
+        android:name="com.doanhung.musicproject.view.main_activity.song_fragment.music_playing_fragment.MusicPlayingFragment"
         android:label="MusicPlayingFragment"
         tools:layout="@layout/fragment_music_playing" />
     <fragment
