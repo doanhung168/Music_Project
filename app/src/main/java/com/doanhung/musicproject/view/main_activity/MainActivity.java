@@ -1,11 +1,10 @@
 package com.doanhung.musicproject.view.main_activity;
 
 import android.Manifest;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
@@ -16,22 +15,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import com.doanhung.musicproject.R;
+import com.doanhung.musicproject.broadcast_receive.ChargeReceive;
 import com.doanhung.musicproject.data.model.app_system_model.DeviceItem;
-import com.doanhung.musicproject.data.model.app_system_model.DeviceSong;
 import com.doanhung.musicproject.data.repository.AppSystemRepository;
 import com.doanhung.musicproject.databinding.ActivityMainBinding;
 import com.doanhung.musicproject.di.AppModule;
 import com.doanhung.musicproject.service.MusicService;
 import com.doanhung.musicproject.service.MusicServiceController;
 import com.doanhung.musicproject.view.common_adapter.DeviceItemAdapter;
-import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.Objects;
 import java.util.concurrent.Executors;
@@ -68,6 +65,8 @@ public class MainActivity extends AppCompatActivity implements
     MusicServiceController mMusicServiceController;
     private MainViewModel mMainViewModel;
 
+    private ChargeReceive chargeReceive;
+
 
     private final ActivityResultLauncher<String> mRequestAccessExStoragePermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
@@ -91,6 +90,8 @@ public class MainActivity extends AppCompatActivity implements
 
         // request permission to read and write external storage
         requestAccessExternalStorage();
+
+        registerChargeReceiver();
 
     }
 
@@ -207,6 +208,14 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+    private void registerChargeReceiver() {
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Intent.ACTION_POWER_CONNECTED);
+        intentFilter.addAction(Intent.ACTION_POWER_DISCONNECTED);
+        chargeReceive = new ChargeReceive();
+        registerReceiver(chargeReceive, intentFilter);
+    }
+
     @Override
     public void onClickDeviceItem(@NonNull DeviceItem deviceItem) {
         Toast.makeText(MainActivity.this, deviceItem.getName(), Toast.LENGTH_SHORT).show();
@@ -237,5 +246,6 @@ public class MainActivity extends AppCompatActivity implements
             mScheduledExecutor.shutdown();
         }
         mBinding = null;
+        unregisterReceiver(chargeReceive);
     }
 }
