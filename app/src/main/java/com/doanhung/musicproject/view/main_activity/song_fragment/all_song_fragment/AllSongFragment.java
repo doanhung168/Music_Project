@@ -14,9 +14,7 @@ import com.doanhung.musicproject.R;
 import com.doanhung.musicproject.data.model.app_system_model.DeviceSong;
 import com.doanhung.musicproject.data.model.app_system_model.MusicSource;
 import com.doanhung.musicproject.data.model.app_system_model.ServiceMusicData;
-import com.doanhung.musicproject.data.repository.MusicRepository;
 import com.doanhung.musicproject.databinding.FragmentAllSongBinding;
-import com.doanhung.musicproject.service.MusicServiceController;
 import com.doanhung.musicproject.util.event.Event;
 import com.doanhung.musicproject.view.BaseFragment;
 import com.doanhung.musicproject.view.main_activity.MainViewModel;
@@ -30,12 +28,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class AllSongFragment extends BaseFragment<FragmentAllSongBinding>
         implements AllSongAdapter.OnClickSongItemListener {
 
-    @Inject
-    MusicRepository mMusicRepository;
     private AllSongViewModel mAllSongViewModel;
-
-    @Inject
-    MusicServiceController musicServiceController;
     private MainViewModel mMainViewModel;
 
     @Inject
@@ -61,14 +54,10 @@ public class AllSongFragment extends BaseFragment<FragmentAllSongBinding>
     }
 
     private void initAndAttackViewModel() {
-        mAllSongViewModel = new ViewModelProvider(requireActivity(),
-                new AllSongViewModel.AllSongViewModelFactory(mMusicRepository))
-                .get(AllSongViewModel.class);
+        mAllSongViewModel = new ViewModelProvider(requireActivity()).get(AllSongViewModel.class);
         mBinding.setViewModel(mAllSongViewModel);
 
-        mMainViewModel = new ViewModelProvider(requireActivity(),
-                new MainViewModel.MainViewModelFactory(requireActivity().getApplication(), musicServiceController))
-                .get(MainViewModel.class);
+        mMainViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
     }
 
     @SuppressLint("NotifyDataSetChanged")

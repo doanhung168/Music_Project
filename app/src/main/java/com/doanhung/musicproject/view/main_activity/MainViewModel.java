@@ -26,6 +26,12 @@ import com.doanhung.musicproject.service.MusicServiceController;
 import com.doanhung.musicproject.util.event.Event;
 import com.doanhung.musicproject.util.event.SingleLiveEvent;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.lifecycle.HiltViewModel;
+import dagger.hilt.android.qualifiers.ApplicationContext;
+
+@HiltViewModel
 public class MainViewModel extends ViewModel implements MusicObserver {
 
     private Application mApplication;
@@ -33,7 +39,7 @@ public class MainViewModel extends ViewModel implements MusicObserver {
     private final MusicServiceController mMusicServiceController;
 
     private final SingleLiveEvent<Event> _mEvent = new SingleLiveEvent<>();
-    public final LiveData<Event> mEvent = _mEvent;
+    public final SingleLiveEvent<Event> mEvent = _mEvent;
 
     private final MutableLiveData<DeviceSong> _mCurrentSong = new MutableLiveData<>();
     public final LiveData<DeviceSong> mCurrentSong = _mCurrentSong;
@@ -48,7 +54,11 @@ public class MainViewModel extends ViewModel implements MusicObserver {
 
     private MusicSource mMusicSource;
 
-    public MainViewModel(Application application, MusicServiceController musicServiceController) {
+    @Inject
+    public MainViewModel(
+            Application application,
+            MusicServiceController musicServiceController
+    ) {
         this.mApplication = application;
         this.mMusicServiceController = musicServiceController;
         this.mMusicServiceController.registerMusicObserver(this);

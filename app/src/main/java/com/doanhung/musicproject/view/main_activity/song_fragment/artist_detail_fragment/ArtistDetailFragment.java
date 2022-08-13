@@ -24,8 +24,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class ArtistDetailFragment extends BaseFragment<FragmentArtistDetailBinding> {
 
-    @Inject
-    MusicRepository mMusicRepository;
     private ArtistViewModel mArtistViewModel;
 
     @Inject
@@ -50,9 +48,7 @@ public class ArtistDetailFragment extends BaseFragment<FragmentArtistDetailBindi
     }
 
     private void initViewModels() {
-        mArtistViewModel = new ViewModelProvider(requireActivity(),
-                new ArtistViewModel.ArtistViewModelFactory(mMusicRepository))
-                .get(ArtistViewModel.class);
+        mArtistViewModel = new ViewModelProvider(requireActivity()).get(ArtistViewModel.class);
     }
 
     private void setupToolbar() {

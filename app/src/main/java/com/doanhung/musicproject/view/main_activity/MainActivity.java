@@ -44,10 +44,6 @@ public class MainActivity extends AppCompatActivity implements
         DeviceItemAdapter.OnClickDeviceItemListener,
         OnOpenNavigationViewListener {
 
-
-    private static final String TAG = "MainActivity";
-
-
     private ActivityMainBinding mBinding;
     private NavController mNavController;
 
@@ -57,16 +53,10 @@ public class MainActivity extends AppCompatActivity implements
     @AppModule.DeviceItemAdapterAnnotation
     DeviceItemAdapter mDeviceItemAdapter;
 
-    @Inject
-    AppSystemRepository mAppSystemRepository;
     private ExtraMainViewModel mExtraMainViewModel;
-
-    @Inject
-    MusicServiceController mMusicServiceController;
     private MainViewModel mMainViewModel;
 
     private ChargeReceive chargeReceive;
-
 
     private final ActivityResultLauncher<String> mRequestAccessExStoragePermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
@@ -110,13 +100,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void initAndAttackViewModels() {
-        mExtraMainViewModel = new ViewModelProvider(this,
-                new ExtraMainViewModel.ExtraMainViewModelFactory(mAppSystemRepository))
-                .get(ExtraMainViewModel.class);
-
-        mMainViewModel = new ViewModelProvider(this,
-                new MainViewModel.MainViewModelFactory(getApplication(), mMusicServiceController))
-                .get(MainViewModel.class);
+        mExtraMainViewModel = new ViewModelProvider(this).get(ExtraMainViewModel.class);
+        mMainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         mBinding.setLifecycleOwner(this);
         mBinding.setViewModel(mMainViewModel);

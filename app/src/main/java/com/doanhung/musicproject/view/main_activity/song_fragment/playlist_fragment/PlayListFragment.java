@@ -29,8 +29,6 @@ public class PlayListFragment extends BaseFragment<FragmentPlayListBinding> impl
 
     private static final String TAG = "PlayListFragment";
 
-    @Inject
-    MusicRepository mMusicRepository;
     private PlayListViewModel mPlayListViewModel;
 
     @Inject
@@ -61,10 +59,7 @@ public class PlayListFragment extends BaseFragment<FragmentPlayListBinding> impl
     }
 
     private void initViewModel() {
-        mPlayListViewModel = new ViewModelProvider(requireActivity(),
-                new PlayListViewModel.PlayListViewModelFactory(mMusicRepository))
-                .get(PlayListViewModel.class);
-
+        mPlayListViewModel = new ViewModelProvider(requireActivity()).get(PlayListViewModel.class);
         mBinding.setViewModel(mPlayListViewModel);
     }
 

@@ -17,6 +17,11 @@ import com.doanhung.musicproject.util.event.SingleLiveEvent;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.lifecycle.HiltViewModel;
+
+@HiltViewModel
 public class SettingViewModel extends ViewModel {
     private final AppSystemRepository mAppSystemRepository;
 
@@ -26,6 +31,7 @@ public class SettingViewModel extends ViewModel {
     private final MutableLiveData<List<DeviceItem>> _mSettingItems = new MutableLiveData<>();
     public final LiveData<List<DeviceItem>> mSettingItems = _mSettingItems;
 
+    @Inject
     public SettingViewModel(AppSystemRepository appSystemRepository) {
         this.mAppSystemRepository = appSystemRepository;
     }

@@ -31,12 +31,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class MusicPlayingPlaylistFragment extends BaseFragment<FragmentMusicPlayingPlaylistBinding> implements AllSongAdapter.OnClickSongItemListener {
 
-    @Inject
-    MusicServiceController mMusicServiceController;
     private MainViewModel mMainViewModel;
-
-    @Inject
-    MusicRepository mMusicRepository;
     private MusicPlayingPlaylistViewModel mMusicPlayingPlaylistViewModel;
 
     @Inject
@@ -66,14 +61,10 @@ public class MusicPlayingPlaylistFragment extends BaseFragment<FragmentMusicPlay
     }
 
     private void initAndAttackViewModels() {
-        mMainViewModel = new ViewModelProvider(requireActivity(),
-                new MainViewModel.MainViewModelFactory(requireActivity().getApplication(), mMusicServiceController))
-                .get(MainViewModel.class);
+        mMainViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
         mBinding.setMainViewModel(mMainViewModel);
 
-        mMusicPlayingPlaylistViewModel = new ViewModelProvider(this,
-                new MusicPlayingPlaylistViewModel.MusicPlayingPlaylistViewModelFactory(mMusicRepository))
-                .get(MusicPlayingPlaylistViewModel.class);
+        mMusicPlayingPlaylistViewModel = new ViewModelProvider(this).get(MusicPlayingPlaylistViewModel.class);
     }
 
     private void hideMusicPlayerBar() {

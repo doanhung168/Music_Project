@@ -14,6 +14,11 @@ import com.doanhung.musicproject.util.event.SingleLiveEvent;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.lifecycle.HiltViewModel;
+
+@HiltViewModel
 public class AddingMyPlaylistViewModel extends ViewModel {
 
     private final MusicRepository mMusicRepository;
@@ -22,10 +27,11 @@ public class AddingMyPlaylistViewModel extends ViewModel {
     public final LiveData<List<CheckedSong>> mSongs = _mSongs;
 
     private final SingleLiveEvent<Event> _mEvent = new SingleLiveEvent<>();
-    public final LiveData<Event> mEvent = _mEvent;
+    public final SingleLiveEvent<Event> mEvent = _mEvent;
 
     public final MutableLiveData<Boolean> mIsLoading = new MutableLiveData<>(false);
 
+    @Inject
     public AddingMyPlaylistViewModel(MusicRepository musicRepository) {
         this.mMusicRepository = musicRepository;
     }

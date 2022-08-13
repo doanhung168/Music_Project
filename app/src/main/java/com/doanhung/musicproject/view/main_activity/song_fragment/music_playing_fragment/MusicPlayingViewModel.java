@@ -15,6 +15,11 @@ import com.doanhung.musicproject.util.event.SingleLiveEvent;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.lifecycle.HiltViewModel;
+
+@HiltViewModel
 public class MusicPlayingViewModel extends ViewModel {
     private final MusicRepository mMusicRepository;
 
@@ -28,6 +33,7 @@ public class MusicPlayingViewModel extends ViewModel {
 
     public final MutableLiveData<Boolean> mIsLoading = new MutableLiveData<>(false);
 
+    @Inject
     public MusicPlayingViewModel(MusicRepository musicRepository) {
         this.mMusicRepository = musicRepository;
     }

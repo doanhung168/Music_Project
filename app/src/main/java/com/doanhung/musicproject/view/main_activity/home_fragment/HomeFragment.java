@@ -16,10 +16,8 @@ import com.doanhung.musicproject.data.model.app_system_model.MusicSource;
 import com.doanhung.musicproject.data.model.app_system_model.ServiceMusicData;
 import com.doanhung.musicproject.data.model.data_model.PlayList;
 import com.doanhung.musicproject.data.model.data_model.Song;
-import com.doanhung.musicproject.data.repository.MusicRepository;
 import com.doanhung.musicproject.data.room.MusicDatabase;
 import com.doanhung.musicproject.databinding.FragmentHomeBinding;
-import com.doanhung.musicproject.service.MusicServiceController;
 import com.doanhung.musicproject.view.BaseFragment;
 import com.doanhung.musicproject.view.main_activity.MainViewModel;
 import com.doanhung.musicproject.view.main_activity.OnOpenNavigationViewListener;
@@ -27,12 +25,7 @@ import com.doanhung.musicproject.view.main_activity.home_fragment.adapter.HotRec
 import com.doanhung.musicproject.view.main_activity.home_fragment.adapter.PlayListAdapter;
 import com.doanhung.musicproject.view.main_activity.home_fragment.adapter.RecentlySongAdapter;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -54,12 +47,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements
     @Inject
     RecentlySongAdapter mRecentlySongAdapter;
 
-    @Inject
-    MusicRepository mMusicRepository;
     private HomeViewModel mHomeViewModel;
-
-    @Inject
-    MusicServiceController mMusicServiceController;
     private MainViewModel mMainViewModel;
 
     @Override
@@ -83,15 +71,8 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements
 
 
     private void initViewModels() {
-        mHomeViewModel = new ViewModelProvider(this,
-                new HomeViewModel.HomeViewModelFactory(mMusicRepository))
-                .get(HomeViewModel.class);
-
-        mMainViewModel =
-                new ViewModelProvider(requireActivity(),
-                        new MainViewModel.MainViewModelFactory(requireActivity().getApplication(), mMusicServiceController))
-                        .get(MainViewModel.class);
-
+        mHomeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        mMainViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
     }
 
     private void setupToolbar() {

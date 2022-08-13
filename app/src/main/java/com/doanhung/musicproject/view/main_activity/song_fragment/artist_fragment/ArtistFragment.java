@@ -25,8 +25,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class ArtistFragment extends BaseFragment<FragmentArtistBinding> implements ArtistAdapter.OnClickArtistItemListener, PopupMenu.OnMenuItemClickListener {
 
-    @Inject
-    MusicRepository mMusicRepository;
     private ArtistViewModel mArtistViewModel;
 
     @Inject
@@ -46,10 +44,7 @@ public class ArtistFragment extends BaseFragment<FragmentArtistBinding> implemen
     }
 
     private void initAndAttackViewModel() {
-        mArtistViewModel = new ViewModelProvider(requireActivity(),
-                new ArtistViewModel.ArtistViewModelFactory(mMusicRepository))
-                .get(ArtistViewModel.class);
-
+        mArtistViewModel = new ViewModelProvider(requireActivity()).get(ArtistViewModel.class);
         mBinding.setViewModel(mArtistViewModel);
     }
 

@@ -14,9 +14,7 @@ import com.doanhung.musicproject.R;
 import com.doanhung.musicproject.data.model.app_system_model.DeviceSong;
 import com.doanhung.musicproject.data.model.app_system_model.MusicSource;
 import com.doanhung.musicproject.data.model.app_system_model.ServiceMusicData;
-import com.doanhung.musicproject.data.repository.MusicRepository;
 import com.doanhung.musicproject.databinding.FragmentAlbumDetailBinding;
-import com.doanhung.musicproject.service.MusicServiceController;
 import com.doanhung.musicproject.util.event.Event;
 import com.doanhung.musicproject.view.BaseFragment;
 import com.doanhung.musicproject.view.common_adapter.SongAdapter;
@@ -34,13 +32,9 @@ public class AlbumDetailFragment extends BaseFragment<FragmentAlbumDetailBinding
     @Inject
     SongAdapter mSongAdapter;
 
-    @Inject
-    MusicRepository mMusicRepository;
     private AlbumViewModel mAlbumViewModel;
-
-    @Inject
-    MusicServiceController mMusicServiceController;
     private MainViewModel mMainViewModel;
+
     private boolean needValidateRcvAfterComebackWithService;
 
     @Override
@@ -60,15 +54,10 @@ public class AlbumDetailFragment extends BaseFragment<FragmentAlbumDetailBinding
     }
 
     private void initAndAttackViewModels() {
-        mAlbumViewModel = new ViewModelProvider(requireActivity(),
-                new AlbumViewModel.AlbumViewModelFactory(mMusicRepository))
-                .get(AlbumViewModel.class);
+        mAlbumViewModel = new ViewModelProvider(requireActivity()).get(AlbumViewModel.class);
         mBinding.setViewModel(mAlbumViewModel);
 
-        mMainViewModel = new ViewModelProvider(requireActivity(),
-                new MainViewModel.MainViewModelFactory
-                        (requireActivity().getApplication(), mMusicServiceController))
-                .get(MainViewModel.class);
+        mMainViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
     }
 
     private void setupToolbar() {

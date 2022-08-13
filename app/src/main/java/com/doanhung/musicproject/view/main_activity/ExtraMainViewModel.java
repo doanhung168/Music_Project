@@ -17,15 +17,21 @@ import com.doanhung.musicproject.util.event.SingleLiveEvent;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.lifecycle.HiltViewModel;
+
+@HiltViewModel
 public class ExtraMainViewModel extends ViewModel {
     private final AppSystemRepository mAppSystemRepository;
 
     private final SingleLiveEvent<Event> _mEvent = new SingleLiveEvent<>();
-    public final LiveData<Event> mEvent = _mEvent;
+    public final SingleLiveEvent<Event> mEvent = _mEvent;
 
     private final MutableLiveData<List<DeviceItem>> _mNavViewItems = new MutableLiveData<>();
     public final LiveData<List<DeviceItem>> mNavViewItems = _mNavViewItems;
 
+    @Inject
     public ExtraMainViewModel(AppSystemRepository appSystemRepository) {
         this.mAppSystemRepository = appSystemRepository;
     }

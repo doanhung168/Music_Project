@@ -21,8 +21,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class GenreFragment extends BaseFragment<FragmentGenreBinding> {
 
-    @Inject
-    MusicRepository mMusicRepository;
     private GenreViewModel mGenreViewModel;
 
     @Inject
@@ -42,10 +40,7 @@ public class GenreFragment extends BaseFragment<FragmentGenreBinding> {
     }
 
     private void initAndAttackViewModels() {
-        mGenreViewModel = new ViewModelProvider(this,
-                new GenreViewModel.GenreViewModelFactory(mMusicRepository))
-                .get(GenreViewModel.class);
-
+        mGenreViewModel = new ViewModelProvider(this).get(GenreViewModel.class);
         mBinding.setViewModel(mGenreViewModel);
     }
 

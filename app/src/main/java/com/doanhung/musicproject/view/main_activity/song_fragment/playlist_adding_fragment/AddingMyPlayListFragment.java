@@ -12,9 +12,7 @@ import androidx.navigation.Navigation;
 
 import com.doanhung.musicproject.R;
 import com.doanhung.musicproject.data.model.app_system_model.CheckedSong;
-import com.doanhung.musicproject.data.repository.MusicRepository;
 import com.doanhung.musicproject.databinding.FragmentAddingMyPlaylistBinding;
-import com.doanhung.musicproject.service.MusicServiceController;
 import com.doanhung.musicproject.util.CommonUtil;
 import com.doanhung.musicproject.view.BaseFragment;
 import com.doanhung.musicproject.view.main_activity.MainViewModel;
@@ -31,15 +29,10 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class AddingMyPlayListFragment extends BaseFragment<FragmentAddingMyPlaylistBinding> implements
         SelectedSongAdapter.OnClickSongListener {
 
-    @Inject
-    MusicRepository mMusicRepository;
     private AddingMyPlaylistViewModel mAddingMyPlaylistViewModel;
     private PlayListViewModel mPlaylistViewModel; // It is not good way
 
-    @Inject
-    MusicServiceController mMusicServiceController;
     private MainViewModel mMainViewModel;
-
 
     @Inject
     SelectedSongAdapter mSelectedSongAdapter;
@@ -64,17 +57,9 @@ public class AddingMyPlayListFragment extends BaseFragment<FragmentAddingMyPlayl
     }
 
     private void initViewModels() {
-        mAddingMyPlaylistViewModel = new ViewModelProvider(this,
-                new AddingMyPlaylistViewModel.AddingMyPlaylistViewModelFactory(mMusicRepository))
-                .get(AddingMyPlaylistViewModel.class);
-
-        mMainViewModel = new ViewModelProvider(requireActivity(),
-                new MainViewModel.MainViewModelFactory(requireActivity().getApplication(), mMusicServiceController))
-                .get(MainViewModel.class);
-
-        mPlaylistViewModel = new ViewModelProvider(requireActivity(),
-                new PlayListViewModel.PlayListViewModelFactory(mMusicRepository))
-                .get(PlayListViewModel.class);
+        mAddingMyPlaylistViewModel = new ViewModelProvider(this).get(AddingMyPlaylistViewModel.class);
+        mMainViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
+        mPlaylistViewModel = new ViewModelProvider(requireActivity()).get(PlayListViewModel.class);
 
         mBinding.setViewModel(mAddingMyPlaylistViewModel);
     }

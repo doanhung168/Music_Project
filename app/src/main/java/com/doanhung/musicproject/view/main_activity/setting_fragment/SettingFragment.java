@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.doanhung.musicproject.R;
 import com.doanhung.musicproject.data.model.app_system_model.DeviceItem;
-import com.doanhung.musicproject.data.repository.AppSystemRepository;
 import com.doanhung.musicproject.databinding.FragmentSettingBinding;
 import com.doanhung.musicproject.di.AppModule;
 import com.doanhung.musicproject.view.BaseFragment;
@@ -31,8 +30,6 @@ public class SettingFragment extends BaseFragment<FragmentSettingBinding>
     @AppModule.DeviceItemAdapterWithoutDividerAnnotation
     DeviceItemAdapter mDeviceItemAdapter;
 
-    @Inject
-    AppSystemRepository mAppSystemRepository;
     private SettingViewModel mSettingViewModel;
 
     @Override
@@ -51,10 +48,7 @@ public class SettingFragment extends BaseFragment<FragmentSettingBinding>
 
 
     private void initViewModels() {
-        mSettingViewModel =
-                new ViewModelProvider(this,
-                        new SettingViewModel.SettingViewModelFactory(mAppSystemRepository))
-                        .get(SettingViewModel.class);
+        mSettingViewModel = new ViewModelProvider(this).get(SettingViewModel.class);
     }
 
     private void setupToolbar() {

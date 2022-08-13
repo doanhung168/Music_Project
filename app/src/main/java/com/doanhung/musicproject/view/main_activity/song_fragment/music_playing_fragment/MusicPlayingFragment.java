@@ -13,12 +13,8 @@ import androidx.navigation.Navigation;
 
 import com.doanhung.musicproject.R;
 import com.doanhung.musicproject.data.model.app_system_model.DeviceSong;
-import com.doanhung.musicproject.data.model.app_system_model.MusicSource;
-import com.doanhung.musicproject.data.model.app_system_model.ServiceMusicData;
 import com.doanhung.musicproject.data.model.data_model.PlayList;
-import com.doanhung.musicproject.data.repository.MusicRepository;
 import com.doanhung.musicproject.databinding.FragmentMusicPlayingBinding;
-import com.doanhung.musicproject.service.MusicServiceController;
 import com.doanhung.musicproject.util.CommonUtil;
 import com.doanhung.musicproject.view.BaseFragment;
 import com.doanhung.musicproject.view.main_activity.MainViewModel;
@@ -39,12 +35,7 @@ public class MusicPlayingFragment extends BaseFragment<FragmentMusicPlayingBindi
 
     private static final String TAG = "MusicPlayingFragment";
 
-    @Inject
-    MusicServiceController mMusicServiceController;
     private MainViewModel mMainViewModel;
-
-    @Inject
-    MusicRepository mMusicRepository;
     private MusicPlayingViewModel mMusicPlayingViewModel;
 
     @Inject
@@ -68,16 +59,10 @@ public class MusicPlayingFragment extends BaseFragment<FragmentMusicPlayingBindi
     }
 
     private void initAndAttackViewModel() {
-        mMainViewModel = new ViewModelProvider(requireActivity(),
-                new MainViewModel.MainViewModelFactory(requireActivity().getApplication(), mMusicServiceController))
-                .get(MainViewModel.class);
-
+        mMainViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
         mBinding.setMainViewModel(mMainViewModel);
 
-        mMusicPlayingViewModel = new ViewModelProvider(this,
-                new MusicPlayingViewModel.MusicPlayingViewModelFactory(mMusicRepository))
-                .get(MusicPlayingViewModel.class);
-
+        mMusicPlayingViewModel = new ViewModelProvider(this).get(MusicPlayingViewModel.class);
         mBinding.setMusicPlayingViewModel(mMusicPlayingViewModel);
     }
 

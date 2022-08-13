@@ -12,11 +12,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.doanhung.musicproject.R;
 import com.doanhung.musicproject.data.model.data_model.Album;
-import com.doanhung.musicproject.data.repository.MusicRepository;
 import com.doanhung.musicproject.databinding.FragmentAlbumBinding;
 import com.doanhung.musicproject.view.BaseFragment;
 
@@ -29,8 +27,6 @@ public class AlbumFragment extends BaseFragment<FragmentAlbumBinding> implements
         AlbumAdapter.OnClickAlbumItemListener,
         PopupMenu.OnMenuItemClickListener {
 
-    @Inject
-    MusicRepository mMusicRepository;
     private AlbumViewModel mAlbumViewModel;
 
     @Inject
@@ -50,9 +46,7 @@ public class AlbumFragment extends BaseFragment<FragmentAlbumBinding> implements
     }
 
     private void initViewModels() {
-        mAlbumViewModel = new ViewModelProvider(requireActivity(),
-                new AlbumViewModel.AlbumViewModelFactory(mMusicRepository))
-                .get(AlbumViewModel.class);
+        mAlbumViewModel = new ViewModelProvider(requireActivity()).get(AlbumViewModel.class);
     }
 
     private void setupRcvAlbums() {
