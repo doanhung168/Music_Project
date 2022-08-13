@@ -25,7 +25,12 @@
         android:id="@+id/musicPlayingFragment"
         android:name="com.doanhung.musicproject.view.main_activity.song_fragment.music_playing_fragment.MusicPlayingFragment"
         android:label="MusicPlayingFragment"
-        tools:layout="@layout/fragment_music_playing" />
+        tools:layout="@layout/fragment_music_playing" >
+        <action
+            android:id="@+id/action_to_music_playing_playlist_fragment"
+            app:destination="@id/musicPlayingPlaylistFragment"
+            app:popUpTo="@id/musicPlayingFragment" />
+    </fragment>
     <fragment
         tools:layout="@layout/fragment_adding_my_playlist"
         android:id="@+id/addingMyPlayListFragment"
@@ -41,4 +46,14 @@
         tools:layout="@layout/fragment_album_detail"
         android:name="com.doanhung.musicproject.view.main_activity.song_fragment.album_detail_fragment.AlbumDetailFragment"
         android:label="AlbumDetailFragment" />
+    <fragment
+        tools:layout="@layout/fragment_music_playing_playlist"
+        android:id="@+id/musicPlayingPlaylistFragment"
+        android:name="com.doanhung.musicproject.view.main_activity.song_fragment.music_playing_in_playlist_fragment.MusicPlayingPlaylistFragment"
+        android:label="MusicPlayingPlaylistFragment" >
+        <argument
+            android:name="playlistId"
+            app:argType="long"
+            android:defaultValue="-1L" />
+    </fragment>
 </navigation>

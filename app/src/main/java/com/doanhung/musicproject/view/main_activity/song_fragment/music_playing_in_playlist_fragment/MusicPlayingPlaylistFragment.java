@@ -1,66 +1,176 @@
 package com.doanhung.musicproject.view.main_activity.song_fragment.music_playing_in_playlist_fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.doanhung.musicproject.R;
+import com.doanhung.musicproject.data.model.app_system_model.DeviceSong;
+import com.doanhung.musicproject.data.model.app_system_model.MusicSource;
+import com.doanhung.musicproject.data.model.app_system_model.ServiceMusicData;
+import com.doanhung.musicproject.data.repository.MusicRepository;
+import com.doanhung.musicproject.databinding.FragmentMusicPlayingPlaylistBinding;
+import com.doanhung.musicproject.service.MusicServiceController;
+import com.doanhung.musicproject.util.CommonUtil;
+import com.doanhung.musicproject.view.BaseFragment;
+import com.doanhung.musicproject.view.main_activity.MainViewModel;
+import com.doanhung.musicproject.view.main_activity.song_fragment.all_song_fragment.AllSongAdapter;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MusicPlayingPlaylistFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class MusicPlayingPlaylistFragment extends Fragment {
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import javax.inject.Inject;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+import dagger.hilt.android.AndroidEntryPoint;
 
-    public MusicPlayingPlaylistFragment() {
-        // Required empty public constructor
-    }
+@AndroidEntryPoint
+public class MusicPlayingPlaylistFragment extends BaseFragment<FragmentMusicPlayingPlaylistBinding> implements AllSongAdapter.OnClickSongItemListener {
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MusicPlayingPlaylistFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static MusicPlayingPlaylistFragment newInstance(String param1, String param2) {
-        MusicPlayingPlaylistFragment fragment = new MusicPlayingPlaylistFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    @Inject
+    MusicServiceController mMusicServiceController;
+    private MainViewModel mMainViewModel;
+
+    @Inject
+    MusicRepository mMusicRepository;
+    private MusicPlayingPlaylistViewModel mMusicPlayingPlaylistViewModel;
+
+    @Inject
+    AllSongAdapter mAllSongAdapter;
+
+    @Inject
+    ScheduledExecutorService mScheduledExecutorService;
+
+    private long mPlaylistId = -1;
+    private boolean needValidateRcvAfterComebackWithService;
+
+    @Override
+    public int getFragmentView() {
+        return R.layout.fragment_music_playing_playlist;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initAndAttackViewModels();
+        getData();
+        hideMusicPlayerBar();
+
+        setupToolbar();
+        setupRcvSongs();
+        observeCurrentSong();
+    }
+
+    private void initAndAttackViewModels() {
+        mMainViewModel = new ViewModelProvider(requireActivity(),
+                new MainViewModel.MainViewModelFactory(requireActivity().getApplication(), mMusicServiceController))
+                .get(MainViewModel.class);
+        mBinding.setMainViewModel(mMainViewModel);
+
+        mMusicPlayingPlaylistViewModel = new ViewModelProvider(this,
+                new MusicPlayingPlaylistViewModel.MusicPlayingPlaylistViewModelFactory(mMusicRepository))
+                .get(MusicPlayingPlaylistViewModel.class);
+    }
+
+    private void hideMusicPlayerBar() {
+        mMainViewModel.setShowMusicPlayerBar(false);
+    }
+
+    private void getData() {
+        mPlaylistId = MusicPlayingPlaylistFragmentArgs.fromBundle(getArguments()).getPlaylistId();
+    }
+
+    private void setupToolbar() {
+        mBinding.toolbar.setNavigationOnClickListener(v -> {
+            Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
+                    .popBackStack();
+        });
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private void setupRcvSongs() {
+        mAllSongAdapter.setOnClickSongItemListener(this);
+        mBinding.rcvSongs.setAdapter(mAllSongAdapter);
+        mMusicPlayingPlaylistViewModel.loadSongsOfPlaylist(mPlaylistId);
+        mMusicPlayingPlaylistViewModel.mSongOfPlaylist.observe(getViewLifecycleOwner(), songs -> {
+            if (songs != null) {
+                mAllSongAdapter.submitList(songs);
+
+                if (needValidateRcvAfterComebackWithService) {
+                    needValidateRcvAfterComebackWithService = false;
+                    validateRcvFollowTrackManual();
+                }
+
+                mAllSongAdapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+    private void observeCurrentSong() {
+        mMainViewModel.mCurrentSong.observe(getViewLifecycleOwner(), song -> {
+            if (song != null) {
+                handlerUIFollowCurrentSong(song);
+                updateProgressOfSong();
+            } else {
+                Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
+                        .popBackStack();
+            }
+
+            if (mMusicPlayingPlaylistViewModel.getSongs() == null) {
+                needValidateRcvAfterComebackWithService = true;
+            } else {
+                validateRcvFollowTrackManual();
+            }
+        });
+    }
+
+    private void handlerUIFollowCurrentSong(DeviceSong song) {
+        mBinding.musicPlayerCircle.setDuration(song.getDuration());
+        mBinding.musicPlayerCircle.setOnMusicBarChangeListener(currentPosition -> {
+            if (mMainViewModel.getMediaPlayer() != null) {
+                mMainViewModel.getMediaPlayer().seekTo((int) currentPosition);
+            }
+        });
+    }
+
+    private void updateProgressOfSong() {
+        mScheduledExecutorService.scheduleWithFixedDelay(() -> {
+            if (mMainViewModel.getCurrentSong() != null) {
+                int currentPosition = mMainViewModel.getMediaPlayer().getCurrentPosition();
+                requireActivity().runOnUiThread(() -> {
+                    if (mBinding != null) {
+                        mBinding.musicPlayerCircle.setCurrentPosition(currentPosition);
+                        mBinding.tvCurrentPosition.setText(CommonUtil.getTime(currentPosition));
+                    }
+                });
+
+            }
+        }, 0, 999, TimeUnit.MILLISECONDS);
+    }
+
+    private void validateRcvFollowTrackManual() {
+        mMusicPlayingPlaylistViewModel.validateSongsFollowTrack(
+                mMainViewModel.getMusicSource(),
+                mMainViewModel.getCurrentSong()
+        );
+    }
+
+    @Override
+    public void onClickSongItem(DeviceSong song) {
+        song.setPlaying(true);
+        mMainViewModel.playExternalSong(
+                new ServiceMusicData(MusicSource.SONGS_OF_PLAYLIST_SOURCE, mMusicPlayingPlaylistViewModel.getSongs(), song));
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mScheduledExecutorService != null) {
+            mScheduledExecutorService.shutdown();
         }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_music_playing_playlist, container, false);
     }
 }

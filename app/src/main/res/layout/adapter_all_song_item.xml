@@ -80,7 +80,8 @@
             android:src="@{song.playing ? @drawable/ic_pause : @drawable/ic_play}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
 
         <View
             android:id="@+id/divider"

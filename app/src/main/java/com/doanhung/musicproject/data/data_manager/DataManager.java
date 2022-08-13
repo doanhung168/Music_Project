@@ -246,10 +246,10 @@ public class DataManager {
 
     public void addSongToPlaylist(long playlistId, long songId) {
 
-        List<DeviceSong> songs = getSongsOfPlaylist(playlistId);
-        boolean isDuplicateSong = checkDuplicateSongOfPlaylist(songId,songs);
-        if(isDuplicateSong) {
-           throw new IllegalArgumentException("Song have already exited in playlist");
+        List<DeviceSong> songs = loadSongsOfPlaylist(playlistId);
+        boolean isDuplicateSong = checkDuplicateSongOfPlaylist(songId, songs);
+        if (isDuplicateSong) {
+            throw new IllegalArgumentException("Song have already exited in playlist");
         }
 
         Cursor getTrackCursor = mContext.getContentResolver().query(
@@ -277,7 +277,7 @@ public class DataManager {
         mContext.getContentResolver().notifyChange(Uri.parse("content://media"), null);
     }
 
-    public List<DeviceSong> getSongsOfPlaylist(long playlistId) {
+    public List<DeviceSong> loadSongsOfPlaylist(long playlistId) {
         List<DeviceSong> songs = new ArrayList<>();
 
         String[] playListSongProjection = new String[]{
@@ -287,7 +287,8 @@ public class DataManager {
                 MediaStore.Audio.Playlists.Members.ALBUM,
                 MediaStore.Audio.Playlists.Members.DATA,
                 MediaStore.Audio.Playlists.Members.ALBUM_ID,
-                MediaStore.Audio.Playlists.Members.ARTIST_ID
+                MediaStore.Audio.Playlists.Members.ARTIST_ID,
+                MediaStore.Audio.Playlists.Members.DURATION
         };
 
         Cursor cursor = mContext.getContentResolver().query(
@@ -303,7 +304,7 @@ public class DataManager {
             int nameIndex = cursor.getColumnIndex(MediaStore.Audio.Playlists.Members.TITLE);
             int artistIndex = cursor.getColumnIndex(MediaStore.Audio.Playlists.Members.ARTIST);
             int albumIndex = cursor.getColumnIndex(MediaStore.Audio.Playlists.Members.ALBUM);
-            int durationIndex = cursor.getColumnIndex(MediaStore.Audio.Playlists.Members.ALBUM);
+            int durationIndex = cursor.getColumnIndex(MediaStore.Audio.Playlists.Members.DURATION);
             int dataIndex = cursor.getColumnIndex(MediaStore.Audio.Playlists.Members.DATA);
             int albumIdIndex = cursor.getColumnIndex(MediaStore.Audio.Playlists.Members.ALBUM_ID);
             int artistIdIndex = cursor.getColumnIndex(MediaStore.Audio.Playlists.Members.ARTIST_ID);
@@ -343,12 +344,67 @@ public class DataManager {
     }
 
     private boolean checkDuplicateSongOfPlaylist(long songId, List<DeviceSong> songs) {
-        for(Song song: songs) {
-            if(song.getId() == songId) {
+        for (Song song : songs) {
+            if (song.getId() == songId) {
                 return true;
             }
         }
         return false;
+    }
+
+    public List<Long> getPlaylistIdsOfSong(long songId) {
+        List<Long> playlistIds = new ArrayList<>();
+
+        String[] playListProjection = new String[]{
+                MediaStore.Audio.Playlists._ID
+        };
+
+        String[] playListSongProjection = new String[]{
+                MediaStore.Audio.Playlists.Members.AUDIO_ID,
+        };
+
+
+        Cursor playlistCursor = mContext.getContentResolver()
+                .query(
+                        MediaStore.Audio.Playlists.EXTERNAL_CONTENT_URI,
+                        playListProjection,
+                        null,
+                        null,
+                        null
+                );
+
+        if (playlistCursor.getCount() > 0) {
+            int playlistIdIndex = playlistCursor.getColumnIndex(MediaStore.Audio.Playlists._ID);
+
+            while (playlistCursor.moveToNext()) {
+
+                long playlistId = playlistCursor.getLong(playlistIdIndex);
+
+                Cursor songOfPlaylistCursor = mContext.getContentResolver().query(
+                        MediaStore.Audio.Playlists.Members.getContentUri("external", playlistId),
+                        playListSongProjection,
+                        MediaStore.Audio.Media.IS_MUSIC + " != 0",
+                        null,
+                        null
+                );
+
+                if (songOfPlaylistCursor.getCount() > 0) {
+                    int songIdIndex = songOfPlaylistCursor.getColumnIndex(MediaStore.Audio.Playlists.Members.AUDIO_ID);
+
+                    while (songOfPlaylistCursor.moveToNext()) {
+                        long _songId = songOfPlaylistCursor.getLong(songIdIndex);
+
+                        if (_songId == songId) {
+                            playlistIds.add(playlistId);
+                            break;
+                        }
+                    }
+                    songOfPlaylistCursor.close();
+                }
+            }
+            playlistCursor.close();
+        }
+        return playlistIds;
     }
 
 

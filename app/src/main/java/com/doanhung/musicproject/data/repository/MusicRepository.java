@@ -233,6 +233,32 @@ public class MusicRepository {
         });
     }
 
+    public void loadSongsOfPlaylist(long playlistId, MusicRepositoryCallback<List<DeviceSong>> musicRepositoryCallback) {
+        mExecutor.execute(() -> {
+            try {
+                List<DeviceSong> deviceSongs = mDataManager.loadSongsOfPlaylist(playlistId);
+                Result<List<DeviceSong>> result = new Result.Success<>(deviceSongs);
+                musicRepositoryCallback.onComplete(result);
+            } catch (Exception e) {
+                Result<List<DeviceSong>> errorResult = new Result.Error<>(e);
+                musicRepositoryCallback.onComplete(errorResult);
+            }
+        });
+    }
+
+    public void getPlaylistIdsOfSong(long songId, MusicRepositoryCallback<List<Long>> musicRepositoryCallback) {
+        mExecutor.execute(() -> {
+            try {
+                List<Long> playlistIdsOfSong = mDataManager.getPlaylistIdsOfSong(songId);
+                Result<List<Long>> result = new Result.Success<>(playlistIdsOfSong);
+                musicRepositoryCallback.onComplete(result);
+            } catch (Exception e) {
+                Result<List<Long>> errorResult = new Result.Error<>(e);
+                musicRepositoryCallback.onComplete(errorResult);
+            }
+        });
+    }
+
 
     public interface MusicRepositoryCallback<T> {
         void onComplete(Result<T> result);

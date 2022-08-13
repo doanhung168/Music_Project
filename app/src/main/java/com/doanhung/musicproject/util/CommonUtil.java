@@ -29,9 +29,9 @@ import com.doanhung.musicproject.data.model.data_model.Song;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 
 public class CommonUtil {
-
 
 
     @RequiresApi(api = Build.VERSION_CODES.R)
@@ -53,7 +53,6 @@ public class CommonUtil {
         );
         return new BitmapDrawable(context.getResources(), bitmap);
     }
-
 
 
     public static Drawable loadThumbnail(Context context, Uri fileUri) {
@@ -177,5 +176,9 @@ public class CommonUtil {
         } catch (Exception e) {
             return ContextCompat.getDrawable(context, R.drawable.image_header_playlist_sample_1);
         }
+    }
+
+    public static <T> T getRandomItemFromList(List<T> list) {
+        return list.get(new Random().nextInt(list.size()));
     }
 }

@@ -55,5 +55,6 @@
 
     <!--    ArtistDetailFragment-->
     <dimen name="artist_detail_btn_follow_height_dimens">30dp</dimen>
+    <dimen name="fragment_music_playing_music_circle_dimens">200dp</dimen>
 
 </resources>

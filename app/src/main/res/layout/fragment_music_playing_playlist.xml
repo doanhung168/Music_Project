@@ -1,14 +1,210 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.main_activity.song_fragment.music_playing_in_playlist_fragment.MusicPlayingPlaylistFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="mainViewModel"
+            type="com.doanhung.musicproject.view.main_activity.MainViewModel" />
+
+        <variable
+            name="musicPlayingPlaylistViewModel"
+            type="com.doanhung.musicproject.view.main_activity.song_fragment.music_playing_in_playlist_fragment.MusicPlayingPlaylistViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@color/primary_color"
+        tools:context=".view.main_activity.song_fragment.music_playing_in_playlist_fragment.MusicPlayingPlaylistFragment">
 
-</FrameLayout>
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            style="@style/toolbar_title_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/menu_for_music_playing_fragment"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:title="@string/playlist" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="@dimen/large_dimens"
+            android:layout_height="@dimen/large_dimens"
+            android:onClick="@{() -> mainViewModel.playPreviousSong()}"
+            android:src="@drawable/ic_previous_song_for_now_playing"
+            app:layout_constraintBottom_toBottomOf="@+id/musicPlayerCircle"
+            app:layout_constraintEnd_toStartOf="@+id/musicPlayerCircle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/musicPlayerCircle" />
+
+        <ImageView
+            android:layout_width="@dimen/large_dimens"
+            android:layout_height="@dimen/large_dimens"
+            android:onClick="@{() -> mainViewModel.playNextSong()}"
+            android:src="@drawable/ic_next_song_for_now_playing"
+            app:layout_constraintBottom_toBottomOf="@+id/musicPlayerCircle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/musicPlayerCircle"
+            app:layout_constraintTop_toTopOf="@+id/musicPlayerCircle" />
+
+        <com.doanhung.musicproject.custom_view.MusicCircleView
+            android:id="@+id/musicPlayerCircle"
+            android:layout_width="@dimen/fragment_music_playing_music_circle_dimens"
+            android:layout_height="@dimen/fragment_music_playing_music_circle_dimens"
+            android:layout_marginTop="@dimen/large_dimens"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            custom:musicAvatar="@{mainViewModel.mCurrentSong.image}"
+            custom:progressWidth="4dp" />
+
+
+        <TextView
+            android:id="@+id/tvDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/below_small_dimens"
+            android:textColor="@color/white1_text_color"
+            app:layout_constraintBottom_toBottomOf="@+id/divider"
+            app:layout_constraintStart_toEndOf="@+id/divider"
+            app:layout_constraintTop_toTopOf="@+id/divider"
+            app:layout_constraintVertical_bias="0.0"
+            app:songDuration="@{mainViewModel.mCurrentSong.duration}" />
+
+        <TextView
+            android:id="@+id/tvCurrentPosition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/below_small_dimens"
+            android:text="@string/h_example"
+            android:textColor="@color/white1_text_color"
+            app:layout_constraintEnd_toStartOf="@+id/divider"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintTop_toBottomOf="@+id/musicPlayerCircle" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="@dimen/line_dimens"
+            android:layout_height="0dp"
+            android:background="@color/white2_text_color"
+            app:layout_constraintBottom_toBottomOf="@+id/tvCurrentPosition"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvCurrentPosition"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_music_identify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/below_large_dimens"
+            app:layout_constraintTop_toBottomOf="@+id/divider">
+
+            <TextView
+                android:id="@+id/tvSongName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/small_dimens"
+                android:layout_marginBottom="@dimen/small_dimens"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@{mainViewModel.mCurrentSong.name}"
+                android:textAlignment="center"
+                android:textColor="@color/white1_text_color"
+                android:textSize="@dimen/above_medium_text_dimens"
+                app:layout_constraintBottom_toTopOf="@+id/view3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvArtistName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small_dimens"
+                android:layout_marginEnd="@dimen/above_small_dimens"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@{mainViewModel.mCurrentSong.artist}"
+                android:textAlignment="textEnd"
+                android:textColor="@color/white2_text_color"
+                app:layout_constraintBottom_toBottomOf="@+id/view3"
+                app:layout_constraintEnd_toStartOf="@+id/view3"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/view3" />
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:layout_marginTop="@dimen/below_small_dimens"
+                android:layout_marginBottom="@dimen/above_medium_dimens_2"
+                android:background="@drawable/bg_circle_nut"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvSongName" />
+
+            <TextView
+                android:id="@+id/tvAlbum"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/above_small_dimens"
+                android:layout_marginEnd="@dimen/small_dimens"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@{mainViewModel.mCurrentSong.album}"
+                android:textColor="@color/white2_text_color"
+                app:layout_constraintBottom_toBottomOf="@+id/view3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/view3"
+                app:layout_constraintTop_toTopOf="@+id/view3" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcvSongs"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/below_medium_dimens"
+            android:paddingStart="@dimen/below_medium_dimens"
+            android:paddingEnd="@dimen/below_medium_dimens"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_music_identify"
+            tools:ignore="RtlSymmetry"
+            tools:itemCount="5"
+            tools:listitem="@layout/adapter_all_song_item" />
+
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="@dimen/progress_bar_dimens"
+            android:layout_height="@dimen/progress_bar_dimens"
+            android:indeterminateDrawable="@drawable/loading_animation"
+            android:indeterminateDuration="@android:integer/config_longAnimTime"
+            android:visibility="@{musicPlayingPlaylistViewModel.mIsLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/rcvSongs"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/rcvSongs"
+            tools:visibility="invisible" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
