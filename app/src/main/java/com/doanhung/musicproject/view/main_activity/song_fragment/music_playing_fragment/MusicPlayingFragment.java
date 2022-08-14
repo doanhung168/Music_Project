@@ -43,7 +43,8 @@ public class MusicPlayingFragment extends BaseFragment<FragmentMusicPlayingBindi
     @Inject
     ScheduledExecutorService mScheduledExecutorService;
 
-    private int positionOfMinutes;
+    private int mPositionOfMinutes;
+    private boolean mClickAddSongToPlaylistFlag;
 
     @Override
     public int getFragmentView() {
@@ -66,7 +67,7 @@ public class MusicPlayingFragment extends BaseFragment<FragmentMusicPlayingBindi
         mMainViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
         mBinding.setMainViewModel(mMainViewModel);
 
-        mMusicPlayingViewModel = new ViewModelProvider(requireActivity()).get(MusicPlayingViewModel.class);
+        mMusicPlayingViewModel = new ViewModelProvider(this).get(MusicPlayingViewModel.class);
         mBinding.setMusicPlayingViewModel(mMusicPlayingViewModel);
     }
 
@@ -83,6 +84,7 @@ public class MusicPlayingFragment extends BaseFragment<FragmentMusicPlayingBindi
         mBinding.toolbar.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
                 case R.id.add_to_playlist:
+                    mClickAddSongToPlaylistFlag = true;
                     handleToClickAddSongToPlaylist();
                     break;
                 case R.id.sleep_timer:
@@ -108,7 +110,10 @@ public class MusicPlayingFragment extends BaseFragment<FragmentMusicPlayingBindi
     private void observePlaylist() {
         mMusicPlayingViewModel.mPlaylists.observe(getViewLifecycleOwner(), playLists -> {
             if (playLists != null) {
-                showAddPlaylistDialog(playLists);
+                if (mClickAddSongToPlaylistFlag) {
+                    showAddPlaylistDialog(playLists);
+                    mClickAddSongToPlaylistFlag = false;
+                }
             }
         });
     }
@@ -187,7 +192,10 @@ public class MusicPlayingFragment extends BaseFragment<FragmentMusicPlayingBindi
         if (mMusicPlayingViewModel.checkHasNoPlaylistData()) {
             mMusicPlayingViewModel.loadPlaylists();
         } else {
-            showAddPlaylistDialog(mMusicPlayingViewModel.getPlaylists());
+            if (mClickAddSongToPlaylistFlag) {
+                showAddPlaylistDialog(mMusicPlayingViewModel.getPlaylists());
+                mClickAddSongToPlaylistFlag = false;
+            }
         }
     }
 
@@ -197,14 +205,14 @@ public class MusicPlayingFragment extends BaseFragment<FragmentMusicPlayingBindi
 
         AlertDialog alertDialog = new AlertDialog.Builder(requireContext())
                 .setTitle("Choose sleep timer")
-                .setSingleChoiceItems(minutes, positionOfMinutes, (dialog, which) -> {
-                    positionOfMinutes = which;
+                .setSingleChoiceItems(minutes, mPositionOfMinutes, (dialog, which) -> {
+                    mPositionOfMinutes = which;
                 })
                 .setNegativeButton("No", (dialog, which) -> {
                     dialog.dismiss();
                 })
                 .setPositiveButton("Yes", (dialog, which) -> {
-                    switch (positionOfMinutes) {
+                    switch (mPositionOfMinutes) {
                         case 0:
                             mMusicPlayingViewModel.setSleepTimer(1000 * 10);
                             break;
