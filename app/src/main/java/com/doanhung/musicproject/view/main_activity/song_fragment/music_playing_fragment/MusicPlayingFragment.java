@@ -1,12 +1,14 @@
 package com.doanhung.musicproject.view.main_activity.song_fragment.music_playing_fragment;
 
 import android.annotation.SuppressLint;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -41,6 +43,8 @@ public class MusicPlayingFragment extends BaseFragment<FragmentMusicPlayingBindi
     @Inject
     ScheduledExecutorService mScheduledExecutorService;
 
+    private int positionOfMinutes;
+
     @Override
     public int getFragmentView() {
         return R.layout.fragment_music_playing;
@@ -62,7 +66,7 @@ public class MusicPlayingFragment extends BaseFragment<FragmentMusicPlayingBindi
         mMainViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
         mBinding.setMainViewModel(mMainViewModel);
 
-        mMusicPlayingViewModel = new ViewModelProvider(this).get(MusicPlayingViewModel.class);
+        mMusicPlayingViewModel = new ViewModelProvider(requireActivity()).get(MusicPlayingViewModel.class);
         mBinding.setMusicPlayingViewModel(mMusicPlayingViewModel);
     }
 
@@ -80,6 +84,9 @@ public class MusicPlayingFragment extends BaseFragment<FragmentMusicPlayingBindi
             switch (item.getItemId()) {
                 case R.id.add_to_playlist:
                     handleToClickAddSongToPlaylist();
+                    break;
+                case R.id.sleep_timer:
+                    handleToClickSleepTime();
                     break;
             }
             return true;
@@ -182,6 +189,35 @@ public class MusicPlayingFragment extends BaseFragment<FragmentMusicPlayingBindi
         } else {
             showAddPlaylistDialog(mMusicPlayingViewModel.getPlaylists());
         }
+    }
+
+    private void handleToClickSleepTime() {
+        Resources res = getResources();
+        String[] minutes = res.getStringArray(R.array.minute_array);
+
+        AlertDialog alertDialog = new AlertDialog.Builder(requireContext())
+                .setTitle("Choose sleep timer")
+                .setSingleChoiceItems(minutes, positionOfMinutes, (dialog, which) -> {
+                    positionOfMinutes = which;
+                })
+                .setNegativeButton("No", (dialog, which) -> {
+                    dialog.dismiss();
+                })
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    switch (positionOfMinutes) {
+                        case 0:
+                            mMusicPlayingViewModel.setSleepTimer(1000 * 10);
+                            break;
+                        case 1:
+                            mMusicPlayingViewModel.setSleepTimer(1000 * 60);
+                            break;
+                        case 2:
+                            mMusicPlayingViewModel.setSleepTimer(1000 * 60 * 5);
+                            break;
+                    }
+                })
+                .create();
+        alertDialog.show();
     }
 
     public void showAddPlaylistDialog(List<PlayList> playLists) {
