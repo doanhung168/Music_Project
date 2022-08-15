@@ -527,7 +527,12 @@ public class DataManager {
             while (loadAlbumCursor.moveToNext()) {
                 long id = loadAlbumCursor.getLong(idIndex);
                 String albumName = loadAlbumCursor.getString(nameIndex);
-                Uri albumImage = Uri.parse(loadAlbumCursor.getString(imageIndex));
+                String uriString = loadAlbumCursor.getString(imageIndex);
+
+                Uri albumImage = null;
+                if(uriString != null) {
+                    albumImage = Uri.parse(loadAlbumCursor.getString(imageIndex));
+                }
                 String artist = loadAlbumCursor.getString(artistIndex);
                 String artistId = loadAlbumCursor.getString(artistIdIndex);
                 int numberOfSongs = loadAlbumCursor.getInt(numberOfSongIndex);

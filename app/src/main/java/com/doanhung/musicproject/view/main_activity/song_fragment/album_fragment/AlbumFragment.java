@@ -6,16 +6,19 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.view.ContextThemeWrapper;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.doanhung.musicproject.R;
 import com.doanhung.musicproject.data.model.data_model.Album;
 import com.doanhung.musicproject.databinding.FragmentAlbumBinding;
+import com.doanhung.musicproject.util.event.Event;
 import com.doanhung.musicproject.view.BaseFragment;
 
 import javax.inject.Inject;
@@ -42,6 +45,7 @@ public class AlbumFragment extends BaseFragment<FragmentAlbumBinding> implements
         super.onViewCreated(view, savedInstanceState);
         initViewModels();
         setupRcvAlbums();
+        listenerEvents();
 
     }
 
@@ -79,6 +83,14 @@ public class AlbumFragment extends BaseFragment<FragmentAlbumBinding> implements
         popup.setOnMenuItemClickListener(this);
         popup.inflate(R.menu.menu_album_fragment);
         popup.show();
+    }
+
+    private void listenerEvents() {
+        mAlbumViewModel.mEvent.observe(getViewLifecycleOwner(), event -> {
+            if (event == Event.LOADING_ALL_ALBUM_FAILURE) {
+                Toast.makeText(requireContext(), event.getException().getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @SuppressLint("NonConstantResourceId")

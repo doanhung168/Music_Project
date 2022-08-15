@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 
 import com.doanhung.musicproject.R;
+import com.doanhung.musicproject.util.event.Event;
 import com.google.android.material.checkbox.MaterialCheckBox;
 
 import java.util.ArrayList;
@@ -33,10 +34,14 @@ public class BindingAdapter {
 
     @androidx.databinding.BindingAdapter(value = {"placeHolderImage", "uri"})
     public static void setImage(ImageView imageView, Drawable placeHolderImage, Uri uri) {
-        try {
-            imageView.setImageURI(uri);
-        } catch (Exception e) {
+        if(uri == null) {
             imageView.setImageDrawable(placeHolderImage);
+        } else {
+            try {
+                imageView.setImageURI(uri);
+            } catch (Exception e) {
+                imageView.setImageDrawable(placeHolderImage);
+            }
         }
     }
 

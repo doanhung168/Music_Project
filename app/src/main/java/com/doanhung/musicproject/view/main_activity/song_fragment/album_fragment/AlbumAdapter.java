@@ -39,6 +39,8 @@ public class AlbumAdapter extends ListAdapter<Album, AlbumAdapter.AlbumViewHolde
             holder.mBinding.setOnClickAlbumItem(mOnClickAlbumItemListener);
             holder.mBinding.setAlbum(album);
             holder.mBinding.executePendingBindings();
+
+
         }
     }
 
